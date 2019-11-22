@@ -15,7 +15,13 @@ use Illuminate\Http\Request;
 
 Route::post('register', 'API\RegisterController@register');
 Route::post('login', 'API\RegisterController@login');
+Route::get('unauthorized', function () {
+    return response()->json([
+        'success' => false,
+        'message' => 'You are not logged in, e.g. using a valid access token',
+    ]);
+})->name('api.unauthorized');
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware(['auth:api', 'role:admin|staff|subscriber'])->get('/user', function (Request $request) {
     return $request->user();
 });

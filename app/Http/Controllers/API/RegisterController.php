@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Profile;
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,18 +21,22 @@ class RegisterController extends BaseController
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email',
+            'phone' => 'required|unique:users,phone',
             'password' => 'required',
-            'confirm_password' => 'required|same:password',
+            'password_confirmation' => 'required|same:password',
         ]);
 
         if ($validator->fails()) {
-            return $this->sendError('Validation Error.', $validator->errors());
+            return $this->sendError('Validation Error.', $validator->errors(), 422);
         }
-
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
+        $user->profile()->save(new Profile());
+        $roleIDArr = Role::where('name', 'subscriber')->pluck('id');
+        $user->roles()->attach($roleIDArr);
+
         $success['token'] = $user->createToken('MyApp')->accessToken;
         $success['name'] = $user->name;
 
@@ -48,10 +54,11 @@ class RegisterController extends BaseController
             $user = Auth::user();
             $success['token'] = $user->createToken('MyApp')->accessToken;
             $success['name'] = $user->name;
+            $success['email'] = $user->email;
 
             return $this->sendResponse($success, 'User login successfully.');
         } else {
-            return $this->sendError('Unauthorised.', ['error' => 'Unauthorised']);
+            return $this->sendError('Unauthorised.', ['error' => 'Unauthorised'], 401);
         }
     }
 }
