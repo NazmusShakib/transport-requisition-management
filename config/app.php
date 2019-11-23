@@ -166,6 +166,9 @@ return [
          * Package Service Providers...
          */
 
+        Zizaco\Entrust\EntrustServiceProvider::class,
+        L5Swagger\L5SwaggerServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -174,7 +177,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Zizaco\Entrust\EntrustServiceProvider::class,
+
 
     ],
 
@@ -226,6 +229,10 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        /*
+         * Package Service Aliases...
+         */
 
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
 

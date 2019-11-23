@@ -25,3 +25,7 @@ Route::get('unauthorized', function () {
 Route::middleware(['auth:api', 'role:admin|staff|subscriber'])->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['middleware' => ['auth:api', 'role:admin|staff|subscriber']], function () {
+    Route::get('profile', 'API\RegisterController@profile');
+});
