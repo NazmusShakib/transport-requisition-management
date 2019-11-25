@@ -37,7 +37,11 @@
                             <b class="hidden-xs">User Name</b>
                         </a>
                         <ul class="dropdown-menu dropdown-user animated flipInY">
-                            <li><a href="javascript:void(0)"><i class="ti-user"></i> My Account</a></li>
+                            <li>
+                                <router-link :to="{ name: 'Profile'}" class="waves-effect">
+                                    <i class="ti-user"></i> My Account
+                                </router-link>
+                            </li>
                             <li role="separator" class="divider"></li>
                             <li>
                                 <a href="javascript:void(0)" @click.prevent="logout">
