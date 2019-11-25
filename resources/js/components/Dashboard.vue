@@ -210,7 +210,7 @@
 </template>
 
 <script>
-    import MasterLayout from './layouts/MasterComponent.vue';
+    import MasterLayout from './layouts/MasterLayoutComponent.vue';
 
     export default {
         name: 'Dashboard',

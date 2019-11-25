@@ -40,6 +40,8 @@
 
 <script>
 
+    import GuestLayout from '../layouts/GuestLayoutComponent.vue';
+
     export default {
         components: {
             //
@@ -65,7 +67,10 @@
         },
         mounted: function () {
             console.log('Login Component');
-        }
+        },
+        created() {
+            this.$emit('update:layout', GuestLayout);
+        },
     }
 </script>
 

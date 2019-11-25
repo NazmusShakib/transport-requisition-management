@@ -22,12 +22,12 @@ const index = [
     {
         path: '/dashboard', component: Dashboard,
         name: 'Dashboard',
-        meta: {title: 'Dashboard Page- Example App', requireAuth: true}
+        meta: {title: 'Dashboard Page- Example App', guest: true}
     },
     {
         path: '/blank', component: Blank,
         name: 'Blank',
-        meta: {title: 'Blank Page- Example App', requireAuth: true}
+        meta: {title: 'Blank Page- Example App', guest: true}
     },
     {
         path: '*',
