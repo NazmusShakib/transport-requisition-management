@@ -7505,52 +7505,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {//
+    };
+  },
+  mounted: function mounted() {
+    console.log('Error404 component mounted.');
+  },
+  created: function created() {//
+  }
+});
 
 /***/ }),
 
@@ -91535,132 +91500,42 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "contact-us full-screen" }, [
-    _c(
-      "nav",
-      {
-        staticClass: "navbar navbar-ct-default",
-        attrs: { role: "navigation-demo" }
-      },
-      [
-        _c("div", { staticClass: "container" }, [
-          _c(
-            "div",
-            { staticClass: "navbar-header" },
-            [
-              _vm._m(0),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                { staticClass: "navbar-brand", attrs: { to: { path: "/" } } },
-                [_vm._v("Site title")]
-              )
-            ],
-            1
-          ),
+  return _c("section", { staticClass: "error-page" }, [
+    _c("div", { staticClass: "error-box" }, [
+      _c(
+        "div",
+        { staticClass: "error-body text-center" },
+        [
+          _c("h1", [_vm._v("404")]),
           _vm._v(" "),
-          _vm._m(1)
-        ])
-      ]
-    ),
-    _vm._v(" "),
-    _vm._m(2),
-    _vm._v(" "),
-    _c("footer", { staticClass: "footer-demo" }, [
-      _c("div", { staticClass: "container" }, [
-        _vm._m(3),
-        _vm._v(" "),
-        _c("div", { staticClass: "copyright pull-right" }, [
-          _vm._v(
-            "\n                © " +
-              _vm._s(new Date().getFullYear()) +
-              ", made with\n                "
-          ),
-          _c("i", { staticClass: "fa fa-heart heart" }),
-          _vm._v(" by Paper admin\n            ")
-        ])
+          _c("h3", { staticClass: "text-uppercase" }, [
+            _vm._v("Page Not Found !")
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "text-muted m-t-30 m-b-30" }, [
+            _vm._v("YOU SEEM TO BE TRYING TO FIND HIS WAY HOME")
+          ]),
+          _vm._v(" "),
+          _c(
+            "router-link",
+            {
+              staticClass:
+                "btn btn-info btn-rounded waves-effect waves-light m-b-40",
+              attrs: { to: { name: "Dashboard" } }
+            },
+            [_vm._v("Back To Home")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("footer", { staticClass: "footer text-center" }, [
+        _vm._v(_vm._s(new Date().getFullYear()) + " © Staff Management System")
       ])
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "navbar-toggle",
-        attrs: {
-          type: "button",
-          "data-toggle": "collapse",
-          "data-target": "#navigation-example-2"
-        }
-      },
-      [
-        _c("span", { staticClass: "sr-only" }, [_vm._v("Toggle navigation")]),
-        _vm._v(" "),
-        _c("span", { staticClass: "icon-bar" }),
-        _vm._v(" "),
-        _c("span", { staticClass: "icon-bar" }),
-        _vm._v(" "),
-        _c("span", { staticClass: "icon-bar" })
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "collapse navbar-collapse",
-        attrs: { id: "navigation-example-2" }
-      },
-      [_c("ul", { staticClass: "nav navbar-nav navbar-right" }, [_c("li")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "wrapper wrapper-full-page section content" },
-      [
-        _c("div", {}, [
-          _c("div", { staticClass: "container" }, [
-            _c("div", { staticClass: "row" }, [
-              _c(
-                "div",
-                { staticClass: "col-md-8 col-md-offset-2 text-center" },
-                [
-                  _c("h2", { staticClass: "title text-danger" }, [
-                    _vm._v("404 Not Found")
-                  ]),
-                  _vm._v(" "),
-                  _c("h2", { staticClass: "title" }, [
-                    _vm._v("Oops! It seems that this page does not exist.")
-                  ])
-                ]
-              )
-            ])
-          ])
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("nav", { staticClass: "pull-left" }, [
-      _c("ul", [_c("li"), _vm._v(" "), _c("li")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -108492,10 +108367,12 @@ router.afterEach(function (to, from) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_auth_Register__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/auth/Register */ "./resources/js/components/auth/Register.vue");
 /* harmony import */ var _components_auth_Login__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/auth/Login */ "./resources/js/components/auth/Login.vue");
-/* harmony import */ var _components_Dashboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Dashboard */ "./resources/js/components/Dashboard.vue");
-/* harmony import */ var _components_ProfileComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/ProfileComponent */ "./resources/js/components/ProfileComponent.vue");
-/* harmony import */ var _components_BlankComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/BlankComponent */ "./resources/js/components/BlankComponent.vue");
+/* harmony import */ var _components_errors_404__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/errors/404 */ "./resources/js/components/errors/404.vue");
+/* harmony import */ var _components_Dashboard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Dashboard */ "./resources/js/components/Dashboard.vue");
+/* harmony import */ var _components_ProfileComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/ProfileComponent */ "./resources/js/components/ProfileComponent.vue");
+/* harmony import */ var _components_BlankComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/BlankComponent */ "./resources/js/components/BlankComponent.vue");
 // Register
+
 
  // Authenticated
 
@@ -108520,7 +108397,7 @@ var index = [{
   }
 }, {
   path: '/blank',
-  component: _components_BlankComponent__WEBPACK_IMPORTED_MODULE_4__["default"],
+  component: _components_BlankComponent__WEBPACK_IMPORTED_MODULE_5__["default"],
   name: 'Blank',
   meta: {
     title: 'Blank Page - App',
@@ -108528,14 +108405,14 @@ var index = [{
   }
 }, {
   path: '*',
-  component: __webpack_require__(/*! ../components/errors/404 */ "./resources/js/components/errors/404.vue"),
+  component: _components_errors_404__WEBPACK_IMPORTED_MODULE_2__["default"],
   name: '404',
   meta: {
     title: 'Not Found - App'
   }
 }, {
   path: '/dashboard',
-  component: _components_Dashboard__WEBPACK_IMPORTED_MODULE_2__["default"],
+  component: _components_Dashboard__WEBPACK_IMPORTED_MODULE_3__["default"],
   name: 'Dashboard',
   meta: {
     requireAuth: true,
@@ -108551,7 +108428,7 @@ var index = [{
 }, {
   path: '/profile',
   name: 'Profile',
-  component: _components_ProfileComponent__WEBPACK_IMPORTED_MODULE_3__["default"],
+  component: _components_ProfileComponent__WEBPACK_IMPORTED_MODULE_4__["default"],
   meta: {
     requireAuth: true,
     title: 'Profile - App',
@@ -108640,8 +108517,8 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/html/steps/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /var/www/html/steps/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /var/www/html/amar-step/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/html/amar-step/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

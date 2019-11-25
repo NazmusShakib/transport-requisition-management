@@ -1,6 +1,7 @@
 // Register
 import Register from '../components/auth/Register';
 import Login from '../components/auth/Login';
+import Error404 from '../components/errors/404';
 
 // Authenticated
 import Dashboard from '../components/Dashboard';
@@ -26,7 +27,7 @@ const index = [
         meta: {title: 'Blank Page - App', guest: true}
     },
     {
-        path: '*', component: require('../components/errors/404'),
+        path: '*', component: Error404,
         name: '404', meta: {title: 'Not Found - App'}
     },
     {
