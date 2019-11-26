@@ -13,11 +13,15 @@
                             User Name<span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu animated flipInY">
-                            <li><a href="javascript:void(0)"><i class="ti-user"></i> My Profile</a></li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <i class="icon-user fa-fw"></i> My Profile
+                                </a>
+                            </li>
                             <li role="separator" class="divider"></li>
                             <li>
                                 <a href="javascript:void(0)" @click.prevent="logout">
-                                <i class="ti-power-off"></i> Logout
+                                    <i class="icon-logout fa-fw"></i> Logout
                                 </a>
                             </li>
                         </ul>
@@ -46,6 +50,19 @@
                             <i class="fa fa-sticky-note" data-icon="v"></i>
                             <span class="hide-menu"> Blank Page</span>
                         </router-link>
+                    </li>
+
+                    <li>
+                        <a href="#" class="waves-effect">
+                            <i class="fa fa-user" data-icon="v"></i>
+                            <span class="hide-menu"> Users
+                                <span class="fa arrow"></span>
+                            </span>
+                        </a>
+                        <ul class="nav nav-second-level collapse" aria-expanded="true">
+                            <li> <a href="#">List</a> </li>
+                            <li> <a href="#">Create New</a> </li>
+                        </ul>
                     </li>
 
                     <li>

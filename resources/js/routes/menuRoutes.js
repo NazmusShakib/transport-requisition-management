@@ -4,7 +4,7 @@ import Login from '../components/auth/Login';
 import Error404 from '../components/errors/404';
 
 // Authenticated
-import Dashboard from '../components/Dashboard';
+import Dashboard from '../components/DashboardComponent';
 import Profile from '../components/ProfileComponent';
 import Blank from '../components/BlankComponent';
 

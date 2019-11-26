@@ -23,7 +23,7 @@
 </style>
 
 <script>
-    import {NavBar, Sidebar} from '.'
+    import {NavBar, Sidebar} from '../partials'
 
     export default {
         components: {

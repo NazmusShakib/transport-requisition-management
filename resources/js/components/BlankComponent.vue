@@ -27,7 +27,7 @@
     import MasterLayout from './layouts/MasterLayoutComponent.vue';
 
     export default {
-        name: 'Dashboard',
+        name: 'Blank',
         components: {
             //
         },

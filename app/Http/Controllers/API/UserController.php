@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\API\BaseController as BaseController;
+use App\Http\Resources\ProfileResource;
 use App\Profile;
+use App\Role;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Resources\Profile as ProfileResource;
+use App\Http\Resources\UserResource;
 
-class ProfileController extends BaseController
+class UserController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +20,10 @@ class ProfileController extends BaseController
      */
     public function index()
     {
-        $profiles = Profile::all();
+        $users = User::with('roles')->select(
+            'id', 'name', 'email', 'phone')->get();
 
-        return $this->sendResponse(ProfileResource::collection($profiles), 'Profiles retrieved successfully.');
+        return $this->sendResponse(UserResource::collection($users), 'Users retrieved successfully.');
     }
     /**
      * Store a newly created resource in storage.
@@ -29,19 +33,27 @@ class ProfileController extends BaseController
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-
-        $validator = Validator::make($input, [
-            'notes' => 'required',
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'phone' => 'required|unique:users,phone',
+            'role' => 'required|in:admin,staff,subscriber',
+            'password' => 'required',
+            'password_confirmation' => 'required|same:password',
         ]);
 
-        if($validator->fails()){
-            return $this->sendError('Validation Error.', $validator->errors());
+        if ($validator->fails()) {
+            return $this->sendError('Validation Error.', $validator->errors(), 422);
         }
 
-        $product = Profile::create($input);
+        $input = $request->all();
+        $input['password'] = bcrypt($input['password']);
+        $user = User::create($input);
+        $user->profile()->save(new Profile());
+        $roleIDArr = Role::where('name', $input['role'])->pluck('id');
+        $user->roles()->attach($roleIDArr);
 
-        return $this->sendResponse(new ProfileResource($product), 'Profile created successfully.');
+        return $this->sendResponse(new UserResource($user), 'User created successfully.');
     }
 
     /**
@@ -52,13 +64,13 @@ class ProfileController extends BaseController
      */
     public function show($id)
     {
-        $profile = Profile::find($id);
+        $user = User::find($id);
 
-        if (is_null($profile)) {
-            return $this->sendError('Profile not found.');
+        if (is_null($user)) {
+            return $this->sendError('User not found.');
         }
 
-        return $this->sendResponse(new ProfileResource($profile), 'Profile retrieved successfully.');
+        return $this->sendResponse(new ProfileResource($user), 'User retrieved successfully.');
     }
 
     /**
@@ -83,7 +95,7 @@ class ProfileController extends BaseController
         $profile->notes = $input['notes'];
         $profile->save();
 
-        return $this->sendResponse(new ProfileResource($profile), 'Profile updated successfully.');
+        return $this->sendResponse(new UserResource($profile), 'Profile updated successfully.');
     }
 
     /**

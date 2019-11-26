@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Resources\ProfileResource;
+use App\Http\Resources\UserResource;
 use App\Profile;
 use App\Role;
 use App\User;
@@ -153,7 +155,7 @@ class RegisterController extends BaseController
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::user();
             $success['token'] = $user->createToken('MyApp')->accessToken;
-            $success['auth'] = $user;
+            $success['auth'] = new UserResource($user);
 
             return $this->sendResponse($success, 'User login successfully.');
         } else {
@@ -195,7 +197,7 @@ class RegisterController extends BaseController
      */
     public function profile()
     {
-        $profile = User::with(['profile', 'roles'])->find(Auth::id());
-        return $this->sendResponse($profile, 'Retrieve auth profile.');
+        $profile = User::find(Auth::id());
+        return $this->sendResponse(new ProfileResource($profile), 'Retrieve auth profile.');
     }
 }

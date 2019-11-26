@@ -39,13 +39,13 @@
                         <ul class="dropdown-menu dropdown-user animated flipInY">
                             <li>
                                 <router-link :to="{ name: 'Profile'}" class="waves-effect">
-                                    <i class="ti-user"></i> My Account
+                                    <i class="icon-user fa-fw"></i> My Account
                                 </router-link>
                             </li>
                             <li role="separator" class="divider"></li>
                             <li>
                                 <a href="javascript:void(0)" @click.prevent="logout">
-                                    <i class="ti-power-off"></i> Logout
+                                    <i class="icon-logout fa-fw"></i> Logout
                                 </a>
                             </li>
                         </ul>

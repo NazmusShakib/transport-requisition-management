@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,10 +20,16 @@ Route::get('unauthorized', function () {
     ]);
 })->name('api.unauthorized');
 
-Route::middleware(['auth:api', 'role:admin|staff|subscriber'])->get('/user', function (Request $request) {
+/*Route::middleware(['auth:api', 'role:admin|staff|subscriber'])->get('/user', function (Request $request) {
     return $request->user();
-});
+});*/
 
-Route::group(['middleware' => ['auth:api', 'role:admin|staff|subscriber']], function () {
+
+Route::group(['middleware' => ['auth:api']], function () {
+
     Route::get('profile', 'API\RegisterController@profile');
+
+    Route::apiResource('users', 'API\UserController', ['only' => [
+        'index', 'store', 'show', 'update', 'destroy']])->middleware(['role:admin']);
+
 });
