@@ -39,6 +39,7 @@ class UsersTableSeeder extends Seeder
             ]);
 
             $profile = new Profile();
+            $profile->gender = $faker->randomElement(['male', 'female']);
             $profile->dob = $faker->date('Y-m-d');
             $profile->bio = $faker->realText(150);
             $profile->address = $faker->address;

@@ -11,6 +11,7 @@
         "php": "^7.2",
         "barryvdh/laravel-cors": "^0.11.4",
         "darkaonline/l5-swagger": "^6.0",
+        "doctrine/dbal": "^2.10",
         "fideloper/proxy": "^4.0",
         "gghughunishvili/entrust": "^2.0",
         "laravel/framework": "^6.2",

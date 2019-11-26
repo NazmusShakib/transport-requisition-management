@@ -58,6 +58,6 @@ class User extends Authenticatable
      */
     public function profile()
     {
-        return $this->hasOne(Profile::class)->select('dob', 'bio', 'address');
+        return $this->hasOne(Profile::class)->select('gender', 'dob', 'bio', 'address');
     }
 }

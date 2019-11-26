@@ -11,11 +11,48 @@
         </div>
         <!--row -->
         <div class="row">
-            <div class="col-md-12 col-lg-12 col-sm-12">
+            <div class="col-md-4 col-xs-12">
+
+                <left-card></left-card>
+
+            </div>
+
+            <div class="col-md-8 col-xs-12">
                 <div class="white-box">
+                    <ul class="nav nav-tabs tabs customtab">
+                        <li class="active tab">
+                            <a href="#profile" data-toggle="tab" v-on:click="activeTab = 'Profile'">
+                                <span class="visible-xs"><i class="fa fa-user"></i></span>
+                                <span class="hidden-xs">Profile</span>
+                            </a>
+                        </li>
+                        <li class="tab" v-on:click="activeTab = 'UpdateProfile'">
+                            <a href="#update-profile" data-toggle="tab" aria-expanded="false">
+                                <span class="visible-xs"><i class="fa fa-cog"></i></span>
+                                <span class="hidden-xs">Settings</span>
+                            </a>
+                        </li>
+                        <li class="tab" v-on:click="activeTab = 'Headshot'">
+                            <a href="#headshot" data-toggle="tab" aria-expanded="false">
+                                <span class="visible-xs"><i class="fa fa-cog"></i></span>
+                                <span class="hidden-xs">Headshot</span>
+                            </a>
+                        </li>
+                        <li class="tab" v-on:click="activeTab = 'ChangePassword'">
+                            <a href="#change-password" data-toggle="tab" aria-expanded="false">
+                                <span class="visible-xs"><i class="fa fa-cog"></i></span>
+                                <span class="hidden-xs">Change Password</span>
+                            </a>
+                        </li>
+                    </ul>
 
-                    Profile content comes here!
+                    <div class="tab-content">
 
+                        <keep-alive>
+                            <component v-bind:is="activeTab"></component>
+                        </keep-alive>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -26,13 +63,15 @@
 <script>
     import MasterLayout from './layouts/MasterLayoutComponent.vue';
 
+    import {LeftCard, Profile, UpdateProfile, Headshot, ChangePassword} from './profile';
+
     export default {
-        name: 'Profile',
+        name: 'ProfileDetails',
         components: {
-            //
+            LeftCard, Profile, UpdateProfile, Headshot, ChangePassword
         },
         data: () => ({
-            //
+            activeTab: Profile
         }),
         mounted: function () {
             console.log('Profile component mounted.');
