@@ -2,6 +2,7 @@
 
 
 import Vue from 'vue';
+
 window.axios = require('axios');
 
 import i18n from 'vue-i18n';
@@ -11,8 +12,8 @@ Vue.use(i18n);
 window.NProgress = require('nprogress');
 import App from './App';
 
-Vue.prototype.$baseURL = 'http://127.0.0.1:8000/api/v1/';
 // router setup
+Vue.prototype.$baseURL = 'http://127.0.0.1:8000/api/v1/';
 import routers from './routes';
 
 /**
@@ -27,10 +28,26 @@ import localStorage from './services/localStorage';
 
 Vue.prototype.$localStorage = localStorage;
 
+// Add a request interceptor
+axios.interceptors.request.use(
+    config => {
+        const token = localStorage.get('token');
+        if (token) {
+            config.headers['Authorization'] = 'Bearer ' + token;
+        }
+        // config.headers['Content-Type'] = 'application/json';
+        return config;
+    },
+    error => {
+        Promise.reject(error)
+    });
+
+
+// import store from './store'
 
 /* eslint-disable no-new */
 const app = new Vue({
     el: '#wrapper',
     render: h => h(App),
-    router : routers
+    router: routers
 });
