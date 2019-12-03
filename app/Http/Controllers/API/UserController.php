@@ -53,7 +53,7 @@ class UserController extends BaseController
         $roleIDArr = Role::where('name', $input['role'])->pluck('id');
         $user->roles()->attach($roleIDArr);
 
-        return $this->sendResponse(new UserResource($user), 'User created successfully.');
+        return $this->sendResponse(new UserResource($user), 'User has been created successfully.');
     }
 
     /**

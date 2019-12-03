@@ -6,6 +6,7 @@
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                 <ol class="breadcrumb">
                     <li><a href="#">Users</a></li>
+                    <li class="active">List</li>
                 </ol>
             </div>
         </div>
@@ -39,13 +40,13 @@
                                 <td>{{ user.name }}</td>
                                 <td>{{ user.email }}</td>
                                 <td>{{ user.phone}}</td>
-                                <td>{{ user.name }}</td>
+                                <td>{{ user.role }}</td>
                                 <td>{{ user.id }}</td>
                             </tr>
                             </tbody>
                         </table>
 
-                        <vue-pagination :pagination="users" v-if="users.total >= 10"
+                        <vue-pagination :pagination="users" v-if="users.total >= 11"
                                         @paginate="getUsers()"
                                         :offset="4">
                         </vue-pagination>

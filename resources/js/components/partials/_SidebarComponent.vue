@@ -14,9 +14,9 @@
                         </a>
                         <ul class="dropdown-menu animated flipInY">
                             <li>
-                                <a href="javascript:void(0)">
-                                    <i class="icon-user fa-fw"></i> My Profile
-                                </a>
+                                <router-link :to="{ name: 'Profile'}" class="waves-effect">
+                                    <i class="icon-user fa-fw"></i> My Account
+                                </router-link>
                             </li>
                             <li role="separator" class="divider"></li>
                             <li>
@@ -53,7 +53,7 @@
                     </li>
 
                     <li>
-                        <a href="#" class="waves-effect">
+                        <a href="javascript:void(0)" class="waves-effect">
                             <i class="fa fa-user" data-icon="v"></i>
                             <span class="hide-menu"> Users
                                 <span class="fa arrow"></span>
@@ -66,7 +66,12 @@
                                     <span class="hide-menu"> List </span>
                                 </router-link>
                             </li>
-                            <li><a href="#">Create New</a></li>
+                            <li>
+                                <router-link :to="{ name: 'UserCreate'}" class="waves-effect">
+                                    <i class="fa fa-sticky-note" data-icon="v"></i>
+                                    <span class="hide-menu"> Create New </span>
+                                </router-link>
+                            </li>
                         </ul>
                     </li>
 
