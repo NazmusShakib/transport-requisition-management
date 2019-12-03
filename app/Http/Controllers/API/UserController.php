@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Http\Resources\ProfileResource;
+use App\Http\Resources\UserCollection;
 use App\Profile;
 use App\Role;
 use App\User;
@@ -16,14 +17,13 @@ class UserController extends BaseController
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
         $users = User::with('roles')->select(
-            'id', 'name', 'email', 'phone')->get();
+            'id', 'name', 'email', 'phone')->paginate(10);
 
-        return $this->sendResponse(UserResource::collection($users), 'Users retrieved successfully.');
+        return new UserCollection($users);
     }
     /**
      * Store a newly created resource in storage.

@@ -6,6 +6,14 @@ mix.options({
         host: '127.0.0.1',
         port: 8889
     }
+}).webpackConfig({
+    resolve: {
+        extensions: ['.js', '.vue', '.json'],
+        alias: {
+            'vue$': 'vue/dist/vue.esm.js',
+            '~': __dirname + '/resources/js'
+        },
+    },
 });
 
 

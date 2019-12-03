@@ -1,15 +1,20 @@
 // Register
-import Register from '../components/auth/Register';
-import Login from '../components/auth/Login';
-import Error404 from '../components/errors/404';
+import Register from '~/components/auth/Register';
+import Login from '~/components/auth/Login';
+import Error404 from '~/components/errors/404';
 
 // Authenticated
-import Dashboard from '../components/DashboardComponent';
-import Profile from '../components/ProfileComponent';
-import Blank from '../components/BlankComponent';
+import Dashboard from '~/components/DashboardComponent';
+import Profile from '~/components/ProfileComponent';
+import Blank from '~/components/BlankComponent';
 
 
-const index = [
+// Import Module Routes
+import userRoutes from './userRoutes';
+
+
+
+const baseRoutes = [
     {
         path: '/login',
         component: Login,
@@ -69,4 +74,8 @@ const index = [
     },
 ];
 
-export default index;
+const routes = baseRoutes.concat(
+    userRoutes
+);
+
+export default routes;

@@ -19,12 +19,12 @@ import routers from './routes';
 /**
  * Import third party plugins
  */
-import './global/rules';
-import './global/notificaitons';
-import './global/elements';
-import './global/loading';
+import '~/global/rules';
+import '~/global/notificaitons';
+import '~/global/elements';
+import '~/global/loading';
 
-import localStorage from './services/localStorage';
+import localStorage from '~/services/localStorage';
 
 Vue.prototype.$localStorage = localStorage;
 

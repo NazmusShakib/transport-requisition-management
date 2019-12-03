@@ -60,8 +60,13 @@
                             </span>
                         </a>
                         <ul class="nav nav-second-level collapse" aria-expanded="true">
-                            <li> <a href="#">List</a> </li>
-                            <li> <a href="#">Create New</a> </li>
+                            <li>
+                                <router-link :to="{ name: 'ListOfUsers'}" class="waves-effect">
+                                    <i class="fa fa-sticky-note" data-icon="v"></i>
+                                    <span class="hide-menu"> List </span>
+                                </router-link>
+                            </li>
+                            <li><a href="#">Create New</a></li>
                         </ul>
                     </li>
 
@@ -87,7 +92,7 @@
         methods: {
             logout() {
                 this.$localStorage.clear();
-                this.$router.push({ name: 'Login' });
+                this.$router.push({name: 'Login'});
             }
         }
     }
