@@ -11,20 +11,9 @@ const profile = {
         }
     },
     mutations: {
-        auth_request(state) {
-            state.status = 'loading'
-        },
-        auth_success(state, auth) {
-            state.status = 'success';
-            state.auth = auth;
-        },
-        logout(state) {
-            state.status = '';
-            state.auth = '';
-        },
-        auth_error(state) {
-            state.status = 'error'
-        },
+        changeName: state => {
+            state.profile.name = 'Aminul Islam';
+        }
     },
     actions: {
         authStore({commit}, auth) {

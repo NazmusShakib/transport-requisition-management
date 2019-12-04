@@ -73,7 +73,8 @@
                     });
             },
             updateProfile() {
-                console.log(this.profile);
+                // this.$store.getters.profile.name = 'asdf asdf asdf';
+                this.$store.commit('changeName');
             }
         }
     }
