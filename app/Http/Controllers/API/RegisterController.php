@@ -200,4 +200,21 @@ class RegisterController extends BaseController
         $profile = User::find(Auth::id());
         return $this->sendResponse(new ProfileResource($profile), 'Retrieve auth profile.');
     }
+
+    public function updateProfile(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            //'email' => 'required|email|unique:users,email',
+            'phone' => 'required',
+            'gender' => 'required|in:male,female',
+            'address' => 'string|nullable',
+            'bio' => 'string|nullable',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->sendError('Validation Error.', $validator->errors(), 422);
+        }
+        
+    }
 }

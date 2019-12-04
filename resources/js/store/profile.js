@@ -5,28 +5,19 @@ Vue.use(Vuex);
 
 const profile = {
     state: {
-        profile: {
-            'name': 'Nazmus Shakib',
-            'email': 'nshakib.se@gmail.com',
-        }
+        profile: {}
     },
     mutations: {
-        changeName: state => {
-            state.profile.name = 'Aminul Islam';
+        updateAuth: (state, payload) => {
+            state.profile = payload;
         }
     },
     actions: {
-        authStore({commit}, auth) {
+        authStore:(context, payload) => {
             return new Promise((resolve, reject) => {
-                commit('auth_request');
-                try {
-                    commit('auth_success', auth);
-                    resolve()
-                } catch (error) {
-                    commit('auth_error');
-                    reject(error)
-                }
-            })
+                context.commit('updateAuth', payload);
+                resolve()
+            });
         },
 
         logout({commit}) {
@@ -35,7 +26,6 @@ const profile = {
                 resolve()
             })
         }
-
     },
     getters: {
         profile: state => {

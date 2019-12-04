@@ -100,14 +100,13 @@ class UserController extends BaseController
 
     /**
      * Remove the specified resource from storage.
-     * @param Profile $product
+     * @param User $user
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */
-    public function destroy(Profile $product)
+    public function destroy(User $user)
     {
-        $product->delete();
-
-        return $this->sendResponse([], 'Profile deleted successfully.');
+        $user->delete();
+        return $this->sendResponse([], 'User has been deleted successfully.');
     }
 }

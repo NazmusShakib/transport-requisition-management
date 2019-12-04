@@ -13,7 +13,7 @@
                 <br>
                 <p class="text-muted">johnathan@admin.com</p>
             </div>
-            <div class="col-md-3 col-xs-6"><strong>Location</strong>
+            <div class="col-md-3 col-xs-6"><strong>Gender</strong>
                 <br>
                 <p class="text-muted">London</p>
             </div>

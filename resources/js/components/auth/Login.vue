@@ -64,7 +64,7 @@
                                 var data = response.data.data;
                                 localStorage.setItem('token', data.token);
                                 localStorage.setItem('auth', JSON.stringify(data.auth));
-                                // console.log('Login successfully' + this.user);
+                                this.$store.dispatch('authStore', data.auth);
                                 this.$router.push('/dashboard');
                             })
                             .catch((error) => {
