@@ -43,11 +43,12 @@ axios.interceptors.request.use(
     });
 
 
-// import store from './store'
+import store from './store'
 
 /* eslint-disable no-new */
 const app = new Vue({
     el: '#wrapper',
     render: h => h(App),
-    router: routers
+    router: routers,
+    store
 });

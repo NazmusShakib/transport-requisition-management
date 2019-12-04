@@ -3,9 +3,12 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+const profile = {
     state: {
-        auth: {}
+        profile: {
+            'name': 'Nazmus Shakib',
+            'email': 'nshakib.se@gmail.com',
+        }
     },
     mutations: {
         auth_request(state) {
@@ -46,6 +49,10 @@ export default new Vuex.Store({
 
     },
     getters: {
-        //
+        profile: state => {
+            return state.profile;
+        }
     }
-})
+};
+
+export default profile

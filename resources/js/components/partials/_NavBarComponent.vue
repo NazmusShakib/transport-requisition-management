@@ -34,7 +34,7 @@
                         <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#">
                             <img :src="'plugins/images/users/blank-profile-picture.png'" alt="user-img" width="36"
                                  class="img-circle">
-                            <b class="hidden-xs">User Name</b>
+                            <b class="hidden-xs">{{ profile.name }}</b>
                         </a>
                         <ul class="dropdown-menu dropdown-user animated flipInY">
                             <li>
@@ -61,15 +61,20 @@
 <script>
     export default {
         props: [],
-        created: function () {
-            console.log('NavBar component.')
+        computed: {
+          profile() {
+              return this.$store.getters.profile;
+          }
         },
         methods: {
             logout() {
                 this.$localStorage.clear();
                 this.$router.push({ name: 'Login' });
             }
-        }
+        },
+        created: function () {
+            console.log('NavBar component.')
+        },
     }
 
 </script>
