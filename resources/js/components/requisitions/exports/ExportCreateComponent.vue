@@ -99,13 +99,13 @@
 
                             <div class="form-group col-md-6">
                                 <label  class="control-label">Item</label>
-                                <input type="text" name="item" class="form-control" placeholder="Enter Item">
+                                <input type="text" name="items" class="form-control" placeholder="Enter Item">
                             </div>
                         </div>
                         <div class="row">
                             <div class=" form-group col-md-6">
                                 <label  class="control-label">Quantity</label>
-                                <input type="number" name="quantity" class="form-control" placeholder="Enter Quantity">
+                                <input type="number" name="qty" class="form-control" placeholder="Enter Quantity">
                             </div>
 
                             <div class="form-group col-md-6">

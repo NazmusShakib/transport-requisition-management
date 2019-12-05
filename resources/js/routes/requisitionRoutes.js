@@ -1,6 +1,6 @@
 // Authenticated
-import ExportCreate from '~/components/requitions/exports/ExportCreateComponent';
-import ImportCreate from '~/components/requitions/imports/ImportCreateComponent';
+import ExportCreate from '~/components/requisitions/exports/ExportCreateComponent';
+import ImportCreate from '~/components/requisitions/imports/ImportCreateComponent';
 
 const index = [
     {
