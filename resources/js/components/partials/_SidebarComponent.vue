@@ -76,6 +76,20 @@
                     </li>
 
                     <li>
+                        <router-link :to="{ name: 'ExportCreate'}" class="waves-effect">
+                            <i class="fa fa-sticky-note" data-icon="v"></i>
+                            <span class="hide-menu"> Create Export </span>
+                        </router-link>
+                    </li>
+
+                    <li>
+                        <router-link :to="{ name: 'ImportCreate'}" class="waves-effect">
+                            <i class="fa fa-sticky-note" data-icon="v"></i>
+                            <span class="hide-menu"> Create Import </span>
+                        </router-link>
+                    </li>
+
+                    <li>
                         <a href="#" class="waves-effect">
                             <i class="fa fa-sticky-note" data-icon="v"></i>
                             <span class="hide-menu"> Reports</span>
