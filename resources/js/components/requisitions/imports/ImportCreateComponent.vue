@@ -15,7 +15,7 @@
             <div class="col-md-12 col-lg-12 col-sm-12">
                 <div class="white-box">
 
-                    <form  action="#" method="POST">
+                    <form  action="#" method="POST" @submit.prevent="importCreate()" novalidate>
 
                         <div class="row">
                             <div class=" form-group col-md-6">
@@ -45,56 +45,36 @@
                                     <option value="OCTL">Orient Chem-Tex Ltd</option>
                                     <option value="HCL">Harmony Chem Ltd</option>
                                     <option value="MTL">Micro Trims Ltd</option>
+                                    <option value="Chittagong Station">Chittagong Station</option>
                                 </select>
                             </div>
                         </div>
                         <div class="row">
                             <div class=" form-group col-md-6">
-                                <label  class="control-label">Buyer Name</label>
-                                <select class="form-control" name="buyer_name">
-                                    <option>---Select Buyer Name---</option>
-                                    <option value="C&A">C&A</option>
-                                    <option value="H&M">H&M</option>
-                                    <option value="demo">KIABI</option>
-                                    <option value="demo">JENIFER</option>
-                                    <option value="demo">NEXT</option>
-                                    <option value="demo">STILL STROM</option>
-                                    <option value="demo">LIDL</option>
-                                    <option value="demo">LIDL</option>
+                                <label  class="control-label">Consignee Name</label>
+                                <select class="form-control" name="consignee_name">
+                                    <option>---Select Consignee Name---</option>
+                                    <option value="MFL">Micro Fibre Ltd</option>
+                                    <option value="MKL">Midland Knitwear Ltd</option>
+                                    <option value="LKL">Liberty Kinwear Ltd</option>
+                                    <option value="AOPL">A-One Polar Ltd</option>
+                                    <option value="OCTL">Orient Chem-Tex Ltd</option>
+                                    <option value="HCL">Harmony Chem Ltd</option>
+                                    <option value="MTL">Micro Trims Ltd</option>
+                                    <option value="TCBL">Tubingen Chem (BD)</option>
+                                    <option value="STL">Sungarh Tex Ltd</option>
                                 </select>
                             </div>
 
                             <div class="form-group col-md-6">
-                                <label  class="control-label">Load Point</label>
-                                <select class="form-control" name="load_point">
-                                    <option>---Select Buyer Name---</option>
-                                    <option value="Vulta">Vulta</option>
-                                    <option value="Fatullah">Fatullah</option>
-                                    <option value="Kaliakoir">Kaliakoir</option>
-                                </select>
+                                <label  class="control-label">LC No</label>
+                                <input type="text" name="lc_no" class="form-control" placeholder="Enter LC No">
                             </div>
                         </div>
                         <div class="row">
                             <div class=" form-group col-md-6">
-                                <label  class="control-label">Unload Point</label>
-                                <select class="form-control" name="unload_point">
-                                    <option>---Select Unload Point---</option>
-                                    <option value="Airport-Hemlane">Airport-Hemlane</option>
-                                    <option value="Airport-Nippon">Airport-Nippon</option>
-                                    <option value="All Port">All Port</option>
-                                    <option value="BM">BM</option>
-                                    <option value="BM">Incontred</option>
-                                    <option value="Ispahani">Ispahani</option>
-                                    <option value="K&T">K&T</option>
-                                    <option value="KDS">KDS</option>
-                                    <option value="Mawna">Mawna</option>
-                                    <option value="Mokterpur">Mokterpur</option>
-                                    <option value="Nemsan">Nemsan</option>
-                                    <option value="NKD">Nemsan</option>
-                                    <option value="OCL">OCL</option>
-                                    <option value="Portlink">Portlink</option>
-                                    <option value="SAPL">SAPL</option>
-                                </select>
+                                <label  class="control-label">LC Date</label>
+                                <input type="date" name="lc_date" class="form-control">
                             </div>
 
                             <div class="form-group col-md-6">
@@ -109,14 +89,58 @@
                             </div>
 
                             <div class="form-group col-md-6">
-                                <label  class="control-label">CBM</label>
-                                <input type="number" name="cbm" class="form-control" placeholder="Enter CBM">
+                                <label  class="control-label">No Of Box</label>
+                                <input type="number" name="no_of_box" class="form-control" placeholder="Enter No Of Box">
                             </div>
                         </div>
                         <div class="row">
                             <div class=" form-group col-md-6">
-                                <label  class="control-label">No Of Van</label>
-                                <input type="number" name="no_of_van" class="form-control" placeholder="Enter No Of Van">
+                                <label  class="control-label">No Of Drum</label>
+                                <input type="number" name="no_of_drum" class="form-control" placeholder="Enter No Of Drum">
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label  class="control-label">No Of Jar</label>
+                                <input type="number" name="no_of_jar" class="form-control" placeholder="Enter No Of Jar">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" form-group col-md-6">
+                                <label  class="control-label">No Of Bag</label>
+                                <input type="number" name="no_of_bag" class="form-control" placeholder="Enter No Of Bag">
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label  class="control-label">No Of Roll</label>
+                                <input type="number" name="no_of_roll" class="form-control" placeholder="Enter No Of Roll">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" form-group col-md-6">
+                                <label  class="control-label">No Of Bell</label>
+                                <input type="number" name="no_of_bell" class="form-control" placeholder="Enter No Of Bell">
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label  class="control-label">No Of CBM</label>
+                                <input type="number" name="no_of_cbm" class="form-control" placeholder="Enter No Of CBM">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" form-group col-md-6">
+                                <label  class="control-label">CNF Name</label>
+                                <input type="text" name="cnf_name" class="form-control" placeholder="Enter CNF Name">
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label  class="control-label">Jetty Sorkar Name</label>
+                                <input type="text" name="jetty_sorkar_name" class="form-control" placeholder="Enter Jetty Sorkar Name">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" form-group col-md-6">
+                                <label  class="control-label">Jetty Sorkar Cell No</label>
+                                <input type="number" name="jetty_sorkar_cell_no" class="form-control" placeholder="Enter Jetty Sorkar Cell No">
                             </div>
 
                             <div class="form-group col-md-6">
@@ -130,10 +154,10 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class=" form-group col-md-6 bootstrap-timepicker">
-                                <label  class="control-label">Unload Time</label>
+                            <div class=" form-group col-md-6">
+                                <label  class="control-label">Get Out Time</label>
                                 <div class="input-group">
-                                    <input type="text" name="unload_time" class="form-control timepicker" placeholder="Enter Unload Time">
+                                    <input type="text" name="get_out_time" class="form-control timepicker" placeholder="Enter Get Out Time" >
                                     <div class="input-group-addon">
                                         <i class="fa fa-clock-o"></i>
                                     </div>
@@ -141,19 +165,25 @@
                             </div>
 
                             <div class="form-group col-md-6">
-                                <label  class="control-label">Cut Off Time</label>
-                                <div class="input-group">
-                                    <input type="text" name="cut_of_time" class="form-control timepicker" placeholder="Enter Cut Of Time">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-clock-o"></i>
-                                    </div>
-                                </div>
+                                <label  class="control-label">Storage Location</label>
+                                <input type="text" name="storage_location" class="form-control" placeholder="Enter Storage Location">
                             </div>
                         </div>
                         <div class="row">
                             <div class=" form-group col-md-6">
-                                <label  class="control-label">Cut Off Date</label>
-                                <input type="date" name="cut_off_date" class="form-control">
+                                <label  class=" control-label">Store Concern Name</label>
+                                <input type="text" name="store_concern_name" class="form-control" placeholder="Enter Store Concern Name">
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label  class="control-label">Store Concern Cell No</label>
+                                <input type="text" name="store_concern_cell_no" class="form-control" placeholder="Enter Store Concern Cell No">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" form-group col-md-6">
+                                <label  class="control-label">No Of Van</label>
+                                <input type="number" name="no_of_van" class="form-control" placeholder="Enter No Of Van">
                             </div>
 
                             <div class="form-group col-md-6">

@@ -15,7 +15,7 @@
             <div class="col-md-12 col-lg-12 col-sm-12">
                 <div class="white-box">
 
-                    <form  action="#" method="POST">
+                    <form  action="#" method="POST" @submit.prevent="exportCreate()" novalidate>
 
                         <div class="row">
                             <div class=" form-group col-md-6">
