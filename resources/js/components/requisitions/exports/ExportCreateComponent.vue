@@ -119,10 +119,10 @@
                                 <input type="number" name="no_of_van" class="form-control" placeholder="Enter No Of Van">
                             </div>
 
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-6 bootstrap-timepicker">
                                 <label  class="control-label">Load Time</label>
                                 <div class="input-group">
-                                    <input type="text" name="load_time" class="form-control " placeholder="Enter Load Time">
+                                    <input type="text" name="load_time" class="form-control timepicker" placeholder="Enter Load Time">
                                     <div class="input-group-addon">
                                         <i class="fa fa-clock-o"></i>
                                     </div>
@@ -140,7 +140,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-6 bootstrap-timepicker" >
                                 <label  class="control-label">Cut Off Time</label>
                                 <div class="input-group">
                                     <input type="text" name="cut_of_time" class="form-control timepicker" placeholder="Enter Cut Of Time">
@@ -201,14 +201,14 @@
             //
         },
         data: () => ({
-            //
+            export: []
         }),
         mounted: function () {
             console.log('Export create component mounted.');
         },
         methods: {
             exportCreate() {
-                console.log('Submitted.');
+
             }
         },
         created() {

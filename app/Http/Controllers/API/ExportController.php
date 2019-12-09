@@ -28,11 +28,12 @@ class ExportController extends BaseController
      */
     public function store(Request $request)
     {
+
         $validator = Validator::make($request->all(), [
-            'requisition_no' => 'required',
-            'requisition_date' => 'required|date',
+            'requisition_no' => 'required|unique:exports,requisition_no',
             'requisition_location' => 'required',
-            'buyer_name' => 'required',
+            'requisition_date' => 'required|date',
+            'buyer_name' => 'required|regex:/^[\pL\s\-]+$/u',
             'load_point' => 'required',
             'unload_point' => 'required',
             'items' => 'required',
@@ -43,7 +44,7 @@ class ExportController extends BaseController
             'unload_time' => 'required',
             'cut_off_moment' => 'required',
             'fare' => 'required',
-            'transport_name' => 'required',
+           'transport_name' => 'required',
             'cover_van_capacity' => 'required',
             'cover_van_no' => 'required',
         ]);
@@ -52,9 +53,27 @@ class ExportController extends BaseController
             return $this->sendError('Validation Error.', $validator->errors(), 422);
         }
 
-        $input = $request->all();
-        $input['created_by'] = Auth::id();
-        $export = Export::create($input);
+       // $input = $request->all();
+        //$input['created_by'] = Auth::id();
+        $export = Export::create([
+            'requisition_no' => $request->requisition_no,
+            'requisition_location' => $request->requisition_location,
+            'requisition_date' => $request->requisition_date,
+            'buyer_name' => $request->buyer_name,
+            'load_point' => $request->load_point,
+            'unload_point' => $request->unload_point,
+            'items' => $request->items,
+            'qty' => $request->qty,
+            'cbm' => $request->cbm,
+            'no_of_van' => $request->no_of_van,
+            'load_time' => $request->load_time,
+            'fare' => $request->fare,
+            'transport_name' => $request->transport_name,
+            'cover_van_capacity' => $request->cover_van_capacity,
+            'cover_van_no' => $request->cover_van_no,
+        ]);
+
+
 
         return $this->sendResponse($export, 'Export requisition has been created successfully.');
     }
