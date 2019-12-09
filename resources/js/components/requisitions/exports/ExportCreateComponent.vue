@@ -15,28 +15,40 @@
             <div class="col-md-12 col-lg-12 col-sm-12">
                 <div class="white-box">
 
-                    <form  action="#" method="POST" @submit.prevent="exportCreate()" novalidate>
+                    <form action="#" method="POST" @submit.prevent="exportStore()" novalidate>
 
                         <div class="row">
                             <div class=" form-group col-md-6">
                                 <label class="control-label">Requisition No</label>
-                                <input type="number" name="requisition_no" class="form-control" placeholder="Auto generate">
+                                <input type="number" name="requisition no"
+                                       class="form-control"
+                                       v-model.trim="exports.requisition_no"
+                                       v-bind:class="{'has-error' : errors.has('requisition no')}"
+                                       v-validate="'required'"
+                                       placeholder="Auto generate">
+                                <div v-show="errors.has('requisition no')" class="help text-danger">
+                                    {{ errors.first('requisition no') }}
+                                </div>
                             </div>
-
                             <div class="form-group col-md-6">
                                 <label class="control-label">Requisition Date</label>
-                                <input type="date" name="requisition_date" class="form-control">
+                                <input type="date" name="requisition date"
+                                       v-model.trim="exports.requisition_date"
+                                       v-bind:class="{'has-error' : errors.has('requisition date')}"
+                                       v-validate="'required'"
+                                       class="form-control">
+                                <div v-show="errors.has('requisition date')" class="help text-danger">
+                                    {{ errors.first('requisition date') }}
+                                </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class=" form-group col-md-6">
-                                <label class="control-label">Requisition Create By </label>
-                                <input type="text" name="created_by" class="form-control" placeholder="Enter Name">
-                            </div>
-
                             <div class="form-group col-md-6">
                                 <label class="control-label">Requisition Location</label>
-                                <select class="form-control" name="requisition_location">
+                                <select class="form-control" name="requisition location"
+                                        v-model.trim="exports.requisition_location"
+                                        v-bind:class="{'has-error' : errors.has('requisition location')}"
+                                        v-validate="'required'">
                                     <option>---Select Location---</option>
                                     <option value="MFL">Micro Fibre Ltd</option>
                                     <option value="MKL">Midland Knitwear Ltd</option>
@@ -46,38 +58,67 @@
                                     <option value="HCL">Harmony Chem Ltd</option>
                                     <option value="MTL">Micro Trims Ltd</option>
                                 </select>
+                                <div v-show="errors.has('requisition location')" class="help text-danger">
+                                    {{ errors.first('requisition location') }}
+                                </div>
+                            </div>
+                            <div class=" form-group col-md-6">
+                                <label class="control-label">Transport Name</label>
+                                <input type="text" name="transport name"
+                                       class="form-control"
+                                       v-model.trim="exports.transport_name"
+                                       v-bind:class="{'has-error' : errors.has('transport name')}"
+                                       v-validate="'required'"
+                                       placeholder="Enter Transport Name">
+                                <div v-show="errors.has('transport name')" class="help text-danger">
+                                    {{ errors.first('transport name') }}
+                                </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class=" form-group col-md-6">
-                                <label  class="control-label">Buyer Name</label>
-                                <select class="form-control" name="buyer_name">
+                                <label class="control-label">Buyer Name</label>
+                                <select class="form-control" name="Buyer Name"
+                                        v-model="exports.buyer_name"
+                                        v-bind:class="{'has-error' : errors.has('Buyer Name')}"
+                                        v-validate="'required'">
                                     <option>---Select Buyer Name---</option>
-                                    <option value="C&A">C&A</option>
-                                    <option value="H&M">H&M</option>
-                                    <option value="demo">KIABI</option>
-                                    <option value="demo">JENIFER</option>
-                                    <option value="demo">NEXT</option>
-                                    <option value="demo">STILL STROM</option>
-                                    <option value="demo">LIDL</option>
-                                    <option value="demo">LIDL</option>
+                                    <option value="CnA">C&A</option>
+                                    <option value="HnM">H&M</option>
+                                    <option value="KIABI">KIABI</option>
+                                    <option value="JENIFER">JENIFER</option>
+                                    <option value="NEXT">NEXT</option>
+                                    <option value="STILL STROM">STILL STROM</option>
+                                    <option value="LIDL">LIDL</option>
                                 </select>
+                                <div v-show="errors.has('Buyer Name')" class="help text-danger">
+                                    {{ errors.first('Buyer Name') }}
+                                </div>
                             </div>
 
                             <div class="form-group col-md-6">
-                                <label  class="control-label">Load Point</label>
-                                <select class="form-control" name="load_point">
-                                    <option>---Select Buyer Name---</option>
+                                <label class="control-label">Load Point</label>
+                                <select class="form-control" name="Load Point"
+                                        v-model.trim="exports.load_point"
+                                        v-bind:class="{'has-error' : errors.has('Load Point')}"
+                                        v-validate="'required'">
+                                    <option>---Select Load Point---</option>
                                     <option value="Vulta">Vulta</option>
                                     <option value="Fatullah">Fatullah</option>
                                     <option value="Kaliakoir">Kaliakoir</option>
                                 </select>
+                                <div v-show="errors.has('Load Point')" class="help text-danger">
+                                    {{ errors.first('Load Point') }}
+                                </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class=" form-group col-md-6">
-                                <label  class="control-label">Unload Point</label>
-                                <select class="form-control" name="unload_point">
+                                <label class="control-label">Unload Point</label>
+                                <select class="form-control" name="Unload Point"
+                                        v-model.trim="exports.unload_point"
+                                        v-bind:class="{'has-error' : errors.has('Unload Point')}"
+                                        v-validate="'required'">
                                     <option>---Select Unload Point---</option>
                                     <option value="Airport-Hemlane">Airport-Hemlane</option>
                                     <option value="Airport-Nippon">Airport-Nippon</option>
@@ -95,87 +136,170 @@
                                     <option value="Portlink">Portlink</option>
                                     <option value="SAPL">SAPL</option>
                                 </select>
+                                <div v-show="errors.has('Unload Point')" class="help text-danger">
+                                    {{ errors.first('Unload Point') }}
+                                </div>
                             </div>
 
                             <div class="form-group col-md-6">
-                                <label  class="control-label">Item</label>
-                                <input type="text" name="items" class="form-control" placeholder="Enter Item">
+                                <label class="control-label">Item</label>
+                                <input type="text"
+                                       name="item"
+                                       v-model.trim="exports.items"
+                                       v-bind:class="{'has-error' : errors.has('item')}"
+                                       v-validate="'required'" class="form-control"
+                                       placeholder="Enter Item">
+                                <div v-show="errors.has('item')" class="help text-danger">
+                                    {{ errors.first('item') }}
+                                </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class=" form-group col-md-6">
-                                <label  class="control-label">Quantity</label>
-                                <input type="number" name="qty" class="form-control" placeholder="Enter Quantity">
+                                <label class="control-label">Quantity</label>
+                                <input type="number" name="Quantity"
+                                       class="form-control"
+                                       v-model.number="exports.qty"
+                                       v-bind:class="{'has-error' : errors.has('Quantity')}"
+                                       v-validate="'required'"
+                                       placeholder="Enter Quantity">
+                                <div v-show="errors.has('Quantity')" class="help text-danger">
+                                    {{ errors.first('Quantity') }}
+                                </div>
                             </div>
 
                             <div class="form-group col-md-6">
-                                <label  class="control-label">CBM</label>
-                                <input type="number" name="cbm" class="form-control" placeholder="Enter CBM">
+                                <label class="control-label">CBM</label>
+                                <input type="number" name="cbm"
+                                       class="form-control"
+                                       v-model.number="exports.cbm"
+                                       v-bind:class="{'has-error' : errors.has('cbm')}"
+                                       v-validate="'required'"
+                                       placeholder="Enter CBM">
+                                <div v-show="errors.has('cbm')" class="help text-danger">
+                                    {{ errors.first('cbm') }}
+                                </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class=" form-group col-md-6">
-                                <label  class="control-label">No Of Van</label>
-                                <input type="number" name="no_of_van" class="form-control" placeholder="Enter No Of Van">
+                                <label class="control-label">No Of Van</label>
+                                <input type="number" name="No Of Van"
+                                       v-model.number="exports.no_of_van"
+                                       v-bind:class="{'has-error' : errors.has('No Of Van')}"
+                                       v-validate="'required'"
+                                       class="form-control"
+                                       placeholder="Enter No Of Van">
+                                <div v-show="errors.has('No Of Van')" class="help text-danger">
+                                    {{ errors.first('No Of Van') }}
+                                </div>
                             </div>
 
                             <div class="form-group col-md-6 bootstrap-timepicker">
-                                <label  class="control-label">Load Time</label>
+                                <label class="control-label">Load Time</label>
                                 <div class="input-group">
-                                    <input type="text" name="load_time" class="form-control timepicker" placeholder="Enter Load Time">
+                                    <input type="text" name="Load Time"
+                                           class="form-control timepicker"
+                                           v-model.trim="exports.load_time"
+                                           v-bind:class="{'has-error' : errors.has('Load Time')}"
+                                           v-validate="'required'"
+                                           placeholder="Enter Load Time">
                                     <div class="input-group-addon">
                                         <i class="fa fa-clock-o"></i>
                                     </div>
+                                </div>
+                                <div v-show="errors.has('Load Time')" class="help text-danger">
+                                    {{ errors.first('Load Time') }}
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class=" form-group col-md-6 bootstrap-timepicker">
-                                <label  class="control-label">Unload Time</label>
+                                <label class="control-label">Unload Time</label>
                                 <div class="input-group">
-                                    <input type="text" name="unload_time" class="form-control timepicker" placeholder="Enter Unload Time">
+                                    <input type="text" name="Unload Time"
+                                           class="form-control timepicker"
+                                           v-model.trim="exports.unload_time"
+                                           v-bind:class="{'has-error' : errors.has('Unload Time')}"
+                                           v-validate="'required'"
+                                           placeholder="Enter Unload Time">
                                     <div class="input-group-addon">
                                         <i class="fa fa-clock-o"></i>
                                     </div>
                                 </div>
+                                <div v-show="errors.has('Unload Time')" class="help text-danger">
+                                    {{ errors.first('Unload Time') }}
+                                </div>
                             </div>
 
-                            <div class="form-group col-md-6 bootstrap-timepicker" >
-                                <label  class="control-label">Cut Off Time</label>
+                            <div class="form-group col-md-6 bootstrap-timepicker">
+                                <label class="control-label">Cut Off Time</label>
                                 <div class="input-group">
-                                    <input type="text" name="cut_of_time" class="form-control timepicker" placeholder="Enter Cut Of Time">
+                                    <input type="text" name="Cut Off Time"
+                                           class="form-control timepicker"
+                                           v-model.trim="exports.cut_off_time"
+                                           v-bind:class="{'has-error' : errors.has('Cut Off Time')}"
+                                           v-validate="'required'"
+                                           placeholder="Enter Cut Of Time">
                                     <div class="input-group-addon">
                                         <i class="fa fa-clock-o"></i>
                                     </div>
+                                </div>
+                                <div v-show="errors.has('Cut Off Time')" class="help text-danger">
+                                    {{ errors.first('Cut Off Time') }}
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class=" form-group col-md-6">
-                                <label  class="control-label">Cut Off Date</label>
-                                <input type="date" name="cut_off_date" class="form-control">
+                                <label class="control-label">Cut Off Date</label>
+                                <input type="date"
+                                       name="Cut Off Date"
+                                       v-model.trim="exports.cut_off_date"
+                                       v-bind:class="{'has-error' : errors.has('Cut Off Date')}"
+                                       v-validate="'required'"
+                                       class="form-control">
+                                <div v-show="errors.has('Cut Off Date')" class="help text-danger">
+                                    {{ errors.first('Cut Off Time') }}
+                                </div>
                             </div>
 
                             <div class="form-group col-md-6">
-                                <label  class="control-label">Fare</label>
-                                <input type="number" name="fare" class="form-control" placeholder="Enter Fare">
+                                <label class="control-label">Fare</label>
+                                <input type="number" name="fare"
+                                       v-model.trim="exports.fare"
+                                       v-bind:class="{'has-error' : errors.has('fare')}"
+                                       v-validate="'required'"
+                                       class="form-control" placeholder="Enter Fare">
+                                <div v-show="errors.has('fare')" class="help text-danger">
+                                    {{ errors.first('fare') }}
+                                </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class=" form-group col-md-6">
-                                <label  class="control-label">Transport Name</label>
-                                <input type="text" name="transport_name" class="form-control" placeholder="Enter Transport Name">
+                                <label class="control-label">Cover Van No</label>
+                                <input type="number" name="cover van no"
+                                       v-model.number="exports.cover_van_no"
+                                       v-bind:class="{'has-error' : errors.has('cover van no')}"
+                                       v-validate="'required'"
+                                       class="form-control"
+                                       placeholder="Enter No">
+                                <div v-show="errors.has('cover van no')" class="help text-danger">
+                                    {{ errors.first('cover van no') }}
+                                </div>
                             </div>
 
                             <div class="form-group col-md-6">
-                                <label  class="control-label">Cover Van Capacity</label>
-                                <input type="number" name="cover_van_capacity" class="form-control" placeholder="Enter Capacity">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class=" form-group col-md-6">
-                                <label  class="control-label">Cover Van No</label>
-                                <input type="number" name="cover_van_no" class="form-control" placeholder="Enter No">
+                                <label class="control-label">Cover Van Capacity</label>
+                                <input type="number" name="Cover Van Capacity"
+                                       v-model.number="exports.cover_van_capacity"
+                                       v-bind:class="{'has-error' : errors.has('Cover Van Capacity')}"
+                                       v-validate="'required'" class="form-control"
+                                       placeholder="Enter Capacity">
+                                <div v-show="errors.has('Cover Van Capacity')" class="help text-danger">
+                                    {{ errors.first('Cover Van Capacity') }}
+                                </div>
                             </div>
                         </div>
 
@@ -183,7 +307,6 @@
                             <button type="submit" class="btn btn-danger pull-left">Save Requisition Info</button>
                         </div>
                     </form>
-
 
                 </div>
             </div>
@@ -201,15 +324,32 @@
             //
         },
         data: () => ({
-            export: []
+            exports: {}
         }),
         mounted: function () {
             console.log('Export create component mounted.');
         },
         methods: {
-            exportCreate() {
-
-            }
+            exportStore() {
+                this.$validator.validateAll().then((result) => {
+                    if (result) {
+                        axios.post(this.$baseURL + 'exports', this.exports)
+                            .then(response => {
+                                this.exports = {};
+                                this.$notification.success(response.data.message);
+                                this.$validator.reset();
+                            })
+                            .catch(err => {
+                                console.log(err);
+                                this.$notification.error(err.message);
+                            });
+                    }
+                })
+            },
+            focusOnInvalidField() {
+                const firstField = Object.keys(this.errors.collect())[0];
+                this.$refs[`${firstField}Input`].focus();
+            },
         },
         created() {
             this.$emit('update:layout', MasterLayout);

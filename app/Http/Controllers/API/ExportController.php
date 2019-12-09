@@ -23,12 +23,11 @@ class ExportController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-
         $validator = Validator::make($request->all(), [
             'requisition_no' => 'required|unique:exports,requisition_no',
             'requisition_location' => 'required',
@@ -42,9 +41,10 @@ class ExportController extends BaseController
             'no_of_van' => 'required',
             'load_time' => 'required',
             'unload_time' => 'required',
-            'cut_off_moment' => 'required',
+            'cut_off_time' => 'required',
+            'cut_off_date' => 'required',
             'fare' => 'required',
-           'transport_name' => 'required',
+            'transport_name' => 'required',
             'cover_van_capacity' => 'required',
             'cover_van_no' => 'required',
         ]);
@@ -53,7 +53,7 @@ class ExportController extends BaseController
             return $this->sendError('Validation Error.', $validator->errors(), 422);
         }
 
-       // $input = $request->all();
+        // $input = $request->all();
         //$input['created_by'] = Auth::id();
         $export = Export::create([
             'requisition_no' => $request->requisition_no,
@@ -71,9 +71,8 @@ class ExportController extends BaseController
             'transport_name' => $request->transport_name,
             'cover_van_capacity' => $request->cover_van_capacity,
             'cover_van_no' => $request->cover_van_no,
+            'created_by' => Auth::id(),
         ]);
-
-
 
         return $this->sendResponse($export, 'Export requisition has been created successfully.');
     }
@@ -81,7 +80,7 @@ class ExportController extends BaseController
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -92,8 +91,8 @@ class ExportController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -104,7 +103,7 @@ class ExportController extends BaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
