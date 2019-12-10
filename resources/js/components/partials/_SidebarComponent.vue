@@ -76,6 +76,10 @@
                     </li>
 
                     <li>
+                        <router-link :to="{ name: 'ExportList'}" class="waves-effect">
+                            <i class="fa fa-sticky-note" data-icon="v"></i>
+                            <span class="hide-menu"> List Of Exports </span>
+                        </router-link>
                         <router-link :to="{ name: 'ExportCreate'}" class="waves-effect">
                             <i class="fa fa-sticky-note" data-icon="v"></i>
                             <span class="hide-menu"> Create Export </span>

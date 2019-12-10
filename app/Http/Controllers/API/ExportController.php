@@ -17,7 +17,10 @@ class ExportController extends BaseController
      */
     public function index()
     {
-        //
+        $exports = Export::with('createdBy')->select(
+            'id', 'requisition_no', 'requisition_date', 'requisition_location', 'buyer_name')->paginate(10);
+
+        return response()->json($exports, 200);
     }
 
     /**
@@ -108,6 +111,11 @@ class ExportController extends BaseController
      */
     public function destroy($id)
     {
-        //
+        try {
+            Export::find($id)->delete();
+            return $this->sendResponse([], 'Export has been deleted successfully.');
+        } catch (\Exception $exception) {
+            return $this->sendError($exception->getMessage(), '', 422);
+        }
     }
 }

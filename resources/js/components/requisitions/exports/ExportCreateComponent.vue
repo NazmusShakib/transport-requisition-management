@@ -340,8 +340,8 @@
                                 this.$validator.reset();
                             })
                             .catch(err => {
-                                console.log(err);
-                                this.$notification.error(err.message);
+                                console.log(err.message);
+                                this.$notification.error('Validation Error');
                             });
                     }
                 })
