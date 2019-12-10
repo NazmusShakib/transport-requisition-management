@@ -1,8 +1,25 @@
 // Authenticated
 import ExportCreate from '~/components/requisitions/exports/ExportCreateComponent';
+import ExportList from '~/components/requisitions/exports/ExportListComponent';
 import ImportCreate from '~/components/requisitions/imports/ImportCreateComponent';
 
 const index = [
+    {
+        path: '/exports', component: ExportList,
+        name: 'ExportList',
+        meta: {
+            requireAuth: true, title: 'Export List - App',
+            metaTags: [
+                {
+                    name: 'description',
+                    content: 'The Export List page of our app.'
+                }, {
+                    property: 'og:description',
+                    content: 'The Export List page of our app.'
+                }
+            ]
+        }
+    },
     {
         path: '/exports/create', component: ExportCreate,
         name: 'ExportCreate',
