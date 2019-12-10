@@ -34,9 +34,9 @@ class ImportController extends BaseController
             'requisition_location' => 'required',
             'consignee_name' => 'required|regex:/^[\pL\s\-]+$/u',
             'lc_no' => 'required',
-            'lc_date' => 'required',
+            'lc_date' => 'required|date',
             'items' => 'required',
-            'qty' => 'required',
+            'qty' => 'required|numeric|digits_between:1,10',
             'no_of_box' => 'required',
             'no_of_drum' => 'required',
             'no_of_jar' => 'required',
@@ -52,7 +52,7 @@ class ImportController extends BaseController
             'store_concern_name' => 'required|regex:/^[\pL\s\-]+$/u',
             'store_concern_cell_no' => 'required|size:11|regex:/(01)[0-9]{9}/',
             'no_of_van' => 'required',
-            'fare' => 'required',
+            'fare' => 'required|numeric',
             'transport_name' => 'required',
             'cover_van_capacity' => 'required',
             'cover_van_no' => 'required',
@@ -119,6 +119,8 @@ class ImportController extends BaseController
      */
     public function update(Request $request, $id)
     {
+
+
 
     }
 
