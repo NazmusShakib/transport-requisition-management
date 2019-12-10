@@ -18,7 +18,8 @@ class CreateImportsTable extends Migration
             $table->string('requisition_no')->unique()->nullable();
             $table->date('requisition_date')->nullable();
 
-            $table->bigInteger('created_by')->unsigned()->nullable();
+            $table->bigInteger('created_by')->unsigned()->nullable()
+            ->comment('We will get that from auth user id');
             $table->foreign('created_by')->references('id')
                 ->on('users')->onDelete('cascade');
 
