@@ -88,7 +88,13 @@ class ExportController extends BaseController
      */
     public function show($id)
     {
-        //
+        $export = Export::with('createdBy')->find($id);
+
+        if (is_null($export)) {
+            return $this->sendError('Export not found.');
+        }
+
+        return $this->sendResponse($export, 'Export retrieved successfully.');
     }
 
     /**

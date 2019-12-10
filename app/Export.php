@@ -17,7 +17,7 @@ class Export extends Model
         'requisition_no', 'requisition_date', 'requisition_location',
         'buyer_name', 'load_point', 'unload_point',
         'items', 'qty', 'cbm', 'no_of_van', 'load_time',
-        'unload_time', 'cut_off_moment', 'fare',
+        'unload_time', 'cut_off_moment', 'fare', 'created_by',
         'transport_name', 'cover_van_capacity',
         'cover_van_no',
     ];
