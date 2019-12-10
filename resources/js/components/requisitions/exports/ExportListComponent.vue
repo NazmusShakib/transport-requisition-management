@@ -43,8 +43,13 @@
                                 <td>{{ eachExport.buyer_name }}</td>
                                 <td>
                                     <a href="javascript:void(0)"
-                                       class="btn btn-xs btn-danger"
-                                       @click="destroyExport(eachExport.id, key)"> Delete
+                                       data-toggle="tooltip" title="Show!"
+                                       @click="showExport(eachExport.id)"><i class="fa fa-eye"></i>
+                                    </a>
+                                    <span class="m-r-5">|</span>
+                                    <a href="javascript:void(0)"
+                                       data-toggle="tooltip" title="Delete!"
+                                       @click="destroyExport(eachExport.id, key)"> <i class="fa fa-trash-o"></i>
                                     </a>
                                 </td>
                             </tr>
@@ -88,6 +93,15 @@
         methods: {
             getExports() {
                 axios.get('/api/v1/exports?page=' + this.exports.current_page)
+                    .then((response) => {
+                        this.exports = response.data;
+                    })
+                    .catch(() => {
+                        console.log('handle server error from here');
+                    });
+            },
+            showExport(id) {
+                axios.get('/api/v1/exports/' + id)
                     .then((response) => {
                         this.exports = response.data;
                     })
