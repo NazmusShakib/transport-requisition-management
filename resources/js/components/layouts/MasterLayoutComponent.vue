@@ -10,7 +10,7 @@
             </main>
 
             <footer class="footer text-center">
-                {{ new Date().getFullYear() }} &copy; Staff Management System
+                {{ new Date().getFullYear() }} &copy; Transport Requisition Management
             </footer>
         </div>
 
