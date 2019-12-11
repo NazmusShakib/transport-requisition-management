@@ -33,7 +33,7 @@ class CreateExportsTable extends Migration
             $table->integer('no_of_van')->nullable();
             $table->string('load_time')->nullable();
             $table->string('unload_time')->nullable();
-            $table->string('cut_of_time')->nullable();
+            $table->string('cut_off_time')->nullable();
             $table->float('fare', 8, 2)->nullable();
             $table->string('transport_name', 100)->nullable();
             $table->string('cover_van_capacity', 100)->nullable();

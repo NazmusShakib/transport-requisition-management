@@ -70,6 +70,8 @@ class ExportController extends BaseController
             'cbm' => $request->cbm,
             'no_of_van' => $request->no_of_van,
             'load_time' => $request->load_time,
+            'unload_time' => $request->unload_time,
+            'cut_off_time' => $request->cut_off_time,
             'fare' => $request->fare,
             'transport_name' => $request->transport_name,
             'cover_van_capacity' => $request->cover_van_capacity,
@@ -106,7 +108,9 @@ class ExportController extends BaseController
      */
     public function update(Request $request, $id)
     {
-        //
+        echo("<pre>");
+        print_r($request->all());
+        die();
     }
 
     /**

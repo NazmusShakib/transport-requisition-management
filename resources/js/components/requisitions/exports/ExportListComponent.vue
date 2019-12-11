@@ -42,10 +42,10 @@
                                 <td>{{ eachExport.requisition_location}}</td>
                                 <td>{{ eachExport.buyer_name }}</td>
                                 <td>
-                                    <a href="javascript:void(0)"
-                                       data-toggle="tooltip" title="Show!"
-                                       @click="showExport(eachExport.id)"><i class="fa fa-eye"></i>
-                                    </a>
+                                    <router-link :to="{ name: 'ExportUpdate', params: {id: eachExport.id } }"
+                                                 data-toggle="tooltip" title="Show!">
+                                        <i class="fa fa-eye"></i>
+                                    </router-link>
                                     <span class="m-r-5">|</span>
                                     <a href="javascript:void(0)"
                                        data-toggle="tooltip" title="Delete!"
@@ -100,7 +100,7 @@
                         console.log('handle server error from here');
                     });
             },
-            showExport(id) {
+            /*showExport(id) {
                 axios.get('/api/v1/exports/' + id)
                     .then((response) => {
                         this.exports = response.data;
@@ -108,7 +108,7 @@
                     .catch(() => {
                         console.log('handle server error from here');
                     });
-            },
+            },*/
             destroyExport(id, index) {
                 if (confirm("Do you really want to delete it?")) {
                     axios.delete('/api/v1/exports/' + id)

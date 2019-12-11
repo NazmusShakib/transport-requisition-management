@@ -1,6 +1,7 @@
 // Authenticated
 import ExportCreate from '~/components/requisitions/exports/ExportCreateComponent';
 import ExportList from '~/components/requisitions/exports/ExportListComponent';
+import ExportUpdate from '~/components/requisitions/exports/ExportUpdateComponent';
 import ImportCreate from '~/components/requisitions/imports/ImportCreateComponent';
 
 const index = [
@@ -32,6 +33,22 @@ const index = [
                 }, {
                     property: 'og:description',
                     content: 'The Export Create page of our app.'
+                }
+            ]
+        }
+    },
+    {
+        path: '/exports/:id', component: ExportUpdate,
+        name: 'ExportUpdate',
+        meta: {
+            requireAuth: true, title: 'Export Update - App',
+            metaTags: [
+                {
+                    name: 'description',
+                    content: 'The Export Update page of our app.'
+                }, {
+                    property: 'og:description',
+                    content: 'The Export Update page of our app.'
                 }
             ]
         }
