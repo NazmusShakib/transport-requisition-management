@@ -44,12 +44,12 @@
                                 <td>
                                     <router-link :to="{ name: 'ExportUpdate', params: {id: eachExport.id } }"
                                                  data-toggle="tooltip" title="Show!">
-                                        <i class="fa fa-eye"></i>
+                                        <i class="btn btn-info btn-xs fa fa-eye"></i>
                                     </router-link>
                                     <span class="m-r-5">|</span>
                                     <a href="javascript:void(0)"
                                        data-toggle="tooltip" title="Delete!"
-                                       @click="destroyExport(eachExport.id, key)"> <i class="fa fa-trash-o"></i>
+                                       @click="destroyExport(eachExport.id, key)"> <i class="btn btn-danger btn-xs fa fa-trash-o"></i>
                                     </a>
                                 </td>
                             </tr>

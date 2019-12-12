@@ -236,7 +236,7 @@
         <!-- /.container-fluid -->
 
         <footer class="footer text-center">
-            {{ date('Y') }} &copy; Staff Management System
+            {{ date('Y') }} &copy; Transport Management System
         </footer>
     </div>
     <!-- /#page-wrapper -->

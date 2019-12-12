@@ -11,7 +11,7 @@
     <!-- CSRF Token -->
     <meta name="csrf_token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Staff Management System') }}</title>
+    <title>{{ config('app.name', 'Transport Management System') }}</title>
 
     @include('layouts.header-script')
     @yield('style')

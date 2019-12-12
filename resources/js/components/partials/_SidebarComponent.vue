@@ -74,23 +74,43 @@
                             </li>
                         </ul>
                     </li>
-
                     <li>
-                        <router-link :to="{ name: 'ExportList'}" class="waves-effect">
-                            <i class="fa fa-sticky-note" data-icon="v"></i>
-                            <span class="hide-menu"> List Of Exports </span>
-                        </router-link>
-                        <router-link :to="{ name: 'ExportCreate'}" class="waves-effect">
-                            <i class="fa fa-sticky-note" data-icon="v"></i>
-                            <span class="hide-menu"> Create Export </span>
-                        </router-link>
+                        <a href="javascript:void(0)" class="waves-effect">
+                            <i class="fa fa-plane" data-icon="v"></i>
+                            <span class="hide-menu"> Export
+                                <span class="fa arrow"></span>
+                            </span>
+                        </a>
+                        <ul class="nav nav-second-level collapse" aria-expanded="true">
+                            <li>
+                                <router-link :to="{ name: 'ExportCreate'}" class="waves-effect">
+                                    <i class="fa fa-sticky-note" data-icon="v"></i>
+                                    <span class="hide-menu"> Create Export </span>
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link :to="{ name: 'ExportList'}" class="waves-effect">
+                                    <i class="fa fa-list" data-icon="v"></i>
+                                    <span class="hide-menu"> List Of Exports </span>
+                                </router-link>
+                            </li>
+                        </ul>
                     </li>
-
                     <li>
-                        <router-link :to="{ name: 'ImportCreate'}" class="waves-effect">
-                            <i class="fa fa-sticky-note" data-icon="v"></i>
-                            <span class="hide-menu"> Create Import </span>
-                        </router-link>
+                        <a href="javascript:void(0)" class="waves-effect">
+                            <i class="fa fa-truck" data-icon="v"></i>
+                            <span class="hide-menu"> Import
+                                <span class="fa arrow"></span>
+                            </span>
+                        </a>
+                        <ul class="nav nav-second-level collapse" aria-expanded="true">
+                            <li>
+                                <router-link :to="{ name: 'ImportCreate'}" class="waves-effect">
+                                    <i class="fa fa-sticky-note" data-icon="v"></i>
+                                    <span class="hide-menu"> Create Import </span>
+                                </router-link>
+                            </li>
+                        </ul>
                     </li>
 
                     <li>
