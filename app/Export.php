@@ -15,10 +15,9 @@ class Export extends Model
      */
     protected $fillable = [
         'requisition_no', 'requisition_date', 'requisition_location',
-        'buyer_name', 'load_point', 'unload_point',
-        'items', 'qty', 'cbm', 'no_of_van', 'load_time',
-        'unload_time', 'cut_off_time', 'fare', 'created_by',
-        'transport_name', 'cover_van_capacity',
+        'buyer_name', 'load_point', 'unload_point', 'items', 'qty',
+        'cbm', 'no_of_van', 'load_time', 'unload_time', 'cut_off_time', 'cut_off_date',
+        'fare', 'created_by', 'updated_by', 'transport_name', 'cover_van_capacity',
         'cover_van_no',
     ];
 
@@ -28,7 +27,7 @@ class Export extends Model
      * @var array
      */
     protected $hidden = [
-        'created_by'
+        'created_by', 'updated_by'
     ];
 
     /**
@@ -37,5 +36,13 @@ class Export extends Model
     public function createdBy()
     {
         return $this->belongsTo(User::class, 'created_by', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function updatedBy()
+    {
+        return $this->belongsTo(User::class, 'updated_by', 'id');
     }
 }

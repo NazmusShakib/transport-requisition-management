@@ -15,7 +15,7 @@
             <div class="col-md-12 col-lg-12 col-sm-12">
                 <div class="white-box">
 
-                    <form action="#" method="POST" @submit.prevent="exportUpdate" novalidate>
+                    <form action="#" method="POST" @submit.prevent="exportUpdate()" novalidate>
                         <div class="row">
                             <div class=" form-group col-md-6">
                                 <label class="control-label">Requisition No</label>
@@ -250,16 +250,15 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class=" form-group col-md-6">
+                            <div class="form-group col-md-6">
                                 <label class="control-label">Cut Off Date</label>
-                                <input type="date"
-                                       name="Cut Off Date"
+                                <input type="date" name="Cut Off Date"
                                        v-model.trim="exports.cut_off_date"
                                        v-bind:class="{'has-error' : errors.has('Cut Off Date')}"
                                        v-validate="'required'"
                                        class="form-control">
                                 <div v-show="errors.has('Cut Off Date')" class="help text-danger">
-                                    {{ errors.first('Cut Off Time') }}
+                                    {{ errors.first('Cut Off Date') }}
                                 </div>
                             </div>
 
@@ -335,13 +334,12 @@
                     if (result) {
                         axios.put(this.$baseURL + 'exports/' + this.exports.id, this.exports)
                             .then(response => {
-                                this.exports = {};
                                 this.$notification.success(response.data.message);
                                 this.$validator.reset();
                             })
                             .catch(err => {
                                 console.log(err.message);
-                                this.$notification.error('Validation Error');
+                                this.$notification.error(err.message);
                             });
                     }
                 })

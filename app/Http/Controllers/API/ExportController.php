@@ -72,6 +72,7 @@ class ExportController extends BaseController
             'load_time' => $request->load_time,
             'unload_time' => $request->unload_time,
             'cut_off_time' => $request->cut_off_time,
+            'cut_off_date' => $request->cut_off_date,
             'fare' => $request->fare,
             'transport_name' => $request->transport_name,
             'cover_van_capacity' => $request->cover_van_capacity,
@@ -108,9 +109,55 @@ class ExportController extends BaseController
      */
     public function update(Request $request, $id)
     {
-        echo("<pre>");
-        print_r($request->all());
-        die();
+        $validator = Validator::make($request->all(), [
+            'requisition_no' => 'required|unique:exports,requisition_no,' . $id,
+            'requisition_location' => 'required',
+            'requisition_date' => 'required|date',
+            'buyer_name' => 'required|regex:/^[\pL\s\-]+$/u',
+            'load_point' => 'required',
+            'unload_point' => 'required',
+            'items' => 'required',
+            'qty' => 'required',
+            /*'cbm' => 'required',
+            'no_of_van' => 'required',
+            'load_time' => 'required',
+            'unload_time' => 'required',
+            'cut_off_time' => 'required',
+            'cut_off_date' => 'required',
+            'fare' => 'required',
+            'transport_name' => 'required',
+            'cover_van_capacity' => 'required',
+            'cover_van_no' => 'required',*/
+        ]);
+
+        if ($validator->fails()) {
+            return $this->sendError('Validation Error.', $validator->errors(), 422);
+        }
+
+        $export = Export::find($id);
+        $export->update([
+            'requisition_no' => $request->requisition_no,
+            'requisition_location' => $request->requisition_location,
+            'requisition_date' => $request->requisition_date,
+            'buyer_name' => $request->buyer_name,
+            'load_point' => $request->load_point,
+            'unload_point' => $request->unload_point,
+            'items' => $request->items,
+            'qty' => $request->qty,
+            'cbm' => $request->cbm,
+            'no_of_van' => $request->no_of_van,
+            'load_time' => $request->load_time,
+            'unload_time' => $request->unload_time,
+            'cut_off_time' => $request->cut_off_time,
+            'cut_off_date' => $request->cut_off_date,
+            'fare' => $request->fare,
+            'transport_name' => $request->transport_name,
+            'cover_van_capacity' => $request->cover_van_capacity,
+            'cover_van_no' => $request->cover_van_no,
+            'updated_by' => Auth::id(),
+        ]);
+
+        return $this->sendResponse($export, 'Export has been updated successfully.');
     }
 
     /**
