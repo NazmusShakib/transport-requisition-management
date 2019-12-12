@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Export;
+use App\Helpers\Helper;
 use App\Http\Controllers\API\BaseController as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -175,4 +176,20 @@ class ExportController extends BaseController
             return $this->sendError($exception->getMessage(), '', 422);
         }
     }
+
+
+    public function generateRequisitionNo(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'requisition_location' => 'required|string'
+        ]);
+
+        if ($validator->fails()) {
+            return $this->sendError('Validation Error.', $validator->errors(), 422);
+        } else {
+            $generateRequisitionNo = Helper::generateRequisitionNo($request->requisition_location);
+            return $this->sendResponse($generateRequisitionNo, 'Export requisition no generated successfully.');
+        }
+    }
+
 }

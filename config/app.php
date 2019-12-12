@@ -237,6 +237,8 @@ return [
 
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
 
+        'Helper' => App\Helpers\Helper::class,
+
     ],
 
 ];

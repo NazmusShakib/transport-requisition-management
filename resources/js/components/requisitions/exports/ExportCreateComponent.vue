@@ -19,12 +19,46 @@
 
                         <div class="row">
                             <div class=" form-group col-md-6">
+                                <label class="control-label">Transport Name</label>
+                                <input type="text" name="transport name"
+                                       class="form-control"
+                                       v-model.trim="exports.transport_name"
+                                       v-bind:class="{'has-error' : errors.has('transport name')}"
+                                       v-validate="'required'"
+                                       placeholder="Enter Transport Name">
+                                <div v-show="errors.has('transport name')" class="help text-danger">
+                                    {{ errors.first('transport name') }}
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="control-label">Requisition Location</label>
+                                <select class="form-control" name="requisition location"
+                                        @change="generateRequisitionNo()"
+                                        v-model.trim="exports.requisition_location"
+                                        v-bind:class="{'has-error' : errors.has('requisition location')}"
+                                        v-validate="'required'">
+                                    <option value="" selected>---Select Location---</option>
+                                    <option value="MFL">Micro Fibre Ltd</option>
+                                    <option value="MKL">Midland Knitwear Ltd</option>
+                                    <option value="LKL">Liberty Kinwear Ltd</option>
+                                    <option value="AOPL">A-One Polar Ltd</option>
+                                    <option value="OCTL">Orient Chem-Tex Ltd</option>
+                                    <option value="HCL">Harmony Chem Ltd</option>
+                                    <option value="MTL">Micro Trims Ltd</option>
+                                </select>
+                                <div v-show="errors.has('requisition location')" class="help text-danger">
+                                    {{ errors.first('requisition location') }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" form-group col-md-6">
                                 <label class="control-label">Requisition No</label>
-                                <input type="number" name="requisition no"
+                                <input type="text" name="requisition no"
                                        class="form-control"
                                        v-model.trim="exports.requisition_no"
                                        v-bind:class="{'has-error' : errors.has('requisition no')}"
-                                       v-validate="'required'"
+                                       v-validate="'required'" readonly="readonly"
                                        placeholder="Auto generate">
                                 <div v-show="errors.has('requisition no')" class="help text-danger">
                                     {{ errors.first('requisition no') }}
@@ -39,39 +73,6 @@
                                        class="form-control">
                                 <div v-show="errors.has('requisition date')" class="help text-danger">
                                     {{ errors.first('requisition date') }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-md-6">
-                                <label class="control-label">Requisition Location</label>
-                                <select class="form-control" name="requisition location"
-                                        v-model.trim="exports.requisition_location"
-                                        v-bind:class="{'has-error' : errors.has('requisition location')}"
-                                        v-validate="'required'">
-                                    <option>---Select Location---</option>
-                                    <option value="MFL">Micro Fibre Ltd</option>
-                                    <option value="MKL">Midland Knitwear Ltd</option>
-                                    <option value="LKL">Liberty Kinwear Ltd</option>
-                                    <option value="AOPL">A-One Polar Ltd</option>
-                                    <option value="OCTL">Orient Chem-Tex Ltd</option>
-                                    <option value="HCL">Harmony Chem Ltd</option>
-                                    <option value="MTL">Micro Trims Ltd</option>
-                                </select>
-                                <div v-show="errors.has('requisition location')" class="help text-danger">
-                                    {{ errors.first('requisition location') }}
-                                </div>
-                            </div>
-                            <div class=" form-group col-md-6">
-                                <label class="control-label">Transport Name</label>
-                                <input type="text" name="transport name"
-                                       class="form-control"
-                                       v-model.trim="exports.transport_name"
-                                       v-bind:class="{'has-error' : errors.has('transport name')}"
-                                       v-validate="'required'"
-                                       placeholder="Enter Transport Name">
-                                <div v-show="errors.has('transport name')" class="help text-danger">
-                                    {{ errors.first('transport name') }}
                                 </div>
                             </div>
                         </div>
@@ -304,7 +305,9 @@
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-danger pull-left">Save Requisition Info</button>
+                            <button type="submit" :disabled="errors.any()" class="btn btn-danger pull-left">Save
+                                Requisition Info
+                            </button>
                         </div>
                     </form>
 
@@ -324,12 +327,28 @@
             //
         },
         data: () => ({
-            exports: {}
+            exports: {
+                // requisition_no: ''
+            }
         }),
         mounted: function () {
             console.log('Export create component mounted.');
         },
         methods: {
+            generateRequisitionNo() {
+                let currentObj = this;
+                axios.post(this.$baseURL + 'exports/generate-requisition-no',
+                    {
+                        requisition_location: currentObj.exports.requisition_location
+                    })
+                    .then(response => {
+                        currentObj.exports.requisition_no = response.data.data;
+                    })
+                    .catch(error => {
+                        console.log(error.response.data.message);
+                        this.$notification.error(error.response.data.message);
+                    });
+            },
             exportStore() {
                 this.$validator.validateAll().then((result) => {
                     if (result) {
@@ -341,7 +360,7 @@
                             })
                             .catch(error => {
                                 console.log(error.message);
-                                this.$notification.error(error.message);
+                                this.$notification.error(error.response.data.message);
                             });
                     }
                 })

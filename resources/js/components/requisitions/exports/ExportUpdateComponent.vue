@@ -24,7 +24,7 @@
                                        v-model.trim="exports.requisition_no"
                                        v-bind:class="{'has-error' : errors.has('requisition no')}"
                                        v-validate="'required'"
-                                       placeholder="Auto generate">
+                                       placeholder="Auto generate" readonly="readonly">
                                 <div v-show="errors.has('requisition no')" class="help text-danger">
                                     {{ errors.first('requisition no') }}
                                 </div>
