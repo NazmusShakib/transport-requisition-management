@@ -339,9 +339,9 @@
                                 this.$notification.success(response.data.message);
                                 this.$validator.reset();
                             })
-                            .catch(err => {
-                                console.log(err.message);
-                                this.$notification.error('Validation Error');
+                            .catch(error => {
+                                console.log(error.message);
+                                this.$notification.error(error.message);
                             });
                     }
                 })
