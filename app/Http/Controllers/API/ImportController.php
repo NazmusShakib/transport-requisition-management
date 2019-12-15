@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Helpers\Helper;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Import;
 use Illuminate\Http\Request;
@@ -45,12 +46,12 @@ class ImportController extends BaseController
             'no_of_bell' => 'required',
             'no_of_cbm' => 'required',
             'cnf_name' => 'required|regex:/^[\pL\s\-]+$/u',
-            'jetty_sorkar_cell_no' => 'required|size:11|regex:/(01)[0-9]{9}/',
+            // 'jetty_sorkar_cell_no' => 'required|size:11|regex:/(01)[0-9]{9}/',
             'load_time' => 'required',
             'get_out_time' => 'required',
             'storage_location' => 'required',
             'store_concern_name' => 'required|regex:/^[\pL\s\-]+$/u',
-            'store_concern_cell_no' => 'required|size:11|regex:/(01)[0-9]{9}/',
+            // 'store_concern_cell_no' => 'required|size:11|regex:/(01)[0-9]{9}/',
             'no_of_van' => 'required',
             'fare' => 'required|numeric',
             'transport_name' => 'required',
@@ -132,6 +133,26 @@ class ImportController extends BaseController
      */
     public function destroy($id)
     {
-        //
+        try {
+            Import::find($id)->delete();
+            return $this->sendResponse([], 'Import has been deleted successfully.');
+        } catch (\Exception $exception) {
+            return $this->sendError($exception->getMessage(), '', 422);
+        }
+    }
+
+
+    public function generateRequisitionNo(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'requisition_location' => 'required|string'
+        ]);
+
+        if ($validator->fails()) {
+            return $this->sendError('Validation Error.', $validator->errors(), 422);
+        } else {
+            $generateRequisitionNo = Helper::generateRequisitionNo($request->requisition_location, 'imports');
+            return $this->sendResponse($generateRequisitionNo, 'Imports requisition no generated successfully.');
+        }
     }
 }

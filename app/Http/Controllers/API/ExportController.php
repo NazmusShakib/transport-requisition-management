@@ -187,7 +187,7 @@ class ExportController extends BaseController
         if ($validator->fails()) {
             return $this->sendError('Validation Error.', $validator->errors(), 422);
         } else {
-            $generateRequisitionNo = Helper::generateRequisitionNo($request->requisition_location);
+            $generateRequisitionNo = Helper::generateRequisitionNo($request->requisition_location, 'exports');
             return $this->sendResponse($generateRequisitionNo, 'Export requisition no generated successfully.');
         }
     }

@@ -37,6 +37,8 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::apiResource('exports', 'API\ExportController', ['only' => [
         'index', 'store', 'show', 'update', 'destroy']])->middleware(['role:admin']);
 
+    Route::post('imports/generate-requisition-no', 'API\ImportController@generateRequisitionNo')
+        ->name('imports.generateRequisitionNo')->middleware(['role:admin']);
     Route::apiResource('imports', 'API\ImportController', ['only' => [
         'index', 'store', 'show', 'update', 'destroy']])->middleware(['role:admin']);
 

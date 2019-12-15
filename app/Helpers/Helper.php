@@ -11,7 +11,7 @@ class Helper
      * @param $requisitionLocation
      * @return string RequisitionNo
      */
-    public static function generateRequisitionNo($requisitionLocation)
+    public static function generateRequisitionNo($requisitionLocation, $model)
     {
         $requisitionLocation = strip_tags($requisitionLocation);
         /*$array = explode(' ', $requisitionLocation);
@@ -24,13 +24,13 @@ class Helper
         $four_digit_random_number = mt_rand(1000, 9999);
 
         $requisitionNo = $requisitionLocation . '-' . $four_digit_random_number;
-        $checkRequisitionNo = DB::table('exports')
+        $checkRequisitionNo = DB::table($model)
             ->select('requisition_no')
             ->where('requisition_no', '=', $requisitionNo)
             ->first();
 
         if ($checkRequisitionNo)
-            return Helper::generateRequisitionNo($requisitionLocation);
+            return Helper::generateRequisitionNo($requisitionLocation, $model);
         else
             return $requisitionNo;
     }

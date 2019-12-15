@@ -19,7 +19,7 @@
                         <div class="row">
                             <div class=" form-group col-md-6">
                                 <label class="control-label">Requisition No</label>
-                                <input type="number" name="requisition no"
+                                <input type="text" name="requisition no"
                                        class="form-control"
                                        v-model.trim="exports.requisition_no"
                                        v-bind:class="{'has-error' : errors.has('requisition no')}"
@@ -46,6 +46,7 @@
                                 <label class="control-label">Requisition Location</label>
                                 <select class="form-control" name="requisition location"
                                         v-model.trim="exports.requisition_location"
+                                        @change="generateRequisitionNo()"
                                         v-bind:class="{'has-error' : errors.has('requisition location')}"
                                         v-validate="'required'">
                                     <option>---Select Location---</option>
@@ -302,7 +303,7 @@
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-danger pull-left">Update Requisition Info</button>
+                            <button type="submit" class="btn btn-success pull-left">Update Requisition Info</button>
                         </div>
                     </form>
 
@@ -329,6 +330,20 @@
             this.exportShow(this.$route.params.id);
         },
         methods: {
+            generateRequisitionNo() {
+                let currentObj = this;
+                axios.post(this.$baseURL + 'exports/generate-requisition-no',
+                    {
+                        requisition_location: currentObj.exports.requisition_location
+                    })
+                    .then(response => {
+                        currentObj.exports.requisition_no = response.data.data;
+                    })
+                    .catch(error => {
+                        console.log(error.response.data.message);
+                        this.$notification.error(error.response.data.message);
+                    });
+            },
             exportUpdate() {
                 this.$validator.validateAll().then((result) => {
                     if (result) {

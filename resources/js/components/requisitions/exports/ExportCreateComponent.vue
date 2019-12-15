@@ -305,9 +305,10 @@
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" :disabled="errors.any()" class="btn btn-danger pull-left">Save
+                            <button type="submit" :disabled="errors.any()" class="btn btn-success">Save
                                 Requisition Info
                             </button>
+                            <button class="btn btn-danger" type="reset">Clear</button>
                         </div>
                     </form>
 
