@@ -7,20 +7,20 @@
                     <i class="ti-menu"></i>
                 </a>
                 <div class="top-left-part">
-                    <span class="hidden-xs">
+                    <!--<span class="hidden-xs">
                     <router-link :to="{ name: 'Dashboard'}" class="waves-effect">
                         Transport Requisition Management
                     </router-link>
-                    </span>
-                    <!--<a class="logo" href="#"><b>
+                    </span>-->
+                    <a class="logo" href="#"><b>
                         <img :src="'plugins/images/eliteadmin-logo.png'" alt="home" class="dark-logo"/>
                         <img :src="'plugins/images/eliteadmin-logo-dark.png'" alt="home" class="light-logo"/>
                     </b>
                         <span class="hidden-xs">
-<!--                    <img :src="'plugins/images/eliteadmin-text.png'" alt="home" class="dark-logo"/>-->
+                    <img :src="'plugins/images/eliteadmin-text.png'" alt="home" class="dark-logo"/>
                     <img :src="'plugins/images/eliteadmin-text-dark.png'" alt="home" class="light-logo"/>
                 </span>
-                    </a>-->
+                    </a>
                 </div>
                 <ul class="nav navbar-top-links navbar-left hidden-xs">
                     <li><a href="javascript:void(0)" class="open-close hidden-xs waves-effect waves-light"><i
