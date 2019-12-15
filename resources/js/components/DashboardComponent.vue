@@ -221,7 +221,13 @@
             //
         }),
         mounted: function () {
-            console.log('Dashboard component mounted.');
+            // console.log('Dashboard component mounted.');
+
+            if(!this.$localStorage.get('reloaded')) {
+                this.$localStorage.set('reloaded', '1');
+                location.reload();
+            }
+
         },
         created() {
             this.$emit('update:layout', MasterLayout);
