@@ -12,7 +12,7 @@
                         <img :src="'plugins/images/eliteadmin-logo-dark.png'" alt="home" class="light-logo"/>
                     </b>
                         <span class="hidden-xs">
-                    <img :src="'plugins/images/eliteadmin-text.png'" alt="home" class="dark-logo"/>
+<!--                    <img :src="'plugins/images/eliteadmin-text.png'" alt="home" class="dark-logo"/>-->
                     <img :src="'plugins/images/eliteadmin-text-dark.png'" alt="home" class="light-logo"/>
                 </span>
                     </a>
