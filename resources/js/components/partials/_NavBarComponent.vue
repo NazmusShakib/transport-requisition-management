@@ -12,13 +12,13 @@
                         Transport Requisition Management
                     </router-link>
                     </span>-->
-                    <a class="logo" href="#"><b>
-                        <img :src="'plugins/images/eliteadmin-logo.png'" alt="home" class="dark-logo"/>
-                        <img :src="'plugins/images/eliteadmin-logo-dark.png'" alt="home" class="light-logo"/>
+                    <a class="logo" :href="'/dashboard'"><b>
+                        <img :src="'/plugins/images/eliteadmin-logo.png'" alt="home" class="dark-logo"/>
+                        <img :src="'/plugins/images/eliteadmin-logo-dark.png'" alt="home" class="light-logo"/>
                     </b>
                         <span class="hidden-xs">
-                    <img :src="'plugins/images/eliteadmin-text.png'" alt="home" class="dark-logo"/>
-                    <img :src="'plugins/images/eliteadmin-text-dark.png'" alt="home" class="light-logo"/>
+                    <img :src="'/plugins/images/eliteadmin-text.png'" alt="home" class="dark-logo"/>
+                    <img :src="'/plugins/images/eliteadmin-text-dark.png'" alt="home" class="light-logo"/>
                 </span>
                     </a>
                 </div>
@@ -37,7 +37,7 @@
                 <ul class="nav navbar-top-links navbar-right pull-right">
                     <li class="dropdown">
                         <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#">
-                            <img :src="'plugins/images/users/blank-profile-picture.png'" alt="user-img" width="36"
+                            <img :src="'/plugins/images/users/blank-profile-picture.png'" alt="user-img" width="36"
                                  class="img-circle">
                             <b class="hidden-xs">{{ profile.name }}</b>
                         </a>
@@ -71,14 +71,14 @@
     export default {
         props: [],
         computed: {
-          profile() {
-              return this.$store.getters.profile;
-          }
+            profile() {
+                return this.$store.getters.profile;
+            }
         },
         methods: {
             logout() {
                 this.$localStorage.clear();
-                this.$router.push({ name: 'Login' });
+                this.$router.push({name: 'Login'});
             }
         },
         created: function () {

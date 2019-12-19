@@ -5,7 +5,7 @@
                 <div class="user-profile">
                     <div class="dropdown user-pro-body">
                         <div>
-                            <img :src="'plugins/images/users/blank-profile-picture.png'" alt="user-img"
+                            <img :src="'/plugins/images/users/blank-profile-picture.png'" alt="user-img"
                                  class="img-circle">
                         </div>
                         <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button"
@@ -40,7 +40,7 @@
 
                     <li>
                         <router-link :to="{ name: 'Dashboard'}" class="waves-effect">
-                            <i class="fa fa-sticky-note" data-icon="v"></i>
+                            <i class="fa fa-dashboard" data-icon="v"></i>
                             <span class="hide-menu"> Dashboard</span>
                         </router-link>
                     </li>
@@ -61,15 +61,15 @@
                         </a>
                         <ul class="nav nav-second-level collapse" aria-expanded="true">
                             <li>
-                                <router-link :to="{ name: 'ListOfUsers'}" class="waves-effect">
-                                    <i class="fa fa-th-list" data-icon="v"></i>
-                                    <span class="hide-menu"> List </span>
-                                </router-link>
-                            </li>
-                            <li>
                                 <router-link :to="{ name: 'UserCreate'}" class="waves-effect">
                                     <i class="fa fa-plus" data-icon="v"></i>
                                     <span class="hide-menu"> Create New </span>
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link :to="{ name: 'ListOfUsers'}" class="waves-effect">
+                                    <i class="fa fa-th-list" data-icon="v"></i>
+                                    <span class="hide-menu"> List </span>
                                 </router-link>
                             </li>
                         </ul>
