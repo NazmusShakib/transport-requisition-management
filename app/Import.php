@@ -17,7 +17,7 @@ class Import extends Model
         'requisition_no', 'requisition_date', 'requisition_location',
         'consignee_name', 'lc_no', 'lc_date', 'items', 'qty', 'no_of_box', 'no_of_drum',
         'no_of_jar', 'no_of_bag', 'no_of_roll', 'no_of_bell', 'no_of_cbm', 'cnf_name', 'unload_time',
-        'jetty_sorkar_cell_no', 'load_time', 'get_out_time', 'storage_location',
+        'jetty_sorkar_cell_no', 'load_time', 'get_out_time', 'storage_location', 'jetty_sorkar_name',
         'store_concern_name', 'store_concern_cell_no', 'no_of_van', 'fare',
         'transport_name', 'cover_van_capacity', 'cover_van_no', 'created_by', 'updated_by'
     ];

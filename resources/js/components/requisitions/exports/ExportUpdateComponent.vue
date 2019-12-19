@@ -326,7 +326,7 @@
             exports: {}
         }),
         mounted: function () {
-            console.log('Export update component mounted.');
+            // console.log('Export update component mounted.');
             this.exportShow(this.$route.params.id);
         },
         methods: {

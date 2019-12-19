@@ -42,7 +42,7 @@
                                 <td>{{ eachImports.requisition_location}}</td>
                                 <td>{{ eachImports.consignee_name }}</td>
                                 <td>
-                                    <router-link :to="{ name: 'importUpdate', params: {id: eachImports.id } }"
+                                    <router-link :to="{ name: 'ImportUpdate', params: {id: eachImports.id } }"
                                                  data-toggle="tooltip" title="Show!">
                                         <button type="button" class="btn btn-info btn-xs">Edit</button>
                                     </router-link>

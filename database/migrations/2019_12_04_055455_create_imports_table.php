@@ -32,6 +32,7 @@ class CreateImportsTable extends Migration
             $table->integer('no_of_bell')->nullable();
             $table->float('no_of_cbm', 10, 6)->nullable();
             $table->string('cnf_name')->nullable();
+            $table->string('jetty_sorkar_name')->nullable();
             $table->string('jetty_sorkar_cell_no')->nullable();
             $table->string('load_time')->nullable();
             $table->string('get_out_time')->nullable();

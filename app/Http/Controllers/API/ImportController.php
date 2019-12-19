@@ -49,6 +49,7 @@ class ImportController extends BaseController
             'no_of_bell' => 'required',
             'no_of_cbm' => 'required',
             'cnf_name' => 'required|regex:/^[\pL\s\-]+$/u',
+            'jetty_sorkar_name' => 'required',
             // 'jetty_sorkar_cell_no' => 'required|size:11|regex:/(01)[0-9]{9}/',
             'load_time' => 'required',
             'get_out_time' => 'required',
@@ -87,6 +88,7 @@ class ImportController extends BaseController
             'no_of_bell' => $request->no_of_bell,
             'no_of_cbm' => $request->no_of_cbm,
             'cnf_name' => $request->cnf_name,
+            'jetty_sorkar_name' => $request->jetty_sorkar_name,
             'jetty_sorkar_cell_no' => $request->jetty_sorkar_cell_no,
             'load_time' => $request->load_time,
             'get_out_time' => $request->get_out_time,
@@ -111,7 +113,13 @@ class ImportController extends BaseController
      */
     public function show($id)
     {
-        //
+        $export = Import::with('createdBy')->find($id);
+
+        if (is_null($export)) {
+            return $this->sendError('Import not found.');
+        }
+
+        return $this->sendResponse($export, 'Import retrieved successfully.');
     }
 
     /**
@@ -123,9 +131,76 @@ class ImportController extends BaseController
      */
     public function update(Request $request, $id)
     {
+        $validator = Validator::make($request->all(), [
+            'requisition_no' => 'required|unique:exports,requisition_no,' . $id,
+            'requisition_date' => 'required|date',
+            'requisition_location' => 'required',
+            'consignee_name' => 'required|regex:/^[\pL\s\-]+$/u',
+            'lc_no' => 'required',
+            'lc_date' => 'required|date',
+            'items' => 'required',
+            'qty' => 'required|numeric|digits_between:1,10',
+            'no_of_box' => 'required',
+            'no_of_drum' => 'required',
+            'no_of_jar' => 'required',
+            'no_of_bag' => 'required',
+            'no_of_roll' => 'required',
+            'no_of_bell' => 'required',
+            'no_of_cbm' => 'required',
+            'cnf_name' => 'required|regex:/^[\pL\s\-]+$/u',
+            'jetty_sorkar_name' => 'required',
+            // 'jetty_sorkar_cell_no' => 'required|size:11|regex:/(01)[0-9]{9}/',
+            'load_time' => 'required',
+            'get_out_time' => 'required',
+            'storage_location' => 'required',
+            'store_concern_name' => 'required|regex:/^[\pL\s\-]+$/u',
+            // 'store_concern_cell_no' => 'required|size:11|regex:/(01)[0-9]{9}/',
+            'no_of_van' => 'required',
+            'fare' => 'required|numeric',
+            'transport_name' => 'required',
+            'cover_van_capacity' => 'required',
+            'cover_van_no' => 'required',
 
+        ]);
 
+        if ($validator->fails()) {
+            return $this->sendError('Validation Error.', $validator->errors(), 422);
+        }
 
+        $import = Import::find($id);
+        $import->update([
+            'requisition_no' => $request->requisition_no,
+            'requisition_date' => $request->requisition_date,
+            'updated_by' => Auth::id(),
+            'requisition_location' => $request->requisition_location,
+            'consignee_name' => $request->consignee_name,
+            'lc_no' => $request->lc_no,
+            'lc_date' => $request->lc_date,
+            'items' => $request->items,
+            'qty' => $request->qty,
+            'no_of_box' => $request->no_of_box,
+            'no_of_drum' => $request->no_of_drum,
+            'no_of_jar' => $request->no_of_jar,
+            'no_of_bag' => $request->no_of_bag,
+            'no_of_roll' => $request->no_of_roll,
+            'no_of_bell' => $request->no_of_bell,
+            'no_of_cbm' => $request->no_of_cbm,
+            'cnf_name' => $request->cnf_name,
+            'jetty_sorkar_name' => $request->jetty_sorkar_name,
+            'jetty_sorkar_cell_no' => $request->jetty_sorkar_cell_no,
+            'load_time' => $request->load_time,
+            'get_out_time' => $request->get_out_time,
+            'storage_location' => $request->storage_location,
+            'store_concern_name' => $request->store_concern_name,
+            'store_concern_cell_no' => $request->store_concern_cell_no,
+            'no_of_van' => $request->no_of_van,
+            'fare' => $request->fare,
+            'transport_name' => $request->transport_name,
+            'cover_van_capacity' => $request->cover_van_capacity,
+            'cover_van_no' => $request->cover_van_no,
+        ]);
+
+        return $this->sendResponse($import, 'Import has been updated successfully.');
     }
 
     /**
