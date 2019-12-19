@@ -2,10 +2,10 @@
     <div class="container-fluid">
         <div class="row bg-title">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                <h4 class="page-title">List Of Exports</h4></div>
+                <h4 class="page-title">List Of Imports</h4></div>
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                 <ol class="breadcrumb">
-                    <li><a href="#">Exports</a></li>
+                    <li><a href="#">Imports</a></li>
                     <li class="active">List</li>
                 </ol>
             </div>
@@ -23,41 +23,41 @@
                                 <th>Requisition no</th>
                                 <th>Requisition date</th>
                                 <th>Requisition location</th>
-                                <th>Buyer name</th>
+                                <th>Consignee name</th>
                                 <th class="text-nowrap">Action</th>
                             </tr>
                             </thead>
                             <tbody>
 
-                            <tr class="text-center" v-if="exports.total === 0">
+                            <tr class="text-center" v-if="imports.total === 0">
                                 <td colspan="6">
                                     No data to display.
                                 </td>
                             </tr>
 
-                            <tr v-else v-for="(eachExport, key) in exports.data">
-                                <td>{{ exports.from + key }}</td>
-                                <td>{{ eachExport.requisition_no }}</td>
-                                <td>{{ eachExport.requisition_date }}</td>
-                                <td>{{ eachExport.requisition_location}}</td>
-                                <td>{{ eachExport.buyer_name }}</td>
+                            <tr v-else v-for="(eachImports, key) in imports.data">
+                                <td>{{ imports.from + key }}</td>
+                                <td>{{ eachImports.requisition_no }}</td>
+                                <td>{{ eachImports.requisition_date }}</td>
+                                <td>{{ eachImports.requisition_location}}</td>
+                                <td>{{ eachImports.consignee_name }}</td>
                                 <td>
-                                    <router-link :to="{ name: 'ExportUpdate', params: {id: eachExport.id } }"
+                                    <router-link :to="{ name: 'importUpdate', params: {id: eachImports.id } }"
                                                  data-toggle="tooltip" title="Show!">
                                         <button type="button" class="btn btn-info btn-xs">Edit</button>
                                     </router-link>
                                     <span class="m-r-5">|</span>
                                     <a href="javascript:void(0)"
                                        data-toggle="tooltip" title="Delete!"
-                                       @click="destroyExport(eachExport.id, key)"> <button type="button" class="btn btn-danger btn-xs">Delete</button>
+                                       @click="destroyImport(eachImports.id, key)"> <button type="button" class="btn btn-danger btn-xs">Delete</button>
                                     </a>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
 
-                        <vue-pagination :pagination="exports" v-if="exports.total >= 11"
-                                        @paginate="getExports()"
+                        <vue-pagination :pagination="imports" v-if="imports.total >= 11"
+                                        @paginate="getImports()"
                                         :offset="4">
                         </vue-pagination>
                     </div>
@@ -73,12 +73,12 @@
     import VuePagination from '~/components/partials/_PaginationComponent';
 
     export default {
-        name: 'ListOfExports',
+        name: 'ListOfImports',
         components: {
             VuePagination
         },
         data: () => ({
-            exports: {
+            imports: {
                 total: 0,
                 per_page: 1,
                 from: 1,
@@ -88,36 +88,36 @@
             offset: 4,
         }),
         mounted: function () {
-            this.getExports();
+            this.getImports();
         },
         methods: {
-            getExports() {
-                axios.get('/api/v1/exports?page=' + this.exports.current_page)
+            getImports() {
+                axios.get('/api/v1/imports?page=' + this.imports.current_page)
                     .then((response) => {
-                        this.exports = response.data;
+                        this.imports = response.data;
                     })
                     .catch(() => {
                         console.log('handle server error from here.');
                     });
             },
-            /*showExport(id) {
-                axios.get('/api/v1/exports/' + id)
+            /*showImport(id) {
+                axios.get('/api/v1/imports/' + id)
                     .then((response) => {
-                        this.exports = response.data;
+                        this.imports = response.data;
                     })
                     .catch(() => {
                         console.log('handle server error from here');
                     });
             },*/
-            destroyExport(id, index) {
+            destroyImport(id, index) {
                 if (confirm("Do you really want to delete it?")) {
-                    axios.delete('/api/v1/exports/' + id)
+                    axios.delete('/api/v1/imports/' + id)
                         .then(response => {
-                            this.exports.data.splice(index, 1);
+                            this.imports.data.splice(index, 1);
                             this.$notification.success(response.data.message);
                         })
                         .catch(error => {
-                            console.log("Could not delete this export.");
+                            console.log("Could not delete this import.");
                         });
                 }
             }
