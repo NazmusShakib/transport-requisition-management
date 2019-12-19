@@ -3,6 +3,7 @@ import ExportCreate from '~/components/requisitions/exports/ExportCreateComponen
 import ExportList from '~/components/requisitions/exports/ExportListComponent';
 import ExportUpdate from '~/components/requisitions/exports/ExportUpdateComponent';
 import ImportCreate from '~/components/requisitions/imports/ImportCreateComponent';
+import ImportList from '~/components/requisitions/imports/ImportListComponent';
 
 const index = [
     {
@@ -49,6 +50,22 @@ const index = [
                 }, {
                     property: 'og:description',
                     content: 'The Export Update page of our app.'
+                }
+            ]
+        }
+    },
+    {
+        path: '/imports', component: ImportList,
+        name: 'ImportList',
+        meta: {
+            requireAuth: true, title: 'Import List - App',
+            metaTags: [
+                {
+                    name: 'description',
+                    content: 'The import List page of our app.'
+                }, {
+                    property: 'og:description',
+                    content: 'The import List page of our app.'
                 }
             ]
         }

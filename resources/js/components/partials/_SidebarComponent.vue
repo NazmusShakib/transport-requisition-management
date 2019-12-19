@@ -62,13 +62,13 @@
                         <ul class="nav nav-second-level collapse" aria-expanded="true">
                             <li>
                                 <router-link :to="{ name: 'ListOfUsers'}" class="waves-effect">
-                                    <i class="fa fa-sticky-note" data-icon="v"></i>
+                                    <i class="fa fa-th-list" data-icon="v"></i>
                                     <span class="hide-menu"> List </span>
                                 </router-link>
                             </li>
                             <li>
                                 <router-link :to="{ name: 'UserCreate'}" class="waves-effect">
-                                    <i class="fa fa-sticky-note" data-icon="v"></i>
+                                    <i class="fa fa-plus" data-icon="v"></i>
                                     <span class="hide-menu"> Create New </span>
                                 </router-link>
                             </li>
@@ -84,13 +84,13 @@
                         <ul class="nav nav-second-level collapse" aria-expanded="true">
                             <li>
                                 <router-link :to="{ name: 'ExportCreate'}" class="waves-effect">
-                                    <i class="fa fa-sticky-note" data-icon="v"></i>
+                                    <i class="fa fa-plus" data-icon="v"></i>
                                     <span class="hide-menu"> Create Export </span>
                                 </router-link>
                             </li>
                             <li>
                                 <router-link :to="{ name: 'ExportList'}" class="waves-effect">
-                                    <i class="fa fa-list" data-icon="v"></i>
+                                    <i class="fa fa-th-list" data-icon="v"></i>
                                     <span class="hide-menu"> List Of Exports </span>
                                 </router-link>
                             </li>
@@ -106,8 +106,14 @@
                         <ul class="nav nav-second-level collapse" aria-expanded="true">
                             <li>
                                 <router-link :to="{ name: 'ImportCreate'}" class="waves-effect">
-                                    <i class="fa fa-sticky-note" data-icon="v"></i>
+                                    <i class="fa fa-plus" data-icon="v"></i>
                                     <span class="hide-menu"> Create Import </span>
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link :to="{ name: 'ImportList'}" class="waves-effect">
+                                    <i class="fa fa-th-list" data-icon="v"></i>
+                                    <span class="hide-menu"> List of Imports </span>
                                 </router-link>
                             </li>
                         </ul>

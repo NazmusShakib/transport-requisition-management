@@ -38,4 +38,12 @@ class Import extends Model
     {
         return $this->belongsTo(User::class, 'created_by', 'id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function updatedBy()
+    {
+        return $this->belongsTo(User::class, 'updated_by', 'id');
+    }
 }

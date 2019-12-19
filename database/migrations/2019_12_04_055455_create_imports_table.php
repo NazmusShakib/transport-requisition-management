@@ -18,11 +18,6 @@ class CreateImportsTable extends Migration
             $table->string('requisition_no')->unique()->nullable();
             $table->date('requisition_date')->nullable();
 
-            $table->bigInteger('created_by')->unsigned()->nullable()
-            ->comment('We will get that from auth user id');
-            $table->foreign('created_by')->references('id')
-                ->on('users')->onDelete('cascade');
-
             $table->string('requisition_location')->nullable();
             $table->string('consignee_name')->nullable();
             $table->string('lc_no')->nullable();
@@ -38,8 +33,8 @@ class CreateImportsTable extends Migration
             $table->float('no_of_cbm', 10, 6)->nullable();
             $table->string('cnf_name')->nullable();
             $table->string('jetty_sorkar_cell_no')->nullable();
-            $table->time('load_time')->nullable();
-            $table->time('get_out_time')->nullable();
+            $table->string('load_time')->nullable();
+            $table->string('get_out_time')->nullable();
             $table->string('storage_location')->nullable();
             $table->string('store_concern_name')->nullable();
             $table->string('store_concern_cell_no')->nullable();
@@ -48,6 +43,17 @@ class CreateImportsTable extends Migration
             $table->string('transport_name')->nullable();
             $table->string('cover_van_capacity')->nullable();
             $table->string('cover_van_no')->nullable();
+
+            $table->bigInteger('created_by')->unsigned()->nullable()
+                ->comment('We will get that from auth user id');
+            $table->foreign('created_by')->references('id')
+                ->on('users')->onDelete('cascade');
+
+            $table->bigInteger('updated_by')->unsigned()->nullable()
+                ->comment('We will get that from auth user id');
+            $table->foreign('updated_by')->references('id')
+                ->on('users');
+
             $table->timestamps();
         });
     }
