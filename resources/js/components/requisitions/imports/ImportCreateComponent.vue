@@ -5,7 +5,7 @@
                 <h4 class="page-title">Import</h4></div>
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                 <ol class="breadcrumb">
-                    <li><a href="#">Import</a></li>
+                    <li><a href="#">Imports</a></li>
                     <li class="active">Create</li>
                 </ol>
             </div>

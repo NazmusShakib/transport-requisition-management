@@ -42,14 +42,19 @@
                                 <td>{{ eachExport.requisition_location}}</td>
                                 <td>{{ eachExport.buyer_name }}</td>
                                 <td>
-                                    <router-link :to="{ name: 'ExportUpdate', params: {id: eachExport.id } }"
+                                    <router-link :to="{ name: 'ExportShow', params: {id: eachExport.id } }"
                                                  data-toggle="tooltip" title="Show!">
-                                        <button type="button" class="btn btn-info btn-xs">Edit</button>
+                                        <i class="fa fa-eye text-info m-r-5"></i>
+                                    </router-link>
+                                    <span class="m-r-5">|</span>
+                                    <router-link :to="{ name: 'ExportUpdate', params: {id: eachExport.id } }"
+                                                 data-toggle="tooltip" title="Edit!">
+                                        <i class="fa fa-edit text-info m-r-5"></i>
                                     </router-link>
                                     <span class="m-r-5">|</span>
                                     <a href="javascript:void(0)"
                                        data-toggle="tooltip" title="Delete!"
-                                       @click="destroyExport(eachExport.id, key)"> <button type="button" class="btn btn-danger btn-xs">Delete</button>
+                                       @click="destroyExport(eachExport.id, key)"><i class="fa fa-trash-o"></i>
                                     </a>
                                 </td>
                             </tr>
@@ -102,15 +107,6 @@
                         console.log('handle server error from here.');
                     });
             },
-            /*showExport(id) {
-                axios.get('/api/v1/exports/' + id)
-                    .then((response) => {
-                        this.exports = response.data;
-                    })
-                    .catch(() => {
-                        console.log('handle server error from here');
-                    });
-            },*/
             destroyExport(id, index) {
                 MessageBox.confirm('This will permanently delete. Continue?', 'Warning', {
                     confirmButtonText: 'OK',

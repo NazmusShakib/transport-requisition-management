@@ -5,7 +5,7 @@
                 <h4 class="page-title">Import</h4></div>
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                 <ol class="breadcrumb">
-                    <li><a href="#">Import</a></li>
+                    <li><a href="#">Imports</a></li>
                     <li class="active">Update</li>
                 </ol>
             </div>
@@ -65,7 +65,6 @@
                                     {{ errors.first('requisition no') }}
                                 </div>
                             </div>
-
                             <div class="form-group col-md-6">
                                 <label class="control-label">Requisition Date</label>
                                 <input type="date" name="requisition date"
@@ -101,7 +100,6 @@
                                     {{ errors.first('consignee name') }}
                                 </div>
                             </div>
-
                             <div class="form-group col-md-6">
                                 <label class="control-label">LC No</label>
                                 <input type="text" name="lc no"
@@ -114,6 +112,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
                             <div class=" form-group col-md-6">
                                 <label class="control-label">LC Date</label>
@@ -125,7 +124,6 @@
                                     {{ errors.first('lc date') }}
                                 </div>
                             </div>
-
                             <div class="form-group col-md-6">
                                 <label class="control-label">Item</label>
                                 <input type="text" name="items" class="form-control"
@@ -137,6 +135,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
                             <div class=" form-group col-md-6">
                                 <label class="control-label">Quantity</label>

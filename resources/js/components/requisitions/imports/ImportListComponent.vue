@@ -42,14 +42,18 @@
                                 <td>{{ eachImports.requisition_location}}</td>
                                 <td>{{ eachImports.consignee_name }}</td>
                                 <td>
-                                    <router-link :to="{ name: 'ImportUpdate', params: {id: eachImports.id } }"
+                                    <router-link :to="{ name: 'ImportShow', params: {id: eachImports.id } }"
                                                  data-toggle="tooltip" title="Show!">
-                                        <button type="button" class="btn btn-info btn-xs">Edit</button>
+                                        <i class="fa fa-eye text-info m-r-5"></i>                                    </router-link>
+                                    <span class="m-r-5">|</span>
+                                    <router-link :to="{ name: 'ImportUpdate', params: {id: eachImports.id } }"
+                                                 data-toggle="tooltip" title="Edit!">
+                                        <i class="fa fa-edit text-info m-r-5"></i>
                                     </router-link>
                                     <span class="m-r-5">|</span>
                                     <a href="javascript:void(0)"
                                        data-toggle="tooltip" title="Delete!"
-                                       @click="destroyImport(eachImports.id, key)"> <button type="button" class="btn btn-danger btn-xs">Delete</button>
+                                       @click="destroyImport(eachImports.id, key)"> <i class="fa fa-trash-o"></i>
                                     </a>
                                 </td>
                             </tr>
