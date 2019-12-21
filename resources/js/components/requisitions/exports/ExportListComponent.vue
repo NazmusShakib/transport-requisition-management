@@ -72,6 +72,8 @@
     import MasterLayout from '~/components/layouts/MasterLayoutComponent';
     import VuePagination from '~/components/partials/_PaginationComponent';
 
+    import { MessageBox } from 'element-ui'
+
     export default {
         name: 'ListOfExports',
         components: {
@@ -110,7 +112,11 @@
                     });
             },*/
             destroyExport(id, index) {
-                if (confirm("Do you really want to delete it?")) {
+                MessageBox.confirm('This will permanently delete. Continue?', 'Warning', {
+                    confirmButtonText: 'OK',
+                    cancelButtonText: 'Cancel',
+                    type: 'warning'
+                }).then(() => {
                     axios.delete('/api/v1/exports/' + id)
                         .then(response => {
                             this.exports.data.splice(index, 1);
@@ -119,7 +125,9 @@
                         .catch(error => {
                             console.log("Could not delete this export.");
                         });
-                }
+                }).catch(() => {
+                    console.log("Delete canceled");
+                });
             }
         },
         created() {
