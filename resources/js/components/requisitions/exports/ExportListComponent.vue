@@ -44,17 +44,17 @@
                                 <td>
                                     <router-link :to="{ name: 'ExportShow', params: {id: eachExport.id } }"
                                                  data-toggle="tooltip" title="Show!">
-                                        <i class="fa fa-eye text-info m-r-5"></i>
+                                        <button type="button" class="btn btn-info btn-xs">Details</button>
                                     </router-link>
                                     <span class="m-r-5">|</span>
                                     <router-link :to="{ name: 'ExportUpdate', params: {id: eachExport.id } }"
                                                  data-toggle="tooltip" title="Edit!">
-                                        <i class="fa fa-edit text-info m-r-5"></i>
+                                        <button class="btn btn-success btn-xs m-r-5">Update</button>
                                     </router-link>
                                     <span class="m-r-5">|</span>
                                     <a href="javascript:void(0)"
                                        data-toggle="tooltip" title="Delete!"
-                                       @click="destroyExport(eachExport.id, key)"><i class="fa fa-trash-o"></i>
+                                       @click="destroyExport(eachExport.id, key)"><button class="btn btn-danger btn-xs ">Delete</button>
                                     </a>
                                 </td>
                             </tr>
