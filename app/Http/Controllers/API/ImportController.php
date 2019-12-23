@@ -19,7 +19,8 @@ class ImportController extends BaseController
     public function index()
     {
         $imports = Import::with('createdBy')->select(
-            'id', 'requisition_no', 'requisition_date', 'requisition_location', 'consignee_name')->paginate(10);
+            'id', 'requisition_no', 'requisition_date', 'requisition_location', 'consignee_name')
+            ->orderBy('created_at', 'DESC')->paginate(10);
 
         return response()->json($imports, 200);
     }

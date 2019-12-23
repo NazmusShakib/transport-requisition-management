@@ -19,7 +19,8 @@ class ExportController extends BaseController
     public function index()
     {
         $exports = Export::with('createdBy')->select(
-            'id', 'requisition_no', 'requisition_date', 'requisition_location', 'buyer_name')->paginate(10);
+            'id', 'requisition_no', 'requisition_date', 'requisition_location', 'buyer_name')
+            ->orderBy('created_at', 'DESC')->paginate(10);
 
         return response()->json($exports, 200);
     }

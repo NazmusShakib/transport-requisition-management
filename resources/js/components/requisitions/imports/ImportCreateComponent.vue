@@ -274,9 +274,9 @@
                             <div class=" form-group col-md-6">
                                 <label class="control-label">Jetty Sorkar Cell No</label>
                                 <input type="text" name="jetty sorkar cell no"
-                                       v-model.number="imports.jetty_sorkar_cell_no"
+                                       v-model="imports.jetty_sorkar_cell_no"
                                        v-bind:class="{'has-error' : errors.has('jetty sorkar cell no')}"
-                                       v-validate="'required|digits:11'" class="form-control"
+                                       v-validate="'digits:11'" class="form-control"
                                        placeholder="Enter Jetty Sorkar Cell No">
                                 <div v-show="errors.has('jetty sorkar cell no')" class="help text-danger">
                                     {{ errors.first('jetty sorkar cell no') }}
