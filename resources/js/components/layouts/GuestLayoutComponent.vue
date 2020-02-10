@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div id="wrapper">
+        <div id="wrapper" class="login-register">
 
             <main class="MasterLayout__main">
                 <slot/>
@@ -29,3 +29,13 @@
         }
     }
 </script>
+
+
+<style lang="scss">
+    .login-register {
+        background-color: #2c3e50 !important;
+        height: 100%;
+        position: fixed;
+        overflow: auto;
+    }
+</style>

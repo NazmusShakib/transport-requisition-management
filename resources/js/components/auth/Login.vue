@@ -1,6 +1,6 @@
 <template>
-    <div id="wrapper" class="login-register">
-        <div class="login-box box-width-loging">
+
+    <div class="login-box">
             <div class="white-box">
                 <form @submit.prevent="login()" method="post" class="form-horizontal form-material" novalidate>
                     <h3 class="box-title m-b-20">Sign In</h3>
@@ -39,7 +39,6 @@
                 </form>
             </div>
         </div>
-    </div>
 
 </template>
 
