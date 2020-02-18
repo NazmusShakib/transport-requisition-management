@@ -62,23 +62,15 @@
                             .then((response) => {
                                 var data = response.data.data;
                                 localStorage.setItem('token', data.token);
-                                localStorage.setItem('auth', JSON.stringify(data.auth));
-                                this.$store.dispatch('authStore', data.auth);
+                                this.$store.dispatch("setGlobalAuth", data.auth);
                                 this.$router.push('/dashboard');
                             })
                             .catch((error) => {
-                                this.$notification.error(error.response.data.data.error);
-                                // this.$router.push('/login')
+                                this.$setErrorsFromResponse(error.response.data);
+                                this.$notification.error(error.response.data.message);
                             });
-                    } else {
-                        return this.focusOnInvalidField();
                     }
                 })
-            },
-
-            focusOnInvalidField() {
-                const firstField = Object.keys(this.errors.collect())[0];
-                this.$refs[`${firstField}Input`].focus();
             },
         },
         mounted: function () {

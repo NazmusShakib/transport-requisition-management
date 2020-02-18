@@ -11,8 +11,8 @@
 |
 */
 
-Route::post('register', 'API\RegisterController@register');
-Route::post('login', 'API\RegisterController@login');
+Route::post('register', 'RegisterController@register');
+Route::post('login', 'RegisterController@login');
 Route::get('unauthorized', function () {
     return response()->json([
         'success' => false,
@@ -27,19 +27,26 @@ Route::get('unauthorized', function () {
 
 Route::group(['middleware' => ['auth:api']], function () {
 
-    Route::get('profile', 'API\RegisterController@profile');
+    Route::get('profile', 'RegisterController@profile');
+    Route::post('profile', 'RegisterController@updateProfile');
+    Route::post('profile/change-password', 'RegisterController@changePassword');
 
-    Route::apiResource('users', 'API\UserController', ['only' => [
+    Route::apiResource('users', 'UserController', ['only' => [
         'index', 'store', 'show', 'update', 'destroy']])->middleware(['role:admin']);
 
-    Route::post('exports/generate-requisition-no', 'API\ExportController@generateRequisitionNo')
+    Route::post('exports/generate-requisition-no', 'ExportController@generateRequisitionNo')
         ->name('exports.generateRequisitionNo')->middleware(['role:admin']);
-    Route::apiResource('exports', 'API\ExportController', ['only' => [
+
+    Route::apiResource('exports', 'ExportController', ['only' => [
         'index', 'store', 'show', 'update', 'destroy']])->middleware(['role:admin']);
 
-    Route::post('imports/generate-requisition-no', 'API\ImportController@generateRequisitionNo')
+    Route::post('imports/generate-requisition-no', 'ImportController@generateRequisitionNo')
         ->name('imports.generateRequisitionNo')->middleware(['role:admin']);
-    Route::apiResource('imports', 'API\ImportController', ['only' => [
+
+    Route::apiResource('imports', 'ImportController', ['only' => [
         'index', 'store', 'show', 'update', 'destroy']])->middleware(['role:admin']);
+
+    Route::apiResource('vehicles', 'VehicleController', ['only' => [
+        'index', 'store', 'show', 'update', 'destroy']])->middleware(['role:admin|staff|subscriber']);
 
 });

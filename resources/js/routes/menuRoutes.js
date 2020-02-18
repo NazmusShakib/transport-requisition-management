@@ -12,7 +12,7 @@ import Blank from '~/components/BlankComponent';
 // Import Module Routes
 import userRoutes from './userRoutes';
 import requisitionRoutes from './requisitionRoutes';
-
+import libraryRoutes from '~/routes/library/vehicleRoutes';
 
 
 const baseRoutes = [
@@ -76,7 +76,7 @@ const baseRoutes = [
 ];
 
 const routes = baseRoutes.concat(
-    userRoutes, requisitionRoutes
+    userRoutes, requisitionRoutes, libraryRoutes
 );
 
 export default routes;

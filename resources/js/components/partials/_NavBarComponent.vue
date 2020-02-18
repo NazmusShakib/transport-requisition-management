@@ -22,7 +22,7 @@
                 </span>
                     </a>
                 </div>
-                <ul class="nav navbar-top-links navbar-left hidden-xs">
+                <!--<ul class="nav navbar-top-links navbar-left hidden-xs">
                     <li><a href="javascript:void(0)" class="open-close hidden-xs waves-effect waves-light"><i
                         class="icon-arrow-left-circle ti-menu"></i></a></li>
                     <li>
@@ -33,7 +33,7 @@
                             </a>
                         </form>
                     </li>
-                </ul>
+                </ul>-->
                 <ul class="nav navbar-top-links navbar-right pull-right">
                     <li class="dropdown">
                         <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#">
@@ -65,27 +65,23 @@
 
 <script>
 
-    import {mapActions} from 'vuex';
-    import {mapGetters} from 'vuex';
-
     export default {
         props: [],
         computed: {
             profile() {
-                return this.$store.getters.profile;
+                return this.$store.getters.globalAuth;
             }
         },
         methods: {
             logout() {
-                this.$localStorage.clear();
+                this.$store.dispatch("globalLogout");
                 this.$router.push({name: 'Login'});
             }
         },
-        created: function () {
-            console.log('NavBar component.')
-        },
-    }
-
+        created: function() {
+            console.log("NavBar component.");
+        }
+    };
 </script>
 
 <style scoped>

@@ -34,13 +34,10 @@
             //
         }),
         methods: {
-            authStore() {
-                this.$store.dispatch('authStore', this.$localStorage.get('auth'));
-            }
+            //
         },
         mounted: function () {
-            console.log('Master layout component mounted.');
-            this.authStore();
+            // console.log('Master layout component mounted.');
         }
     }
 </script>

@@ -2,7 +2,7 @@
     <div>
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse slimscrollsidebar">
-                <div class="user-profile">
+                <!--<div class="user-profile">
                     <div class="dropdown user-pro-body">
                         <div>
                             <img :src="'/plugins/images/users/blank-profile-picture.png'" alt="user-img"
@@ -26,7 +26,7 @@
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div>-->
                 <ul class="nav" id="side-menu">
                     <li class="sidebar-search hidden-sm hidden-md hidden-lg">
                         <!-- input-group -->
@@ -114,6 +114,24 @@
                                 <router-link :to="{ name: 'ImportList'}" class="waves-effect">
                                     <i class="fa fa-th-list" data-icon="v"></i>
                                     <span class="hide-menu"> List of Imports </span>
+                                </router-link>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="javascript:void(0)" class="waves-effect">
+                            <i class="fa fa-user" data-icon="v"></i>
+                            <span class="hide-menu">
+                                Library
+                                <span class="fa arrow"></span>
+                            </span>
+                        </a>
+                        <ul class="nav nav-second-level collapse" aria-expanded="true">
+                            <li>
+                                <router-link :to="{ name: 'VehicleList'}" class="waves-effect">
+                                    <i class="fa fa-truck" data-icon="v"></i>
+                                    <span class="hide-menu">Vehicles</span>
                                 </router-link>
                             </li>
                         </ul>
