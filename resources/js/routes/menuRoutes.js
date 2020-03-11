@@ -37,7 +37,7 @@ const baseRoutes = [
         name: '404', meta: {requireAuth: true, title: 'Not Found - App'}
     },
     {
-        path: '/dashboard', component: Dashboard,
+        path: '/', component: Dashboard,
         name: 'Dashboard',
         meta: {
             requireAuth: true,

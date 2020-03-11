@@ -12,7 +12,7 @@
                         Transport Requisition Management
                     </router-link>
                     </span>-->
-                    <a class="logo" :href="'/dashboard'"><b>
+                    <a class="logo" :href="'/'"><b>
                         <img :src="'/plugins/images/eliteadmin-logo.png'" alt="home" class="dark-logo"/>
                         <img :src="'/plugins/images/eliteadmin-logo-dark.png'" alt="home" class="light-logo"/>
                     </b>
