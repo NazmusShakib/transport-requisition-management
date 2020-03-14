@@ -1,0 +1,63 @@
+version: '3'
+
+services:
+
+  #  The Application
+  requisition_app:
+    container_name: requisition_app
+    build:
+      context: ./
+      dockerfile: development/app.dockerfile
+    volumes:
+      - ./:/var/www/
+      - ./development/local.ini:/usr/local/etc/php/conf.d/local.ini
+    env_file: '.env.example'
+    environment:
+      - "DB_HOST=requisition_database"
+      - "REDIS_HOST=requisition_cache"
+    networks:
+      - app-network
+
+  # The Web Server
+  requisition_web:
+    container_name: requisition_web
+    build:
+      context: ./
+      dockerfile: development/web.dockerfile
+    volumes:
+      - ./storage/logs/:/var/log/nginx
+    ports:
+      - 8990:80
+    networks:
+      - app-network
+
+  # The Database
+  requisition_database:
+    container_name: requisition_database
+    image: mysql:5.7
+    volumes:
+      - dbdata:/var/lib/mysql
+    environment:
+      - "MYSQL_DATABASE=l6_requisition"
+      - "MYSQL_USER=root"
+      - "MYSQL_PASSWORD=root"
+      - "MYSQL_ROOT_PASSWORD=root"
+    ports:
+      - 8991:3306
+    networks:
+      - app-network
+
+  # redis
+  cache:
+    image: redis:3.0-alpine
+    networks:
+      - app-network
+
+# Volumes
+volumes:
+  dbdata:
+
+# Networks
+networks:
+  app-network:
+    driver: bridge
