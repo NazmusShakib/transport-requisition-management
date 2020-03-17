@@ -9,7 +9,7 @@
                         name="name"
                         class="form-control"
                         v-validate="'required'"
-                        v-model.trim="vehicle.name"
+                        v-model.trim="nature.name"
                         v-bind:class="{'has-error' : errors.has('name')}"
                         placeholder="Name"
                     />
@@ -29,7 +29,7 @@
                     <input
                         type="text"
                         name="display_name"
-                        v-model.trim="vehicle.display_name"
+                        v-model.trim="nature.display_name"
                         v-bind:class="{'has-error' : errors.has('display_name')}"
                         placeholder="Display name"
                         class="form-control"
@@ -41,77 +41,12 @@
                     </div>
                 </div>
 
-
-                <div
-                    class="form-group col-md-12"
-                    v-bind:class="{'has-error' : errors.has('registration_no')}"
-                >
-                    <label class="control-label">Registration no.:</label>
-                    <input
-                        type="text"
-                        name="registration_no"
-                        v-model.trim="vehicle.registration_no"
-                        v-bind:class="{'has-error' : errors.has('registration_no')}"
-                        placeholder="Registration number"
-                        class="form-control"
-                    />
-                    <div
-                        v-show="errors.has('registration_no')"
-                        class="help text-danger"
-                    >{{ errors.first('registration_no') }}
-                    </div>
-                </div>
-
-
-                <div
-                    class="form-group col-md-12"
-                    v-bind:class="{'has-error' : errors.has('chassis_no')}"
-                >
-                    <label class="control-label">Chassis no.:</label>
-                    <input
-                        type="text"
-                        name="chassis_no"
-                        v-model.trim="vehicle.chassis_no"
-                        v-bind:class="{'has-error' : errors.has('chassis_no')}"
-                        placeholder="Chassis number"
-                        class="form-control"
-                    />
-                    <div
-                        v-show="errors.has('chassis_no')"
-                        class="help text-danger"
-                    >{{ errors.first('chassis_no') }}
-                    </div>
-                </div>
-
-
-                <div
-                    class="form-group col-md-12"
-                    v-bind:class="{'has-error' : errors.has('motor_cc')}"
-                >
-                    <label class="control-label">Motor CC:</label>
-                    <input
-                        type="text"
-                        name="motor_cc"
-                        v-model.trim="vehicle.motor_cc"
-                        v-bind:class="{'has-error' : errors.has('motor_cc')}"
-                        v-validate="'decimal:3'"
-                        placeholder="00"
-                        class="form-control"
-                    />
-                    <div
-                        v-show="errors.has('motor_cc')"
-                        class="help text-danger"
-                    >{{ errors.first('motor_cc') }}
-                    </div>
-                </div>
-
-
                 <div
                     class="form-group col-md-12"
                     v-bind:class="{'has-error' : errors.has('description')}"
                 >
                     <label class="control-label" for="description">Description:</label>
-                    <textarea v-model="vehicle.description" id="description" rows="3" class="form-control"/>
+                    <textarea v-model="nature.description" id="description" rows="3" class="form-control"/>
                     <div
                         v-show="errors.has('description')"
                         class="help text-danger"
@@ -141,7 +76,7 @@
             }
         },
         data: () => ({
-            vehicle: {},
+            nature: {},
             submitMethod: "create"
         }),
         watch: {
@@ -150,8 +85,8 @@
         methods: {
             handleSubmit() {
                 if (this.submitMethod === "create") {
-                    axios.post(this.$baseURL + 'library/vehicles', this.vehicle).then(response => {
-                        this.$eventBus.$emit('add-vehicle', response.data.data);
+                    axios.post(this.$baseURL + 'library/natures', this.nature).then(response => {
+                        this.$eventBus.$emit('add-nature', response.data.data);
                         this.$notification.success(response.data.message);
                         this.onClose();
                     }).catch(error => {
@@ -159,7 +94,7 @@
                         this.$notification.error(error.response.data.message);
                     });
                 } else if (this.submitMethod === "update") {
-                    axios.put(this.$baseURL + 'library/vehicles/' + this.vehicle.id, this.vehicle)
+                    axios.put(this.$baseURL + 'library/natures/' + this.nature.id, this.nature)
                         .then(response => {
                             this.$notification.success(response.data.message);
                             this.onClose();
@@ -173,7 +108,7 @@
 
             onClose() {
                 this.$validator.reset();
-                this.vehicle = {};
+                this.nature = {};
                 this.submitMethod = "create";
                 this.$emit("update:dialogVisible", false);
             }
@@ -181,11 +116,11 @@
 
         mounted: function () {
             // We listen for the event on the eventBus
-            this.$eventBus.$on("edit-vehicle", vehicle => {
+            this.$eventBus.$on("edit-nature", nature => {
                 this.submitMethod = "update";
-                this.vehicle = vehicle;
+                this.nature = nature;
                 this.$emit("update:dialogVisible", true)
-                    .$emit("update:dialogTitle", "Vehicle update");
+                    .$emit("update:dialogTitle", "Nature update");
             });
         },
         computed: {
@@ -195,7 +130,7 @@
             //
         },
         beforeDestroy() {
-            this.$eventBus.$off("edit-vehicle");
+            this.$eventBus.$off("edit-nature");
         }
     };
 </script>

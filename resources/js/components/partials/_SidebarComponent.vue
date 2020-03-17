@@ -134,6 +134,18 @@
                                     <span class="hide-menu">Vehicles</span>
                                 </router-link>
                             </li>
+                            <li>
+                                <router-link :to="{ name: 'PartyTypeList'}" class="waves-effect">
+                                    <i class="fa fa-truck" data-icon="v"></i>
+                                    <span class="hide-menu">Party types</span>
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link :to="{ name: 'NatureList'}" class="waves-effect">
+                                    <i class="fa fa-truck" data-icon="v"></i>
+                                    <span class="hide-menu">Natures</span>
+                                </router-link>
+                            </li>
                         </ul>
                     </li>
 
@@ -154,7 +166,7 @@
     export default {
         props: [],
         created: function () {
-            console.log('NavBar component.')
+            console.log('Side bar component.')
         },
         methods: {
             logout() {

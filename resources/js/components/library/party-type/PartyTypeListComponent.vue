@@ -2,12 +2,12 @@
     <div class="container-fluid">
         <div class="row bg-title">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                <h4 class="page-title">Vehicle list</h4>
+                <h4 class="page-title">Party type list</h4>
             </div>
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                 <ol class="breadcrumb">
                     <li>
-                        <a href="#">Vehicle</a>
+                        <a href="#">Party type</a>
                     </li>
                     <li class="active">List</li>
                 </ol>
@@ -45,31 +45,25 @@
                                 <th>SN</th>
                                 <th>Name</th>
                                 <th>Display name</th>
-                                <th>Registration</th>
-                                <th>Chassis</th>
-                                <th>Motor CC</th>
                                 <th>Description</th>
                                 <th class="text-nowrap">Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="text-center" v-if="vehicles.total === 0">
+                            <tr class="text-center" v-if="partyTypes.total === 0">
                                 <td colspan="8">No data to display.</td>
                             </tr>
-                            <tr v-else v-for="(vehicle, index) in vehicles.data" v-bind:key="index">
+                            <tr v-else v-for="(partyType, index) in partyTypes.data" v-bind:key="index">
                                 <td>{{ index + 1 }}</td>
-                                <td>{{ vehicle.name }}</td>
-                                <td>{{ vehicle.display_name }}</td>
-                                <td>{{ vehicle.registration_no }}</td>
-                                <td>{{ vehicle.chassis_no }}</td>
-                                <td>{{ vehicle.motor_cc }}</td>
-                                <td>{{ vehicle.description }}</td>
+                                <td>{{ partyType.name }}</td>
+                                <td>{{ partyType.display_name }}</td>
+                                <td>{{ partyType.description }}</td>
                                 <td>
                                     <a
                                         href="javascript:void(0)"
                                         data-toggle="tooltip"
                                         title="Edit"
-                                        @click="edit(vehicle, index)"
+                                        @click="edit(partyType, index)"
                                     >
                                         <i class="fa fa-edit m-r-5"></i>
                                     </a>
@@ -78,7 +72,7 @@
                                         href="javascript:void(0)"
                                         data-toggle="tooltip"
                                         title="Delete"
-                                        @click="destroy(vehicle.id, index)"
+                                        @click="destroy(partyType.id, index)"
                                     >
                                         <i class="fa fa-trash-o m-r-5"></i>
                                     </a>
@@ -88,35 +82,35 @@
                         </table>
 
                         <vue-pagination
-                            :pagination="vehicles"
-                            v-if="vehicles.total >= 11"
-                            @paginate="getVehicles()"
+                            :pagination="partyTypes"
+                            v-if="partyTypes.total >= 11"
+                            @paginate="getPartyTypes()"
                             :offset="4"
-                        ></vue-pagination>
+                        />
                     </div>
                 </div>
             </div>
         </div>
         <!-- /.row -->
-        <vehicle-modal :dialog-visible.sync="dialogVisible" :dialog-title.sync="dialogTitle"></vehicle-modal>
+        <party-type-modal :dialog-visible.sync="dialogVisible" :dialog-title.sync="dialogTitle"/>
     </div>
 </template>
 
 <script>
     import MasterLayout from "~/components/layouts/MasterLayoutComponent";
     import VuePagination from "~/components/partials/_PaginationComponent";
-    import VehicleModal from "~/components/library/vehicle/_VehicleModalComponent";
+    import PartyTypeModal from "~/components/library/party-type/_PartyTypeModalComponent";
 
     import {MessageBox} from "element-ui";
 
     export default {
-        name: "VehicleList",
+        name: "PartyTypeList",
         components: {
             VuePagination,
-            VehicleModal
+            PartyTypeModal
         },
         data: () => ({
-            vehicles: {
+            partyTypes: {
                 total: 0,
                 per_page: 1,
                 from: 1,
@@ -126,16 +120,16 @@
             offset: 4,
             searchText: "",
             dialogVisible: false,
-            dialogTitle: "Add a new vehicle",
+            dialogTitle: "Add a new",
         }),
         mounted: function () {
-            this.getVehicles();
+            this.getPartyTypes();
         },
         methods: {
-            getVehicles() {
-                axios.get(this.$baseURL + "library/vehicles?page=" + this.vehicles.current_page)
+            getPartyTypes() {
+                axios.get(this.$baseURL + "library/party-types?page=" + this.partyTypes.current_page)
                     .then(response => {
-                        this.vehicles = response.data;
+                        this.partyTypes = response.data;
                     })
                     .catch(() => {
                         console.log("handle server error from here.");
@@ -155,10 +149,10 @@
                     }
                 )
                     .then(() => {
-                        axios.delete(this.$baseURL + "library/vehicles/" + id)
+                        axios.delete(this.$baseURL + "library/party-types/" + id)
                             .then(response => {
-                                this.vehicles.data.splice(index, 1);
-                                this.vehicles.total--;
+                                this.partyTypes.data.splice(index, 1);
+                                this.partyTypes.total--;
                                 this.$notification.success(response.data.message);
                             })
                             .catch(error => {
@@ -169,15 +163,15 @@
                         console.log("Delete canceled");
                     });
             },
-            edit(vehicle, index) {
-                this.$eventBus.$emit('edit-vehicle', vehicle);
+            edit(partyType, index) {
+                this.$eventBus.$emit('edit-party-type', partyType);
             }
         },
         created() {
             this.$emit("update:layout", MasterLayout);
-            this.$eventBus.$on("add-vehicle", vehicle => {
-                this.vehicles.total++;
-                this.vehicles.data.unshift(vehicle);
+            this.$eventBus.$on("add-party-type", partyType => {
+                this.partyTypes.total++;
+                this.partyTypes.data.unshift(partyType);
             });
         }
     };

@@ -12,7 +12,7 @@ import Blank from '~/components/BlankComponent';
 // Import Module Routes
 import userRoutes from './userRoutes';
 import requisitionRoutes from './requisitionRoutes';
-import libraryRoutes from '~/routes/library/vehicleRoutes';
+import libraryRoutes from './library';
 
 
 const baseRoutes = [

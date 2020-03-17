@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Export;
+use App\Models\Export;
 use App\Helpers\Helper;
 use App\Http\Controllers\API\BaseController as BaseController;
 use Illuminate\Http\Request;
@@ -13,8 +13,6 @@ class ExportController extends BaseController
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {

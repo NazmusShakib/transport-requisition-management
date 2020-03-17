@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
 Route::post('register', 'RegisterController@register');
 Route::post('login', 'RegisterController@login');
 Route::get('unauthorized', function () {
@@ -46,7 +48,14 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::apiResource('imports', 'ImportController', ['only' => [
         'index', 'store', 'show', 'update', 'destroy']])->middleware(['role:admin']);
 
-    Route::apiResource('vehicles', 'VehicleController', ['only' => [
+    ## Library routes
+    Route::apiResource('library/vehicles', 'VehicleController', ['only' => [
+        'index', 'store', 'show', 'update', 'destroy']])->middleware(['role:admin|staff|subscriber']);
+
+    Route::apiResource('library/party-types', 'PartyTypeController', ['only' => [
+        'index', 'store', 'show', 'update', 'destroy']])->middleware(['role:admin|staff|subscriber']);
+
+    Route::apiResource('library/natures', 'NatureController', ['only' => [
         'index', 'store', 'show', 'update', 'destroy']])->middleware(['role:admin|staff|subscriber']);
 
 });
