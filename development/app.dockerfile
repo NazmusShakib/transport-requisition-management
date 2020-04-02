@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y \
     git \
     libzip-dev \
     curl\
-    gnupg
+    gnupg unzip
 
 RUN curl -sL https://deb.nodesource.com/setup_11.x  | bash -
 RUN apt-get -y install nodejs

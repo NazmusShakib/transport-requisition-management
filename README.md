@@ -55,7 +55,44 @@ You can now access the server at http://localhost:8000
 
     php artisan migrate --seed
     php artisan serve
+    
+##    
+> ### Some useful commands that I use most often to manage Docker. Basically that boils down to the following
+
+Execute command in docker container from host PC:
+
+    docker exec -ti req_app php artisan key:generate
+    docker exec -ti req_app php artisan migrate:fresh --seed
+
+Enter into container:
+  
+    docker exec -ti req_app bash
+
+Find out the IP address of a container:
+
+> docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' req_db
+    
+To stop all running containers:
+
+    docker stop $(docker ps -a -q)
+    docker container stop $(docker container ls -aq)
+    
+To clear containers:
+
+    docker rm -f $(docker ps -a -q)
+
+To clear images:
+
+    docker rmi -f $(docker images -a -q)
+
+To clear volumes:
+
+    docker volume rm $(docker volume ls -q)
+
+To clear networks:
+
+    docker network rm $(docker network ls | tail -n+2 | awk '{if($2 !~ /bridge|none|host/){ print $1 }}')
 
 ## License
 
-Cloudly©2019 licensed under the [MIT license](https://opensource.org/licenses/MIT).
+©2020 licensed under the [MIT license](https://opensource.org/licenses/MIT).
