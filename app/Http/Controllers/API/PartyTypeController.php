@@ -39,7 +39,7 @@ class PartyTypeController extends BaseController
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:vehicles,name,NULL,id,deleted_at,NULL',
+            'name' => 'required|unique:party_types,name,NULL,id,deleted_at,NULL',
             'display_name' => 'nullable',
             'description' => 'nullable',
         ]);
@@ -90,7 +90,7 @@ class PartyTypeController extends BaseController
     public function update(Request $request, PartyType $partyType)
     {
         $validator = Validator::make($request->all(), [
-            'name' => "required|unique:vehicles,name,{$partyType->id},id,deleted_at,NULL",
+            'name' => "required|unique:party_types,name,{$partyType->id},id,deleted_at,NULL",
             'display_name' => 'nullable',
             'description' => 'nullable',
         ]);

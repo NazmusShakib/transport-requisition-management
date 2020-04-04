@@ -70,8 +70,10 @@ Enter into container:
 
 Find out the IP address of a container:
 
-> docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' req_db
-    
+>$ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' req_db
+>
+>$ docker inspect --format='{{.Name}} {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -q)    
+
 To stop all running containers:
 
     docker stop $(docker ps -a -q)

@@ -2,6 +2,7 @@
 import VehicleList from '~/components/library/vehicle/VehicleListComponent';
 import PartyTypeList from '~/components/library/party-type/PartyTypeListComponent';
 import NatureList from '~/components/library/nature/NatureListComponent';
+import CompanyList from '~/components/library/company/CompanyListComponent';
 
 
 export default [
@@ -50,6 +51,22 @@ export default [
             }, {
                 property: 'og:description',
                 content: 'The nature page of our app.'
+            }]
+        }
+    },
+    {
+        path: '/library/companies',
+        component: CompanyList,
+        name: 'CompanyList',
+        meta: {
+            requireAuth: true,
+            title: 'Company list - App',
+            metaTags: [{
+                name: 'description',
+                content: 'The company list page of our app.'
+            }, {
+                property: 'og:description',
+                content: 'The company page of our app.'
             }]
         }
     },
