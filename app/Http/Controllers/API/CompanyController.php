@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Nature;
+use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class NatureController extends BaseController
+class CompanyController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +14,10 @@ class NatureController extends BaseController
      */
     public function index()
     {
-        $natures = Nature::with('createdBy')
+        $companies = Company::with('createdBy')
             ->orderBy('created_at', 'DESC')->paginate(15);
 
-        return response()->json($natures, 200);
+        return response()->json($companies, 200);
     }
 
     /**
@@ -33,11 +33,13 @@ class NatureController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:natures,name,NULL,id,deleted_at,NULL',
+            'name' => 'required|unique:companies,name,NULL,id,deleted_at,NULL',
             'display_name' => 'nullable',
             'description' => 'nullable',
         ]);
@@ -47,32 +49,34 @@ class NatureController extends BaseController
         }
 
         $input = $request->only(['name', 'display_name', 'description']);
-        $nature = Nature::create($input);
-        return $this->sendResponse($nature, 'Nature has been created successfully.');
+        $company = Company::create($input);
+        return $this->sendResponse($company, 'Company has been created successfully.');
     }
 
     /**
      * Display the specified resource.
      *
+     * @param  \App\Company  $company
+     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $nature = Nature::with('createdBy')->find($id);
+        $company = Company::with('createdBy')->find($id);
 
-        if (is_null($nature)) {
-            return $this->sendError('Nature not found.');
+        if (is_null($company)) {
+            return $this->sendError('Company not found.');
         }
 
-        return $this->sendResponse($nature, 'Nature retrieved successfully.');
+        return $this->sendResponse($company, 'Company retrieved successfully.');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Nature  $nature
+     * @param  \App\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function edit(Nature $nature)
+    public function edit(Company $company)
     {
         //
     }
@@ -81,13 +85,13 @@ class NatureController extends BaseController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Nature  $nature
+     * @param  \App\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Nature $nature)
+    public function update(Request $request, Company $company)
     {
         $validator = Validator::make($request->all(), [
-            'name' => "required|unique:natures,name,{$nature->id},id,deleted_at,NULL",
+            'name' => "required|unique:companies,name,{$company->id},id,deleted_at,NULL",
             'display_name' => 'nullable',
             'description' => 'nullable',
         ]);
@@ -96,25 +100,26 @@ class NatureController extends BaseController
             return $this->sendError('Prerequisite failed.', $validator->errors(), 422);
         }
 
-        $nature->update([
+        $company->update([
             'name' => $request->name,
             'display_name' => $request->display_name,
             'description' => $request->description,
         ]);
 
-        return $this->sendResponse($nature, 'Nature has been updated successfully.');
+        return $this->sendResponse($company, 'Company has been updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
+     * @param  \App\Company  $company
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         try {
-            Nature::find($id)->delete();
-            return $this->sendResponse([], 'Nature has been deleted successfully.');
+            Company::find($id)->delete();
+            return $this->sendResponse([], 'Company has been deleted successfully.');
         } catch (\Exception $exception) {
             return $this->sendError($exception->getMessage(), '', 422);
         }

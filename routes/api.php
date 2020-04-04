@@ -58,4 +58,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::apiResource('library/natures', 'NatureController', ['only' => [
         'index', 'store', 'show', 'update', 'destroy']])->middleware(['role:admin|staff|subscriber']);
 
+    Route::apiResource('library/companies', 'CompanyController', ['only' => [
+        'index', 'store', 'show', 'update', 'destroy']])->middleware(['role:admin|staff|subscriber']);
+
 });

@@ -146,6 +146,12 @@
                                     <span class="hide-menu">Natures</span>
                                 </router-link>
                             </li>
+                            <li>
+                                <router-link :to="{ name: 'CompanyList'}" class="waves-effect">
+                                    <i class="fa fa-truck" data-icon="v"></i>
+                                    <span class="hide-menu">Companies</span>
+                                </router-link>
+                            </li>
                         </ul>
                     </li>
 
