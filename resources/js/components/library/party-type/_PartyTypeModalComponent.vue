@@ -11,46 +11,32 @@
                         v-validate="'required'"
                         v-model.trim="partyType.name"
                         v-bind:class="{'has-error' : errors.has('name')}"
-                        placeholder="Name"
-                    />
-                    <div
-                        v-show="errors.has('name')"
-                        class="help text-danger"
-                    >{{ errors.first('name') }}
+                        placeholder="Name"/>
+                    <div v-show="errors.has('name')"
+                        class="help text-danger">{{ errors.first('name') }}
                     </div>
                 </div>
 
-
-                <div
-                    class="form-group col-md-12"
-                    v-bind:class="{'has-error' : errors.has('display_name')}"
-                >
+                <div class="form-group col-md-12"
+                    v-bind:class="{'has-error' : errors.has('display_name')}">
                     <label class="control-label">Display name:</label>
-                    <input
-                        type="text"
+                    <input type="text"
                         name="display_name"
                         v-model.trim="partyType.display_name"
                         v-bind:class="{'has-error' : errors.has('display_name')}"
                         placeholder="Display name"
-                        class="form-control"
-                    />
-                    <div
-                        v-show="errors.has('display_name')"
-                        class="help text-danger"
-                    >{{ errors.first('display_name') }}
+                        class="form-control"/>
+                    <div v-show="errors.has('display_name')"
+                        class="help text-danger">{{ errors.first('display_name') }}
                     </div>
                 </div>
 
-                <div
-                    class="form-group col-md-12"
-                    v-bind:class="{'has-error' : errors.has('description')}"
-                >
+                <div class="form-group col-md-12"
+                    v-bind:class="{'has-error' : errors.has('description')}">
                     <label class="control-label" for="description">Description:</label>
                     <textarea v-model="partyType.description" id="description" rows="3" class="form-control"/>
-                    <div
-                        v-show="errors.has('description')"
-                        class="help text-danger"
-                    >{{ errors.first('description') }}
+                    <div v-show="errors.has('description')"
+                        class="help text-danger">{{ errors.first('description') }}
                     </div>
                 </div>
             </div>
