@@ -3,6 +3,7 @@ import VehicleList from '~/components/library/vehicle/VehicleListComponent';
 import PartyTypeList from '~/components/library/party-type/PartyTypeListComponent';
 import NatureList from '~/components/library/nature/NatureListComponent';
 import CompanyList from '~/components/library/company/CompanyListComponent';
+import BuyerList from '~/components/library/buyer/BuyerListComponent';
 
 
 export default [
@@ -67,6 +68,22 @@ export default [
             }, {
                 property: 'og:description',
                 content: 'The company page of our app.'
+            }]
+        }
+    },
+    {
+        path: '/library/buyers',
+        component: BuyerList,
+        name: 'BuyerList',
+        meta: {
+            requireAuth: true,
+            title: 'Buyers list - App',
+            metaTags: [{
+                name: 'description',
+                content: 'The buyers list page of our app.'
+            }, {
+                property: 'og:description',
+                content: 'The buyers page of our app.'
             }]
         }
     },

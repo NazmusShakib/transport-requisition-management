@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Response;
 
 class CompanyController extends BaseController
 {
@@ -17,7 +18,7 @@ class CompanyController extends BaseController
         $companies = Company::with('createdBy')
             ->orderBy('created_at', 'DESC')->paginate(15);
 
-        return response()->json($companies, 200);
+        return response()->json($companies, Response::HTTP_OK);
     }
 
     /**
@@ -45,7 +46,7 @@ class CompanyController extends BaseController
         ]);
 
         if ($validator->fails()) {
-            return $this->sendError('Prerequisite failed.', $validator->errors(), 422);
+            return $this->sendError('Prerequisite failed.', $validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
         $input = $request->only(['name', 'display_name', 'description']);
@@ -56,7 +57,7 @@ class CompanyController extends BaseController
     /**
      * Display the specified resource.
      *
-     * @param  \App\Company  $company
+     * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -73,7 +74,7 @@ class CompanyController extends BaseController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Company  $company
+     * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
     public function edit(Company $company)
@@ -85,7 +86,7 @@ class CompanyController extends BaseController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Company  $company
+     * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Company $company)
@@ -97,7 +98,7 @@ class CompanyController extends BaseController
         ]);
 
         if ($validator->fails()) {
-            return $this->sendError('Prerequisite failed.', $validator->errors(), 422);
+            return $this->sendError('Prerequisite failed.', $validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
         $company->update([
@@ -112,7 +113,7 @@ class CompanyController extends BaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Company  $company
+     * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -121,7 +122,7 @@ class CompanyController extends BaseController
             Company::find($id)->delete();
             return $this->sendResponse([], 'Company has been deleted successfully.');
         } catch (\Exception $exception) {
-            return $this->sendError($exception->getMessage(), '', 422);
+            return $this->sendError($exception->getMessage(), '', Response::HTTP_UNPROCESSABLE_ENTITY);
         }
     }
 }
