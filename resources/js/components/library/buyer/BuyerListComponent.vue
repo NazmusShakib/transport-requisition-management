@@ -44,8 +44,8 @@
                             <tr>
                                 <th>SN</th>
                                 <th>Name</th>
-                                <th>Display name</th>
-                                <th>Description</th>
+                                <th>Phone</th>
+                                <th>Email</th>
                                 <th class="text-nowrap">Action</th>
                             </tr>
                             </thead>
@@ -56,8 +56,8 @@
                             <tr v-else v-for="(buyer, index) in buyers.data" v-bind:key="index">
                                 <td>{{ index + 1 }}</td>
                                 <td>{{ buyer.name }}</td>
-                                <td>{{ buyer.display_name }}</td>
-                                <td>{{ buyer.description }}</td>
+                                <td>{{ buyer.phone }}</td>
+                                <td>{{ buyer.email }}</td>
                                 <td>
                                     <a
                                         href="javascript:void(0)"

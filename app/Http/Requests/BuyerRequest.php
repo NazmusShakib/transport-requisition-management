@@ -34,8 +34,10 @@ class BuyerRequest extends FormRequest
 
         return [
             'name' => $nameRules,
-            'display_name' => 'nullable',
-            'description' => 'nullable',
+            'email' => 'sometimes|email',
+            'phone' => 'nullable',
+            'address' => 'nullable',
+            'company_id' => 'sometimes|exists:companies,id',
         ];
     }
 

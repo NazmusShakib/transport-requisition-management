@@ -17,10 +17,14 @@ class CreateBuyersTable extends Migration
             $table->bigIncrements('id');
 
             $table->string('name');
-            $table->string('display_name')->nullable();
-            $table->text('description')->nullable();
-
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
+            $table->text('address')->nullable();
+            $table->bigInteger('company_id')->unsigned()->nullable();
             $table->bigInteger('created_by')->unsigned()->nullable();
+
+            $table->foreign('company_id')->references('id')
+                ->on('companies');
             $table->foreign('created_by')->references('id')
                 ->on('users');
 

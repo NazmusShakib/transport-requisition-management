@@ -19,7 +19,7 @@ class Buyer extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'display_name', 'description'
+        'name', 'phone', 'email', 'address'
     ];
 
     /**
@@ -42,7 +42,7 @@ class Buyer extends Model
      * @var array
      */
     protected $hidden = [
-        'created_by'
+        'created_by', 'company_id'
     ];
 
     public static function boot()

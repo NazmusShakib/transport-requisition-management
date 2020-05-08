@@ -37,7 +37,7 @@ class BuyerController extends BaseController
      */
     public function store(BuyerRequest $request)
     {
-        $input = $request->only(['name', 'display_name', 'description']);
+        $input = $request->only(['name', 'phone', 'email', 'address', 'company_id']);
         $buyer = Buyer::create($input);
         return $this->sendResponse($buyer, 'Buyer has been created successfully.');
     }
@@ -74,8 +74,10 @@ class BuyerController extends BaseController
     {
         $buyer->update([
             'name' => $request->name,
-            'display_name' => $request->display_name,
-            'description' => $request->description,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'address' => $request->address,
+            'company_id' => $request->company_id,
         ]);
 
         return $this->sendResponse($buyer, 'Buyer has been updated successfully.');

@@ -19,26 +19,41 @@
                 </div>
 
                 <div class="form-group col-md-12"
-                     v-bind:class="{'has-error' : errors.has('display_name')}">
-                    <label class="control-label">Display name:</label>
+                     v-bind:class="{'has-error' : errors.has('phone')}">
+                    <label class="control-label">Phone:</label>
                     <input
                         type="text"
-                        name="display_name"
-                        v-model.trim="buyer.display_name"
-                        v-bind:class="{'has-error' : errors.has('display_name')}"
-                        placeholder="Display name"
+                        name="phone"
+                        v-model.trim="buyer.phone"
+                        v-bind:class="{'has-error' : errors.has('phone')}"
+                        placeholder="Phone"
                         class="form-control"/>
-                    <div v-show="errors.has('display_name')"
-                         class="help text-danger">{{ errors.first('display_name') }}
+                    <div v-show="errors.has('phone')"
+                         class="help text-danger">{{ errors.first('phone') }}
                     </div>
                 </div>
 
                 <div class="form-group col-md-12"
-                     v-bind:class="{'has-error' : errors.has('description')}">
-                    <label class="control-label" for="description">Description:</label>
-                    <textarea v-model="buyer.description" id="description" rows="3" class="form-control"/>
-                    <div v-show="errors.has('description')"
-                         class="help text-danger">{{ errors.first('description') }}
+                     v-bind:class="{'has-error' : errors.has('email')}">
+                    <label class="control-label">Email:</label>
+                    <input
+                        type="email"
+                        name="email"
+                        v-model.trim="buyer.email"
+                        v-bind:class="{'has-error' : errors.has('email')}"
+                        placeholder="Email"
+                        class="form-control"/>
+                    <div v-show="errors.has('email')"
+                         class="help text-danger">{{ errors.first('email') }}
+                    </div>
+                </div>
+
+                <div class="form-group col-md-12"
+                     v-bind:class="{'has-error' : errors.has('address')}">
+                    <label class="control-label" for="address">Address:</label>
+                    <textarea v-model="buyer.address" id="address" rows="3" class="form-control"/>
+                    <div v-show="errors.has('address')"
+                         class="help text-danger">{{ errors.first('address') }}
                     </div>
                 </div>
             </div>
