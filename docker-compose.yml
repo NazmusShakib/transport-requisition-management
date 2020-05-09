@@ -12,8 +12,11 @@ services:
       - ./:/var/www/
       - ./development/local.ini:/usr/local/etc/php/conf.d/local.ini
     environment:
-      - "DB_HOST=req_db"
-      - "REDIS_HOST=cache"
+       DB_HOST: "req_db"
+       REDIS_HOST: "cache"
+    depends_on:
+      - req_web
+      - req_db
     networks:
       - app-network
 
@@ -33,14 +36,17 @@ services:
   # The Database
   req_db:
     container_name: req_db
-    image: mysql:5.7
+    image: mysql:5.7.23
+    env_file:
+      - ./.env
     volumes:
       - dbdata:/var/lib/mysql
     environment:
-      - "MYSQL_DATABASE=l6_req"
-      - "MYSQL_USER=root"
-      - "MYSQL_PASSWORD=root"
-      - "MYSQL_ROOT_PASSWORD=root"
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_HOST: ${DB_HOST}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     ports:
       - 8991:3306
     networks:
