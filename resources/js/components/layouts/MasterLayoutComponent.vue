@@ -1,7 +1,7 @@
 <template>
     <div>
-        <NavBar></NavBar>
-        <Sidebar></Sidebar>
+        <NavBar/>
+        <Sidebar/>
 
         <div id="page-wrapper">
 

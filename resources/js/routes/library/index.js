@@ -4,9 +4,9 @@ import PartyTypeList from '~/components/library/party-type/PartyTypeListComponen
 import NatureList from '~/components/library/nature/NatureListComponent';
 import CompanyList from '~/components/library/company/CompanyListComponent';
 import BuyerList from '~/components/library/buyer/BuyerListComponent';
+import supplierRoutes from "./supplierRoutes";
 
-
-export default [
+const libraries = [
     {
         path: '/library/vehicles',
         component: VehicleList,
@@ -87,5 +87,10 @@ export default [
             }]
         }
     },
+];
 
-]
+const libraryRoutes = libraries.concat(
+    supplierRoutes
+);
+
+export default libraryRoutes;

@@ -23,6 +23,8 @@ import '~/global/rules';
 import '~/global/notificaitons';
 import '~/global/elements';
 import '~/global/loading';
+import '~/global/vuetify'; // path to vuetify export
+
 
 import localStorage from '~/services/localStorage';
 
