@@ -83,6 +83,9 @@
 
 <script>
     export default {
+        components: {
+            //
+        },
         props: {
             dialogVisible: {
                 type: Boolean,
@@ -95,6 +98,7 @@
         },
         data: () => ({
             buyer: {},
+            companies: {},
             submitMethod: "create"
         }),
         watch: {
@@ -124,6 +128,17 @@
                 }
             },
 
+            getCompanies() {
+                axios.get(this.$baseURL + "library/companies")
+                    .then(response => {
+                        console.log(response.data.data);
+                        this.companies = response.data.data;
+                    })
+                    .catch(() => {
+                        console.log("handle server error from here.");
+                    });
+            },
+
             onClose() {
                 this.$validator.reset();
                 this.buyer = {};
@@ -140,6 +155,8 @@
                 this.$emit("update:dialogVisible", true)
                     .$emit("update:dialogTitle", "Buyer update");
             });
+
+            this.getCompanies();
         },
         computed: {
             //

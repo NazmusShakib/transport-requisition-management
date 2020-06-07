@@ -22,6 +22,7 @@ import routers from './routes';
 import '~/global/rules';
 import '~/global/notificaitons';
 import '~/global/elements';
+import '~/global/vue-select';
 import '~/global/loading';
 // import '~/global/vuetify'; // path to vuetify export
 
