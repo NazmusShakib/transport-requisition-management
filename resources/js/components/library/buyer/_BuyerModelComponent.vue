@@ -49,6 +49,21 @@
                 </div>
 
                 <div class="form-group col-md-12"
+                     v-bind:class="{'has-error' : errors.has('company')}">
+                    <label class="control-label">Company:</label>
+                    <input
+                        type="text"
+                        name="company"
+                        v-model.trim="buyer.company"
+                        v-bind:class="{'has-error' : errors.has('company')}"
+                        placeholder="Company"
+                        class="form-control"/>
+                    <div v-show="errors.has('company')"
+                         class="help text-danger">{{ errors.first('company') }}
+                    </div>
+                </div>
+
+                <div class="form-group col-md-12"
                      v-bind:class="{'has-error' : errors.has('address')}">
                     <label class="control-label" for="address">Address:</label>
                     <textarea v-model="buyer.address" id="address" rows="3" class="form-control"/>

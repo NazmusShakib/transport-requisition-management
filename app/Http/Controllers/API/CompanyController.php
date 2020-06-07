@@ -13,10 +13,14 @@ class CompanyController extends BaseController
      * Display a listing of the resource.
      *
      */
-    public function index()
+    public function index(Request $request)
     {
-        $companies = Company::with('createdBy')
-            ->orderBy('created_at', 'DESC')->paginate(15);
+        $companiesBuilder = Company::with('createdBy')
+            ->orderBy('created_at', 'DESC');
+
+        ($request->has('search')) ? $companiesBuilder->search($request->search) : null;
+
+        $companies = $companiesBuilder->paginate(15);
 
         return response()->json($companies, Response::HTTP_OK);
     }

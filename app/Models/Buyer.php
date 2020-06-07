@@ -27,7 +27,7 @@ class Buyer extends Model
      *
      * @var array
      */
-    protected $guarded = ['id'];
+    protected $guarded = ['id', 'company_id'];
 
     /**
      * The attributes that should be mutated to dates.
@@ -61,5 +61,13 @@ class Buyer extends Model
     {
         return $this->belongsTo(User::class, 'created_by', 'id')
             ->select('id', 'name', 'email', 'phone');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function company()
+    {
+        return $this->hasOne(Company::class, 'id', 'company_id');
     }
 }
