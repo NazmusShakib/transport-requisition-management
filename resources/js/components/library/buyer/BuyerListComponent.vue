@@ -164,7 +164,7 @@
                     });
             },
             edit(buyer, index) {
-                this.$eventBus.$emit('edit-buyer', buyer);
+                this.$eventBus.$emit('edit-buyer', buyer, index);
             }
         },
         created() {
@@ -172,6 +172,9 @@
             this.$eventBus.$on("add-buyer", buyer => {
                 this.buyers.total++;
                 this.buyers.data.unshift(buyer);
+            });
+            this.$eventBus.$on("update-buyer", buyer => {
+                this.getBuyers();
             });
         }
     };

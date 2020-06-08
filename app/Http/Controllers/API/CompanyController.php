@@ -20,7 +20,9 @@ class CompanyController extends BaseController
 
         ($request->has('search')) ? $companiesBuilder->search($request->search) : null;
 
-        $companies = $companiesBuilder->paginate(15);
+        ($request->has('pagination') && !filter_var($request->pagination, FILTER_VALIDATE_BOOLEAN)) ?
+            $companies = $companiesBuilder->get() :
+            $companies = $companiesBuilder->paginate(15);
 
         return response()->json($companies, Response::HTTP_OK);
     }

@@ -19,7 +19,7 @@ class Buyer extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'phone', 'email', 'address'
+        'name', 'phone', 'email', 'address', 'company_id'
     ];
 
     /**
@@ -27,7 +27,7 @@ class Buyer extends Model
      *
      * @var array
      */
-    protected $guarded = ['id', 'company_id'];
+    protected $guarded = ['id'];
 
     /**
      * The attributes that should be mutated to dates.

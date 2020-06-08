@@ -81,6 +81,8 @@
 </template>
 
 <script>
+    import {isNull} from "lodash";
+
     export default {
         components: {
             //
@@ -98,7 +100,8 @@
         data: () => ({
             buyer: {},
             companies: [],
-            submitMethod: "create"
+            submitMethod: "create",
+            tableIndex: null
         }),
         watch: {
             //
@@ -106,11 +109,7 @@
         methods: {
             handleSubmit() {
                 if (this.submitMethod === "create") {
-                    console.log(this.buyer);
                     axios.post(this.$baseURL + 'library/buyers', this.buyer).then(response => {
-
-                        console.log(this.buyer);
-
                         this.$eventBus.$emit('add-buyer', response.data.data);
                         this.$notification.success(response.data.message);
                         this.onClose();
@@ -122,6 +121,7 @@
                     axios.put(this.$baseURL + 'library/buyers/' + this.buyer.id, this.buyer)
                         .then(response => {
                             this.$notification.success(response.data.message);
+                            this.$eventBus.$emit('update-buyer', response.data.data);
                             this.onClose();
                         })
                         .catch(error => {
@@ -132,9 +132,9 @@
             },
 
             getCompanies() {
-                axios.get(this.$baseURL + "library/companies")
+                axios.get(this.$baseURL + "library/companies?pagination=false")
                     .then(response => {
-                        let objCompanies = response.data.data;
+                        let objCompanies = response.data;
                         Object.keys(objCompanies).map( key => {
                             this.companies.push({
                                 id :  objCompanies[key].id,
@@ -157,11 +157,13 @@
 
         mounted: function () {
             // We listen for the event on the eventBus
-            this.$eventBus.$on("edit-buyer", buyer => {
+            this.$eventBus.$on("edit-buyer", (buyer, index) => {
+                this.tableIndex = index;
                 this.submitMethod = "update";
                 this.buyer = buyer;
+                buyer.company_id = !isNull(this.buyer.company) ? this.buyer.company.id : null;
                 this.$emit("update:dialogVisible", true)
-                    .$emit("update:dialogTitle", "Buyer update");
+                    .$emit("update:dialogTitle", "Buyer information");
             });
 
             this.getCompanies();

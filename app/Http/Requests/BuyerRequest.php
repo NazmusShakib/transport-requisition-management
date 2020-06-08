@@ -37,7 +37,7 @@ class BuyerRequest extends FormRequest
             'email' => 'sometimes|email',
             'phone' => 'nullable',
             'address' => 'nullable',
-            'company_id' => 'sometimes|nullable|exists:party_types,id',
+            'company_id' => 'sometimes|nullable|exists:companies,id',
         ];
     }
 

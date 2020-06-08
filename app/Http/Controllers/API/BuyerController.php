@@ -17,7 +17,7 @@ class BuyerController extends BaseController
      */
     public function index()
     {
-        $buyers = Buyer::with('createdBy')
+        $buyers = Buyer::with('company')
             ->orderBy('created_at', 'DESC')->paginate(15);
 
         return response()->json($buyers, Response::HTTP_OK);
@@ -48,7 +48,7 @@ class BuyerController extends BaseController
      */
     public function show($id)
     {
-        $buyer = Buyer::with('createdBy')->find($id);
+        $buyer = Buyer::with('company')->find($id);
 
         if (is_null($buyer)) {
             return $this->sendError('Buyer not found.');
