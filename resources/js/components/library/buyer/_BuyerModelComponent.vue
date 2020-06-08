@@ -49,17 +49,16 @@
                 </div>
 
                 <div class="form-group col-md-12"
-                     v-bind:class="{'has-error' : errors.has('company')}">
+                     v-bind:class="{'has-error' : errors.has('company_id')}">
                     <label class="control-label">Company:</label>
-                    <input
-                        type="text"
-                        name="company"
-                        v-model.trim="buyer.company"
-                        v-bind:class="{'has-error' : errors.has('company')}"
-                        placeholder="Company"
-                        class="form-control"/>
-                    <div v-show="errors.has('company')"
-                         class="help text-danger">{{ errors.first('company') }}
+                    <v-select :options="companies" :reduce="company => company.id" label="name"
+                              v-model.trim="buyer.company_id"
+                              placeholder="Company"
+                              name="company_id"
+                              v-bind:class="{'has-error' : errors.has('company_id')}"
+                    />
+                    <div v-show="errors.has('company_id')"
+                         class="help text-danger">{{ errors.first('company_id') }}
                     </div>
                 </div>
 
@@ -98,7 +97,7 @@
         },
         data: () => ({
             buyer: {},
-            companies: {},
+            companies: [],
             submitMethod: "create"
         }),
         watch: {
@@ -107,7 +106,11 @@
         methods: {
             handleSubmit() {
                 if (this.submitMethod === "create") {
+                    console.log(this.buyer);
                     axios.post(this.$baseURL + 'library/buyers', this.buyer).then(response => {
+
+                        console.log(this.buyer);
+
                         this.$eventBus.$emit('add-buyer', response.data.data);
                         this.$notification.success(response.data.message);
                         this.onClose();
@@ -131,8 +134,13 @@
             getCompanies() {
                 axios.get(this.$baseURL + "library/companies")
                     .then(response => {
-                        console.log(response.data.data);
-                        this.companies = response.data.data;
+                        let objCompanies = response.data.data;
+                        Object.keys(objCompanies).map( key => {
+                            this.companies.push({
+                                id :  objCompanies[key].id,
+                                name :  objCompanies[key].name
+                            });
+                        });
                     })
                     .catch(() => {
                         console.log("handle server error from here.");

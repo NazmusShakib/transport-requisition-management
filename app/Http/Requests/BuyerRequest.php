@@ -37,7 +37,7 @@ class BuyerRequest extends FormRequest
             'email' => 'sometimes|email',
             'phone' => 'nullable',
             'address' => 'nullable',
-            'company_id' => 'sometimes|exists:companies,id',
+            'company_id' => 'sometimes|nullable|exists:party_types,id',
         ];
     }
 
@@ -51,7 +51,7 @@ class BuyerRequest extends FormRequest
     public function attributes()
     {
         return [
-            //
+            'company_id' => 'company', // This will replace any instance of 'company_id' in validation messages with 'company'
         ];
     }
 
