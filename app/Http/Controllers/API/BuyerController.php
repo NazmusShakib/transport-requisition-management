@@ -6,6 +6,7 @@ use App\Http\Requests\BuyerRequest;
 use App\Models\Buyer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -90,7 +91,7 @@ class BuyerController extends BaseController
     public function destroy($id)
     {
         try {
-            Buyer::find($id)->delete();
+            Buyer::where('created_by', Auth::id())->findOrFail($id)->delete();
             return $this->sendResponse([], 'Buyer has been deleted successfully.');
         } catch (\Exception $exception) {
             return $this->sendError($exception->getMessage(), '', Response::HTTP_UNPROCESSABLE_ENTITY);

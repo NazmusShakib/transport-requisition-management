@@ -118,6 +118,12 @@
                             </li>
                         </ul>
                     </li>
+                    <li>
+                        <router-link :to="{ name: 'SupplierList'}" class="waves-effect">
+                            <i class="fa fa-truck" data-icon="v"></i>
+                            <span class="hide-menu">Suppliers</span>
+                        </router-link>
+                    </li>
 
                     <li>
                         <a href="javascript:void(0)" class="waves-effect">
@@ -128,12 +134,6 @@
                             </span>
                         </a>
                         <ul class="nav nav-second-level collapse" aria-expanded="true">
-                            <li>
-                                <router-link :to="{ name: 'SupplierList'}" class="waves-effect">
-                                    <i class="fa fa-truck" data-icon="v"></i>
-                                    <span class="hide-menu">Suppliers</span>
-                                </router-link>
-                            </li>
                             <li>
                                 <router-link :to="{ name: 'VehicleList'}" class="waves-effect">
                                     <i class="fa fa-truck" data-icon="v"></i>

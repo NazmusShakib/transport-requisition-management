@@ -13,7 +13,7 @@ import Blank from '~/components/BlankComponent';
 import userRoutes from './userRoutes';
 import requisitionRoutes from './requisitionRoutes';
 import libraryRoutes from './library';
-
+import supplierRoutes from "./supplierRoutes";
 
 const baseRoutes = [
     {
@@ -76,7 +76,7 @@ const baseRoutes = [
 ];
 
 const routes = baseRoutes.concat(
-    userRoutes, requisitionRoutes, libraryRoutes
+    userRoutes, requisitionRoutes, libraryRoutes, supplierRoutes
 );
 
 export default routes;

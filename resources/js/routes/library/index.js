@@ -4,7 +4,6 @@ import PartyTypeList from '~/components/library/party-type/PartyTypeListComponen
 import NatureList from '~/components/library/nature/NatureListComponent';
 import CompanyList from '~/components/library/company/CompanyListComponent';
 import BuyerList from '~/components/library/buyer/BuyerListComponent';
-import supplierRoutes from "./supplierRoutes";
 
 const libraries = [
     {
@@ -90,7 +89,7 @@ const libraries = [
 ];
 
 const libraryRoutes = libraries.concat(
-    supplierRoutes
+    //
 );
 
 export default libraryRoutes;

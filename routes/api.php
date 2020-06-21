@@ -64,4 +64,6 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::apiResource('library/buyers', 'BuyerController', ['only' => [
         'index', 'store', 'show', 'update', 'destroy']])->middleware(['role:admin|staff|subscriber']);
 
+    Route::apiResource('suppliers', 'SupplierController', ['only' => [
+        'index', 'store', 'show', 'update', 'destroy']])->middleware(['role:admin|staff|subscriber']);
 });
