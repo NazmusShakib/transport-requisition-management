@@ -32,6 +32,7 @@ import localStorage from '~/services/localStorage';
 Vue.prototype.$localStorage = localStorage;
 
 // Add a request interceptor
+axios.defaults.baseURL = process.env.MIX_API_URL;
 axios.interceptors.request.use(
     config => {
         const token = localStorage.get('token');

@@ -46,6 +46,7 @@
                                 <input
                                     type="email"
                                     name="email"
+                                    v-validate="'email'"
                                     v-model.trim="supplier.email"
                                     v-bind:class="{'has-error' : errors.has('email')}"
                                     placeholder="Email"
@@ -60,9 +61,9 @@
                             <div class="form-group col-md-4">
                                 <label class="control-label">Short name:</label>
                                 <input
-                                    type="text" name="name" class="form-control"
-                                    v-validate="'required'" v-model.trim="supplier.name"
-                                    v-bind:class="{'has-error' : errors.has('name')}" placeholder="Short name"/>
+                                    type="text" name="short_name" class="form-control"
+                                    v-model.trim="supplier.short_name"
+                                    v-bind:class="{'has-error' : errors.has('short_name')}" placeholder="Short name"/>
                             </div>
                             <div class="form-group col-md-4"
                                  v-bind:class="{'has-error' : errors.has('designation')}">
@@ -108,7 +109,7 @@
                                  v-bind:class="{'has-error' : errors.has('company')}">
                                 <label class="control-label">Companies:</label>
                                 <v-select multiple :options="companies" :reduce="company => company.id" label="name"
-                                          @search="onCompanySearch" v-model.trim="supplier.company_id"
+                                          @search="onCompanySearch" v-model.trim="supplier.companies_id"
                                           placeholder="Select company" name="company_id" :filterable="true"
                                           v-bind:class="{'has-error' : errors.has('company')}">
                                     <template slot="no-options">
@@ -121,9 +122,9 @@
                             </div>
                             <div class="form-group col-md-4"
                                  v-bind:class="{'has-error' : errors.has('buyers_id')}">
-                                <label class="control-label">Buyers:</label>
-                                <v-select :options="buyers" :reduce="buyer => buyer.id" label="name"
-                                          v-model.trim="supplier.buyers_id"
+                                <label class="control-label">Tag Buyers:</label>
+                                <v-select multiple :options="buyers" :reduce="buyer => buyer.id" label="name"
+                                          @search="onBuyerSearch" v-model.trim="supplier.buyers_id"
                                           placeholder="Select buyers"
                                           name="buyers_id"
                                           v-bind:class="{'has-error' : errors.has('buyers_id')}"
@@ -136,23 +137,23 @@
 
                         <div class="row">
                             <div class="form-group col-md-4"
-                                 v-bind:class="{'has-error' : errors.has('party_type_id')}">
-                                <label class="control-label">Party type:</label>
-                                <v-select :options="party_types" :reduce="party_type => party_type.id" label="name"
-                                          v-model.trim="supplier.party_type_id"
+                                 v-bind:class="{'has-error' : errors.has('party_types_id')}">
+                                <label class="control-label">Party types:</label>
+                                <v-select multiple :options="party_types" :reduce="party_type => party_type.id" label="name"
+                                          @search="onPartyTypeSearch" v-model.trim="supplier.party_types_id"
                                           placeholder="Select party type"
                                           name="nature_id"
-                                          v-bind:class="{'has-error' : errors.has('party_type_id')}"
+                                          v-bind:class="{'has-error' : errors.has('party_types_id')}"
                                 />
-                                <div v-show="errors.has('party_type_id')"
-                                     class="help text-danger">{{ errors.first('party_type_id') }}
+                                <div v-show="errors.has('party_types_id')"
+                                     class="help text-danger">{{ errors.first('party_types_id') }}
                                 </div>
                             </div>
                             <div class="form-group col-md-4"
                                  v-bind:class="{'has-error' : errors.has('nature_id')}">
                                 <label class="control-label">Nature:</label>
                                 <v-select :options="natures" :reduce="nature => nature.id" label="name"
-                                          v-model.trim="supplier.nature_id"
+                                          @search="onNatureSearch" v-model.trim="supplier.nature_id"
                                           placeholder="Nature"
                                           name="nature_id"
                                           v-bind:class="{'has-error' : errors.has('nature_id')}"
@@ -246,6 +247,10 @@
     import MasterLayout from "~/components/layouts/MasterLayoutComponent";
     import {MessageBox} from "element-ui";
 
+    import {
+        CompaniesAPI, BuyersAPI, PartyTypesAPI, NaturesAPI, SuppliersAPI
+    } from "~/services/api";
+
     export default {
         name: "SupplierForm",
         data: () => ({
@@ -260,19 +265,49 @@
         },
         methods: {
             handleSubmit() {
-                console.log('Java tutorial');
+                SuppliersAPI.store(this.supplier).then(response => {
+                    this.$notification.success(response.data.message);
+                    this.$router.push({name: 'SupplierList'});
+                }).catch(error => {
+                    this.$setErrorsFromResponse(error.response.data);
+                    this.$notification.error(error.response.data.message);
+                });
             },
             onCompanySearch(search, loading) {
-                loading(true);
-                axios.get(this.$baseURL + "library/companies?pagination=false&search=" + search)
-                    .then(response => {
-                        this.companies = response.data;
+                if(search.length >= 1) {
+                    loading(true);
+                    CompaniesAPI.index(null, search, false).then(companies => {
+                        this.companies = companies;
                         loading(false);
-                    })
-                    .catch(() => {
-                        loading(false);
-                        console.log("handle server error from here.");
                     });
+                }
+            },
+            onBuyerSearch(search, loading) {
+                if(search.length >= 1) {
+                    loading(true);
+                    BuyersAPI.index(null, search, false).then(buyers => {
+                        this.buyers = buyers;
+                        loading(false);
+                    });
+                }
+            },
+            onPartyTypeSearch(search, loading) {
+                if(search.length >= 1) {
+                    loading(true);
+                    PartyTypesAPI.index(null, search, false).then(partyTypes => {
+                        this.party_types = partyTypes;
+                        loading(false);
+                    });
+                }
+            },
+            onNatureSearch(search, loading) {
+                if(search.length >= 1) {
+                    loading(true);
+                    NaturesAPI.index(null, search, false).then(natures => {
+                        this.natures = natures;
+                        loading(false);
+                    });
+                }
             },
         },
         created() {

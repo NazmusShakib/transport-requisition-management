@@ -54,6 +54,12 @@ class Nature extends Model
         });
     }
 
+    public function scopeSearch($query, $searchTerm) {
+        return $query
+            ->where('name', 'like', "%" . $searchTerm . "%")
+            ->orWhere('display_name', 'like', "%" . $searchTerm . "%");
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

@@ -100,6 +100,7 @@
     import MasterLayout from "~/components/layouts/MasterLayoutComponent";
     import VuePagination from "~/components/partials/_PaginationComponent";
     import CompanyModal from "~/components/library/company/_CompanyModalComponent";
+    import CompaniesAPI from "~/services/api/Companies";
 
     import {MessageBox} from "element-ui";
 
@@ -127,13 +128,9 @@
         },
         methods: {
             getCompanies() {
-                axios.get(this.$baseURL + "library/companies?page=" + this.companies.current_page)
-                    .then(response => {
-                        this.companies = response.data;
-                    })
-                    .catch(() => {
-                        console.log("handle server error from here.");
-                    });
+                CompaniesAPI.index(this.companies.current_page).then(companies => {
+                    this.companies = companies;
+                });
             },
             filterTableData() {
                 //

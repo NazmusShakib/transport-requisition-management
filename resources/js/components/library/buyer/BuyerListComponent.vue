@@ -83,7 +83,7 @@
 
                         <vue-pagination
                             :pagination="buyers"
-                            v-if="buyers.total >= 11"
+                            v-if="buyers.total >= 16"
                             @paginate="getBuyers()"
                             :offset="4"
                         />
@@ -100,6 +100,7 @@
     import MasterLayout from "~/components/layouts/MasterLayoutComponent";
     import VuePagination from "~/components/partials/_PaginationComponent";
     import BuyerModal from "~/components/library/buyer/_BuyerModelComponent";
+    import BuyersAPI from "~/services/api/Buyers";
 
     import { MessageBox } from "element-ui";
 
@@ -127,16 +128,9 @@
         },
         methods: {
             getBuyers() {
-                axios.get(this.$baseURL + "library/buyers?page=" + this.buyers.current_page)
-                    .then(response => {
-                        this.buyers = response.data;
-                    })
-                    .catch(() => {
-                        console.log("handle server error from here.");
-                    });
-            },
-            filterTableData() {
-                //
+                BuyersAPI.index(this.buyers.current_page).then(buyers => {
+                    this.buyers = buyers;
+                });
             },
             destroy(id, index) {
                 MessageBox.confirm(
@@ -169,6 +163,7 @@
         },
         created() {
             this.$emit("update:layout", MasterLayout);
+
             this.$eventBus.$on("add-buyer", buyer => {
                 this.buyers.total++;
                 this.buyers.data.unshift(buyer);

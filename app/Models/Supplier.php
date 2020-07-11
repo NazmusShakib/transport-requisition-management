@@ -41,6 +41,7 @@ class Supplier extends Model
     protected $casts = [
         'companies_id' => 'json',
         'buyers_id' => 'json',
+        'party_types_id' => 'json',
     ];
 
     public static function boot()
@@ -50,6 +51,15 @@ class Supplier extends Model
         {
             $model->created_by = Auth::id();
         });
+    }
+
+    public function scopeSearch($query, $searchTerm) {
+        return $query
+            ->where('name', 'like', "%" . $searchTerm . "%")
+            ->orWhere('contact_no', 'like', "%" . $searchTerm . "%")
+            ->orWhere('contact_person', 'like', "%" . $searchTerm . "%")
+            ->orWhere('designation', 'like', "%" . $searchTerm . "%")
+            ->orWhere('email', 'like', "%" . $searchTerm . "%");
     }
 
     /**

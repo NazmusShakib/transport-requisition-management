@@ -26,9 +26,9 @@ class CreateSuppliersTable extends Migration
             $table->string('credit_limit_amount')->nullable();
             $table->text('address_1')->nullable();
             $table->text('address_2')->nullable();
-            $table->string('companies_id')->nullable();
-            $table->string('buyers_id')->nullable();
-            $table->bigInteger('party_type_id')->nullable();
+            $table->text('companies_id')->nullable();
+            $table->text('buyers_id')->nullable();
+            $table->text('party_types_id')->nullable();
             $table->bigInteger('nature_id')->nullable();
             $table->string('status')->nullable();
             $table->string('image')->nullable();

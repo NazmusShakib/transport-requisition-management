@@ -1,9 +1,9 @@
 // Navigations
 import VehicleList from '~/components/library/vehicle/VehicleListComponent';
-import PartyTypeList from '~/components/library/party-type/PartyTypeListComponent';
-import NatureList from '~/components/library/nature/NatureListComponent';
-import CompanyList from '~/components/library/company/CompanyListComponent';
-import BuyerList from '~/components/library/buyer/BuyerListComponent';
+const PartyTypeList = () => import( '~/components/library/party-type/PartyTypeListComponent');
+const NatureList = () => import( '~/components/library/nature/NatureListComponent');
+const CompanyList = () => import( '~/components/library/company/CompanyListComponent');
+const BuyerList = () => import('~/components/library/buyer/BuyerListComponent');
 
 const libraries = [
     {

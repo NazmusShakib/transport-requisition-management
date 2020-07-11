@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Models\PartyType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Response;
 
 class PartyTypeController extends BaseController
 {
@@ -12,12 +13,18 @@ class PartyTypeController extends BaseController
      * Display a listing of the resource.
      *
      */
-    public function index()
+    public function index(Request $request)
     {
-        $partyTypes = PartyType::with('createdBy')
-            ->orderBy('created_at', 'DESC')->paginate(15);
+        $partyTypesBuilder = PartyType::with('createdBy')
+            ->orderBy('created_at', 'DESC');
 
-        return response()->json($partyTypes, 200);
+        ($request->has('search')) ? $partyTypesBuilder->search($request->search) : null;
+
+        ($request->has('pagination') && !filter_var($request->pagination, FILTER_VALIDATE_BOOLEAN)) ?
+            $partyTypes = $partyTypesBuilder->get() :
+            $partyTypes = $partyTypesBuilder->paginate(15);
+
+        return response()->json($partyTypes, Response::HTTP_OK);
     }
 
     /**

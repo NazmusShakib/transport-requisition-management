@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Models\Nature;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Response;
 
 class NatureController extends BaseController
 {
@@ -12,12 +13,18 @@ class NatureController extends BaseController
      * Display a listing of the resource.
      *
      */
-    public function index()
+    public function index(Request $request)
     {
-        $natures = Nature::with('createdBy')
-            ->orderBy('created_at', 'DESC')->paginate(15);
+        $naturesBuilder = Nature::with('createdBy')
+            ->orderBy('created_at', 'DESC');
 
-        return response()->json($natures, 200);
+        ($request->has('search')) ? $naturesBuilder->search($request->search) : null;
+
+        ($request->has('pagination') && !filter_var($request->pagination, FILTER_VALIDATE_BOOLEAN)) ?
+            $natures = $naturesBuilder->get() :
+            $natures = $naturesBuilder->paginate(15);
+
+        return response()->json($natures, Response::HTTP_OK);
     }
 
     /**

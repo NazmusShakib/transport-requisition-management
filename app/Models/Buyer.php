@@ -54,6 +54,13 @@ class Buyer extends Model
         });
     }
 
+    public function scopeSearch($query, $searchTerm) {
+        return $query
+            ->where('name', 'like', "%" . $searchTerm . "%")
+            ->orWhere('phone', 'like', "%" . $searchTerm . "%")
+            ->orWhere('email', 'like', "%" . $searchTerm . "%");
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

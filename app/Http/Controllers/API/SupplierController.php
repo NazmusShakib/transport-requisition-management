@@ -14,10 +14,16 @@ class SupplierController extends BaseController
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $suppliers = Supplier::with(['companies', 'buyers', 'party_type', 'nature'])
-            ->orderBy('created_at', 'DESC')->paginate(15);
+        $suppliersBuilder = Supplier::with(['companies', 'buyers'])
+            ->orderBy('created_at', 'DESC');
+
+        ($request->has('search')) ? $suppliersBuilder->search($request->search) : null;
+
+        ($request->has('pagination') && !filter_var($request->pagination, FILTER_VALIDATE_BOOLEAN)) ?
+            $suppliers = $suppliersBuilder->get() :
+            $suppliers = $suppliersBuilder->paginate(15);
 
         return response()->json($suppliers, Response::HTTP_OK);
     }

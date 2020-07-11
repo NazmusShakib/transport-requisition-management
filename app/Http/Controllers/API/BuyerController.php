@@ -16,10 +16,16 @@ class BuyerController extends BaseController
      * Display a listing of the resource.
      *
      */
-    public function index()
+    public function index(Request $request)
     {
-        $buyers = Buyer::with('company')
-            ->orderBy('created_at', 'DESC')->paginate(15);
+        $buyersBuilder = Buyer::with('company')
+            ->orderBy('created_at', 'DESC');
+
+        ($request->has('search')) ? $buyersBuilder->search($request->search) : null;
+
+        ($request->has('pagination') && !filter_var($request->pagination, FILTER_VALIDATE_BOOLEAN)) ?
+            $buyers = $buyersBuilder->get() :
+            $buyers = $buyersBuilder->paginate(15);
 
         return response()->json($buyers, Response::HTTP_OK);
     }
