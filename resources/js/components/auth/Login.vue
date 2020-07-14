@@ -1,5 +1,4 @@
 <template>
-
     <div class="login-box">
             <div class="white-box">
                 <form @submit.prevent="login()" method="post" class="form-horizontal form-material" novalidate>
@@ -39,13 +38,12 @@
                 </form>
             </div>
         </div>
-
 </template>
 
 
 <script>
 
-    import GuestLayout from '../layouts/GuestLayoutComponent.vue';
+    import GuestLayout from '~/components/layouts/GuestLayoutComponent.vue';
 
     export default {
         components: {

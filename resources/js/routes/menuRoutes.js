@@ -10,10 +10,10 @@ import Blank from '~/components/BlankComponent';
 
 
 // Import Module Routes
-import userRoutes from './userRoutes';
-import requisitionRoutes from './requisitionRoutes';
-import libraryRoutes from './library';
-import supplierRoutes from "./supplierRoutes";
+import userRoutes from '~/routes/userRoutes';
+import requisitionRoutes from '~/routes/requisitionRoutes';
+import libraryRoutes from '~/routes/library';
+import supplierRoutes from '~/routes/supplierRoutes';
 
 const baseRoutes = [
     {

@@ -100,7 +100,7 @@
     import MasterLayout from "~/components/layouts/MasterLayoutComponent";
     import VuePagination from "~/components/partials/_PaginationComponent";
     import CompanyModal from "~/components/library/company/_CompanyModalComponent";
-    import CompaniesAPI from "~/services/api/Companies";
+    import CompaniesAPI from "~/services/api/companiesApi";
 
     import {MessageBox} from "element-ui";
 

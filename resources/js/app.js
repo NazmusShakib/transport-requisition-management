@@ -10,17 +10,17 @@ import i18n from 'vue-i18n';
 Vue.use(i18n);
 
 window.NProgress = require('nprogress');
-import App from './App';
+import AppInit from '~/AppInit';
 
 // router setup
 Vue.prototype.$baseURL = process.env.MIX_API_URL;
-import routers from './routes';
+import routers from '~/routes';
 
 /**
  * Import third party plugins
  */
 import '~/global/rules';
-import '~/global/notificaitons';
+import '~/global/notifications';
 import '~/global/elements';
 import '~/global/vue-select';
 import '~/global/loading';
@@ -47,7 +47,7 @@ axios.interceptors.request.use(
     });
 
 
-import store from './store'
+import store from '~/store'
 
 // initialize event bus
 Vue.prototype.$eventBus = new Vue();
@@ -57,7 +57,7 @@ Vue.config.productionTip = false;
 /* eslint-disable no-new */
 const app = new Vue({
     el: '#wrapper',
-    render: h => h(App),
+    render: h => h(AppInit),
     router: routers,
     store
 });

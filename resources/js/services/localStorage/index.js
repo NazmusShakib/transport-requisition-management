@@ -1,3 +1,3 @@
-import localStorage from './localStorage';
+import localStorage from '~/services/localStorage/localStorage';
 
 export default localStorage;
