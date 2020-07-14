@@ -12,8 +12,8 @@ import Blank from '~/components/BlankComponent';
 // Import Module Routes
 import userRoutes from './userRoutes';
 import requisitionRoutes from './requisitionRoutes';
-
-
+import libraryRoutes from './library';
+import supplierRoutes from "./supplierRoutes";
 
 const baseRoutes = [
     {
@@ -34,10 +34,10 @@ const baseRoutes = [
     },
     {
         path: '*', component: Error404,
-        name: '404', meta: {title: 'Not Found - App'}
+        name: '404', meta: {requireAuth: true, title: 'Not Found - App'}
     },
     {
-        path: '/dashboard', component: Dashboard,
+        path: '/', component: Dashboard,
         name: 'Dashboard',
         meta: {
             requireAuth: true,
@@ -76,7 +76,7 @@ const baseRoutes = [
 ];
 
 const routes = baseRoutes.concat(
-    userRoutes, requisitionRoutes
+    userRoutes, requisitionRoutes, libraryRoutes, supplierRoutes
 );
 
 export default routes;

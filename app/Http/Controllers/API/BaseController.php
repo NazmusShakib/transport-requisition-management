@@ -4,13 +4,13 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class BaseController extends Controller
 {
     /**
      * success response method.
      *
-     * @return \Illuminate\Http\Response
      */
     public function sendResponse($result, $message)
     {
@@ -21,15 +21,18 @@ class BaseController extends Controller
         ];
 
 
-        return response()->json($response, 200);
+        return response()->json($response, Response::HTTP_OK);
     }
 
     /**
      * return error response.
      *
-     * @return \Illuminate\Http\Response
+     * @param $error
+     * @param array $errorMessages
+     * @param int $code
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function sendError($error, $errorMessages = [], $code = 404)
+    public function sendError($error, $errorMessages = [], $code = Response::HTTP_NOT_FOUND)
     {
         $response = [
             'success' => false,
@@ -38,7 +41,7 @@ class BaseController extends Controller
 
 
         if(!empty($errorMessages)){
-            $response['data'] = $errorMessages;
+            $response['errors'] = $errorMessages;
         }
 
 

@@ -13,7 +13,7 @@ window.NProgress = require('nprogress');
 import App from './App';
 
 // router setup
-Vue.prototype.$baseURL = 'http://127.0.0.1:8000/api/v1/';
+Vue.prototype.$baseURL = process.env.MIX_API_URL;
 import routers from './routes';
 
 /**
@@ -22,13 +22,17 @@ import routers from './routes';
 import '~/global/rules';
 import '~/global/notificaitons';
 import '~/global/elements';
+import '~/global/vue-select';
 import '~/global/loading';
+// import '~/global/vuetify'; // path to vuetify export
+
 
 import localStorage from '~/services/localStorage';
 
 Vue.prototype.$localStorage = localStorage;
 
 // Add a request interceptor
+axios.defaults.baseURL = process.env.MIX_API_URL;
 axios.interceptors.request.use(
     config => {
         const token = localStorage.get('token');
@@ -44,6 +48,11 @@ axios.interceptors.request.use(
 
 
 import store from './store'
+
+// initialize event bus
+Vue.prototype.$eventBus = new Vue();
+
+Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
 const app = new Vue({

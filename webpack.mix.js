@@ -3,7 +3,7 @@ const mix = require('laravel-mix');
 
 mix.options({
     hmrOptions: {
-        host: '127.0.0.1',
+        host: process.env.MIX_SENTRY_DSN_WEBPACK,
         port: 8889
     }
 }).webpackConfig({

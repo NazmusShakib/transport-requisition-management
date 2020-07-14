@@ -2,7 +2,7 @@
     <div>
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse slimscrollsidebar">
-                <div class="user-profile">
+                <!--<div class="user-profile">
                     <div class="dropdown user-pro-body">
                         <div>
                             <img :src="'/plugins/images/users/blank-profile-picture.png'" alt="user-img"
@@ -26,7 +26,7 @@
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div>-->
                 <ul class="nav" id="side-menu">
                     <li class="sidebar-search hidden-sm hidden-md hidden-lg">
                         <!-- input-group -->
@@ -118,6 +118,54 @@
                             </li>
                         </ul>
                     </li>
+                    <li>
+                        <router-link :to="{ name: 'SupplierList'}" class="waves-effect">
+                            <i class="fa fa-truck" data-icon="v"></i>
+                            <span class="hide-menu">Suppliers</span>
+                        </router-link>
+                    </li>
+
+                    <li>
+                        <a href="javascript:void(0)" class="waves-effect">
+                            <i class="fa fa-user" data-icon="v"></i>
+                            <span class="hide-menu">
+                                Library
+                                <span class="fa arrow"></span>
+                            </span>
+                        </a>
+                        <ul class="nav nav-second-level collapse" aria-expanded="true">
+                            <li>
+                                <router-link :to="{ name: 'VehicleList'}" class="waves-effect">
+                                    <i class="fa fa-truck" data-icon="v"></i>
+                                    <span class="hide-menu">Vehicles</span>
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link :to="{ name: 'PartyTypeList'}" class="waves-effect">
+                                    <i class="fa fa-truck" data-icon="v"></i>
+                                    <span class="hide-menu">Party types</span>
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link :to="{ name: 'NatureList'}" class="waves-effect">
+                                    <i class="fa fa-truck" data-icon="v"></i>
+                                    <span class="hide-menu">Natures</span>
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link :to="{ name: 'CompanyList'}" class="waves-effect">
+                                    <i class="fa fa-truck" data-icon="v"></i>
+                                    <span class="hide-menu">Companies</span>
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link :to="{ name: 'BuyerList'}" class="waves-effect">
+                                    <i class="fa fa-truck" data-icon="v"></i>
+                                    <span class="hide-menu">Buyers</span>
+                                </router-link>
+                            </li>
+                        </ul>
+                    </li>
 
                     <li>
                         <a href="#" class="waves-effect">
@@ -136,7 +184,7 @@
     export default {
         props: [],
         created: function () {
-            console.log('NavBar component.')
+            console.log('Side bar component.')
         },
         methods: {
             logout() {

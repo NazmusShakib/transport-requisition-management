@@ -1,0 +1,68 @@
+version: '3'
+
+services:
+
+  #  The Application
+  req_app:
+    container_name: req_app
+    build:
+      context: ./
+      dockerfile: development/app.dockerfile
+    volumes:
+      - ./:/var/www/
+      - ./development/local.ini:/usr/local/etc/php/conf.d/local.ini
+    environment:
+       DB_HOST: "req_db"
+       REDIS_HOST: "cache"
+    depends_on:
+      - req_web
+      - req_db
+    networks:
+      - app-network
+
+  # The Web Server
+  req_web:
+    container_name: req_web
+    build:
+      context: ./
+      dockerfile: development/web.dockerfile
+    volumes:
+      - ./storage/logs/:/var/log/nginx
+    ports:
+      - 8990:80
+    networks:
+      - app-network
+
+  # The Database
+  req_db:
+    container_name: req_db
+    image: mysql:5.7.23
+    env_file:
+      - ./.env
+    volumes:
+      - dbdata:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_HOST: ${DB_HOST}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - 8991:3306
+    networks:
+      - app-network
+
+  # redis
+  cache:
+    image: redis:3.0-alpine
+    networks:
+      - app-network
+
+# Volumes
+volumes:
+  dbdata:
+
+# Networks
+networks:
+  app-network:
+    driver: bridge

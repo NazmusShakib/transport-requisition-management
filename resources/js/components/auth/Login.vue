@@ -1,6 +1,6 @@
 <template>
-    <div id="wrapper" class="login-register">
-        <div class="login-box box-width-loging">
+
+    <div class="login-box">
             <div class="white-box">
                 <form @submit.prevent="login()" method="post" class="form-horizontal form-material" novalidate>
                     <h3 class="box-title m-b-20">Sign In</h3>
@@ -39,7 +39,6 @@
                 </form>
             </div>
         </div>
-    </div>
 
 </template>
 
@@ -63,23 +62,15 @@
                             .then((response) => {
                                 var data = response.data.data;
                                 localStorage.setItem('token', data.token);
-                                localStorage.setItem('auth', JSON.stringify(data.auth));
-                                this.$store.dispatch('authStore', data.auth);
-                                this.$router.push('/dashboard');
+                                this.$store.dispatch("setGlobalAuth", data.auth);
+                                this.$router.push('/');
                             })
                             .catch((error) => {
-                                this.$notification.error(error.response.data.data.error);
-                                // this.$router.push('/login')
+                                this.$setErrorsFromResponse(error.response.data);
+                                this.$notification.error(error.response.data.message);
                             });
-                    } else {
-                        return this.focusOnInvalidField();
                     }
                 })
-            },
-
-            focusOnInvalidField() {
-                const firstField = Object.keys(this.errors.collect())[0];
-                this.$refs[`${firstField}Input`].focus();
             },
         },
         mounted: function () {
