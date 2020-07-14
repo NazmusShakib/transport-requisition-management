@@ -1,9 +1,9 @@
 // Navigations
 import VehicleList from '~/components/library/vehicle/VehicleListComponent';
-const PartyTypeList = () => import( '~/components/library/party-type/PartyTypeListComponent');
-const NatureList = () => import( '~/components/library/nature/NatureListComponent');
-const CompanyList = () => import( '~/components/library/company/CompanyListComponent');
-const BuyerList = () => import('~/components/library/buyer/BuyerListComponent');
+const PartyTypeList = () => import(/* webpackChunkName: "PartyTypeListComponent" */ '~/components/library/party-type/PartyTypeListComponent');
+const NatureList = () => import(/* webpackChunkName: "NatureListComponent" */ '~/components/library/nature/NatureListComponent');
+const CompanyList = () => import(/* webpackChunkName: "CompanyListComponent" */ '~/components/library/company/CompanyListComponent');
+const BuyerList = () => import(/* webpackChunkName: "BuyerListComponent" */ '~/components/library/buyer/BuyerListComponent');
 
 const libraries = [
     {
