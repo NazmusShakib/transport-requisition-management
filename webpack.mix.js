@@ -14,6 +14,9 @@ mix.options({
             '~': __dirname + '/resources/js'
         },
     },
+    output: {
+        chunkFilename: mix.inProduction() ? 'js/chunks/[name].[chunkhash].js' : 'js/chunks/[name].js'
+    },
 });
 
 
