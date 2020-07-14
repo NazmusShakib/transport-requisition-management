@@ -100,7 +100,7 @@
     import MasterLayout from "~/components/layouts/MasterLayoutComponent";
     import VuePagination from "~/components/partials/_PaginationComponent";
     import BuyerModal from "~/components/library/buyer/_BuyerModelComponent";
-    import BuyersAPI from "~/services/api/Buyers";
+    import BuyersAPI from "~/services/api/buyersApi";
 
     import { MessageBox } from "element-ui";
 

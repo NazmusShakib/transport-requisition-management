@@ -10,7 +10,7 @@
 </template>
 
 <script>
-    import GuestLayout from '../layouts/GuestLayoutComponent.vue';
+    import GuestLayout from '~/components/layouts/GuestLayoutComponent.vue';
 
     export default {
         data: () => ({

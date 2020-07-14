@@ -1,2 +1,2 @@
-import loadingOverlay from './loading-overlay';
+import loadingOverlay from '~/global/loading/loading-overlay';
 export default loadingOverlay;

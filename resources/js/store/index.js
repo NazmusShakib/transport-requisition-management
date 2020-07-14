@@ -3,7 +3,7 @@ import Vuex from 'vuex';
 // Import local storage
 import localStorage from '~/services/localStorage';
 
-import profile from './profile';
+import profile from '~/store/profile';
 
 Vue.use(Vuex);
 

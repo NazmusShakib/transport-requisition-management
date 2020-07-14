@@ -2,10 +2,10 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
-import MenuRoutes from './menuRoutes';
+import MenuRoutes from '~/routes/menuRoutes';
 
 
-import localStorage from '../services/localStorage';
+import localStorage from '~/services/localStorage';
 
 
 const router = new VueRouter({

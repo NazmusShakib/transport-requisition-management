@@ -62,9 +62,9 @@
 </template>
 
 <script>
-    import MasterLayout from './layouts/MasterLayoutComponent.vue';
+    import MasterLayout from '~/components/layouts/MasterLayoutComponent.vue';
 
-    import {ChangePassword, Headshot, LeftCard, Profile, UpdateProfile} from './profile';
+    import {ChangePassword, Headshot, LeftCard, Profile, UpdateProfile} from '~/components/profile';
 
     export default {
         name: 'ProfileDetails',

@@ -1,9 +1,9 @@
 // Profiles staff
-import LeftCard from './_LeftCard.vue'
-import Profile from './_tabProfile'
-import UpdateProfile from './_tabUpdateProfile'
-import Headshot from './_tabHeadshot'
-import ChangePassword from './_tabChangePassword'
+import LeftCard from '~/components/profile/_LeftCard.vue'
+import Profile from '~/components/profile/_tabProfile'
+import UpdateProfile from '~/components/profile/_tabUpdateProfile'
+import Headshot from '~/components/profile/_tabHeadshot'
+import ChangePassword from '~/components/profile/_tabChangePassword'
 
 export {
     LeftCard,
