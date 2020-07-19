@@ -40,8 +40,6 @@ class PartyTypeController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -62,8 +60,6 @@ class PartyTypeController extends BaseController
 
     /**
      * Display the specified resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
@@ -90,9 +86,6 @@ class PartyTypeController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\PartyType  $partyType
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, PartyType $partyType)
     {
@@ -118,12 +111,11 @@ class PartyTypeController extends BaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         try {
-            PartyType::find($id)->delete();
+            PartyType::findOrFail($id)->delete();
             return $this->sendResponse([], 'Party type has been deleted successfully.');
         } catch (\Exception $exception) {
             return $this->sendError($exception->getMessage(), '', 422);
