@@ -48,7 +48,11 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::apiResource('imports', 'ImportController', ['only' => [
         'index', 'store', 'show', 'update', 'destroy']])->middleware(['role:admin']);
 
-    ## Library routes
+    /**
+     * Start of library routes
+     *
+     */
+
     Route::apiResource('library/vehicles', 'VehicleController', ['only' => [
         'index', 'store', 'show', 'update', 'destroy']])->middleware(['role:admin|staff|subscriber']);
 
@@ -64,6 +68,30 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::apiResource('library/buyers', 'BuyerController', ['only' => [
         'index', 'store', 'show', 'update', 'destroy']])->middleware(['role:admin|staff|subscriber']);
 
+    Route::apiResource('library/locations', 'LocationController', ['only' => [
+        'index', 'store', 'show', 'update', 'destroy']])->middleware(['role:admin|staff|subscriber']);
+
+    Route::apiResource('library/sections', 'SectionController', ['only' => [
+        'index', 'store', 'show', 'update', 'destroy']])->middleware(['role:admin|staff|subscriber']);
+
+    Route::apiResource('library/sources', 'SourceController', ['only' => [
+        'index', 'store', 'show', 'update', 'destroy']])->middleware(['role:admin|staff|subscriber']);
+
+    Route::apiResource('library/stores', 'StoreController', ['only' => [
+        'index', 'store', 'show', 'update', 'destroy']])->middleware(['role:admin|staff|subscriber']);
+
+    Route::apiResource('library/divisions', 'DivisionController', ['only' => [
+        'index', 'store', 'show', 'update', 'destroy']])->middleware(['role:admin|staff|subscriber']);
+
+    Route::apiResource('library/departments', 'DepartmentController', ['only' => [
+        'index', 'store', 'show', 'update', 'destroy']])->middleware(['role:admin|staff|subscriber']);
+
+    /**
+     * End of library routes
+     *
+     */
+
     Route::apiResource('suppliers', 'SupplierController', ['only' => [
         'index', 'store', 'show', 'update', 'destroy']])->middleware(['role:admin|staff|subscriber']);
+
 });
