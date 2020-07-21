@@ -164,6 +164,44 @@
                                     <span class="hide-menu">Buyers</span>
                                 </router-link>
                             </li>
+                            <li>
+                                <router-link :to="{ name: 'DepartmentList'}" class="waves-effect">
+                                    <i class="fa fa-truck" data-icon="v"></i>
+                                    <span class="hide-menu">Departments</span>
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link :to="{ name: 'DivisionList'}" class="waves-effect">
+                                    <i class="fa fa-truck" data-icon="v"></i>
+                                    <span class="hide-menu">Divisions</span>
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link :to="{ name: 'LocationList'}" class="waves-effect">
+                                    <i class="fa fa-truck" data-icon="v"></i>
+                                    <span class="hide-menu">Locations</span>
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link :to="{ name: 'SectionList'}" class="waves-effect">
+                                    <i class="fa fa-truck" data-icon="v"></i>
+                                    <span class="hide-menu">Sections</span>
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link :to="{ name: 'SourceList'}" class="waves-effect">
+                                    <i class="fa fa-truck" data-icon="v"></i>
+                                    <span class="hide-menu">Sources</span>
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link :to="{ name: 'StoreList'}" class="waves-effect">
+                                    <i class="fa fa-truck" data-icon="v"></i>
+                                    <span class="hide-menu">Stores</span>
+                                </router-link>
+                            </li>
+
+
                         </ul>
                     </li>
 
