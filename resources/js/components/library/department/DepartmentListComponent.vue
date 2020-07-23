@@ -89,6 +89,7 @@
     import MasterLayout from "~/components/layouts/MasterLayoutComponent";
     import VuePagination from "~/components/partials/_PaginationComponent";
     import DepartmentModal from "~/components/library/department/_DepartmentModalComponent";
+    import DepartmentsAPI from '~/services/api/departmentsApi';
 
     import {MessageBox} from "element-ui";
 
@@ -115,13 +116,9 @@
         },
         methods: {
             getDepartments() {
-                axios.get(this.$baseURL + "library/departments?page=" + this.departments.current_page)
-                    .then(response => {
-                        this.natures = response.data;
-                    })
-                    .catch(() => {
-                        console.log("handle server error from here.");
-                    });
+                DepartmentsAPI.index(this.departments.current_page).then(departments => {
+                    this.departments = departments;
+                });
             },
             filterTableData() {
                 //

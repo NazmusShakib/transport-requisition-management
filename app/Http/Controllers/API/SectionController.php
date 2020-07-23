@@ -40,7 +40,7 @@ class SectionController extends BaseController
 
         $input = $request->only(['name', 'short_name', 'description']);
         $create = Section::create($input);
-        return $this->sendResponse($create, 'Location has been created successfully.');
+        return $this->sendResponse($create, 'Section has been created successfully.');
     }
 
     /**

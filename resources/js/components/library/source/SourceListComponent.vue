@@ -89,6 +89,7 @@
     import MasterLayout from "~/components/layouts/MasterLayoutComponent";
     import VuePagination from "~/components/partials/_PaginationComponent";
     import SourceModal from "~/components/library/source/_SourceModalComponent";
+    import SourcesAPI from '~/services/api/sourcesApi';
 
     import {MessageBox} from "element-ui";
 
@@ -116,13 +117,9 @@
         },
         methods: {
             getLibraries() {
-                axios.get(this.$baseURL + "library/sources?page=" + this.libraries.current_page)
-                    .then(response => {
-                        this.libraries = response.data;
-                    })
-                    .catch(() => {
-                        console.log("handle server error from here.");
-                    });
+                SourcesAPI.index(this.libraries.current_page).then(libraries => {
+                    this.libraries = libraries;
+                });
             },
             filterTableData() {
                 //

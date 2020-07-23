@@ -69,7 +69,7 @@
         methods: {
             handleSubmit() {
                 if (this.submitMethod === "create") {
-                    axios.post(this.$baseURL + 'library/departments', this.nature).then(response => {
+                    axios.post(this.$baseURL + 'library/departments', this.library).then(response => {
                         this.$eventBus.$emit('add-department', response.data.data);
                         this.$notification.success(response.data.message);
                         this.onClose();
@@ -104,7 +104,7 @@
                 this.submitMethod = "update";
                 this.nature = nature;
                 this.$emit("update:dialogVisible", true)
-                    .$emit("update:dialogTitle", "Nature update");
+                    .$emit("update:dialogTitle", "Department");
             });
         },
         computed: {

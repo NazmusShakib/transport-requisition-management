@@ -87,9 +87,6 @@ class NatureController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Nature  $nature
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Nature $nature)
     {
@@ -115,7 +112,6 @@ class NatureController extends BaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {

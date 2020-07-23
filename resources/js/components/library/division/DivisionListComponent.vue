@@ -89,6 +89,7 @@
     import MasterLayout from "~/components/layouts/MasterLayoutComponent";
     import VuePagination from "~/components/partials/_PaginationComponent";
     import DivisionModal from "~/components/library/division/_DivisionModalComponent";
+    import DivisionsAPI from '~/services/api/divisionsApi';
 
     import {MessageBox} from "element-ui";
 
@@ -115,13 +116,9 @@
         },
         methods: {
             getLibraries() {
-                axios.get(this.$baseURL + "library/divisions?page=" + this.libraries.current_page)
-                    .then(response => {
-                        this.libraries = response.data;
-                    })
-                    .catch(() => {
-                        console.log("handle server error from here.");
-                    });
+                DivisionsAPI.index(this.libraries.current_page).then(libraries => {
+                    this.libraries = libraries;
+                });
             },
             filterTableData() {
                 //

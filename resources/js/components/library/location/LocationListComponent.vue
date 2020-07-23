@@ -89,6 +89,7 @@
     import MasterLayout from "~/components/layouts/MasterLayoutComponent";
     import VuePagination from "~/components/partials/_PaginationComponent";
     import LocationModal from "~/components/library/location/_LocationModalComponent";
+    import LocationsAPI from '~/services/api/locationsApi';
 
     import {MessageBox} from "element-ui";
 
@@ -115,13 +116,9 @@
         },
         methods: {
             getLibraries() {
-                axios.get(this.$baseURL + "library/locations?page=" + this.libraries.current_page)
-                    .then(response => {
-                        this.libraries = response.data;
-                    })
-                    .catch(() => {
-                        console.log("handle server error from here.");
-                    });
+                LocationsAPI.index(this.libraries.current_page).then(libraries => {
+                    this.libraries = libraries;
+                });
             },
             filterTableData() {
                 //

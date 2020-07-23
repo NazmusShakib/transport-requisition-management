@@ -69,7 +69,7 @@
         methods: {
             handleSubmit() {
                 if (this.submitMethod === "create") {
-                    axios.post(this.$baseURL + 'library/divisions', this.nature).then(response => {
+                    axios.post(this.$baseURL + 'library/divisions', this.library).then(response => {
                         this.$eventBus.$emit('add-division', response.data.data);
                         this.$notification.success(response.data.message);
                         this.onClose();

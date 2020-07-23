@@ -100,6 +100,7 @@
     import MasterLayout from "~/components/layouts/MasterLayoutComponent";
     import VuePagination from "~/components/partials/_PaginationComponent";
     import NatureModal from "~/components/library/nature/_NatureModalComponent";
+    import NaturesAPI from '~/services/api/naturesApi';
 
     import {MessageBox} from "element-ui";
 
@@ -127,13 +128,9 @@
         },
         methods: {
             getNatures() {
-                axios.get(this.$baseURL + "library/natures?page=" + this.natures.current_page)
-                    .then(response => {
-                        this.natures = response.data;
-                    })
-                    .catch(() => {
-                        console.log("handle server error from here.");
-                    });
+                NaturesAPI.index(this.natures.current_page).then(natures => {
+                    this.natures = natures;
+                });
             },
             filterTableData() {
                 //
