@@ -100,9 +100,9 @@
 
         mounted: function () {
             // We listen for the event on the eventBus
-            this.$eventBus.$on("edit-department", nature => {
+            this.$eventBus.$on("edit-department", department => {
                 this.submitMethod = "update";
-                this.nature = nature;
+                this.library = department;
                 this.$emit("update:dialogVisible", true)
                     .$emit("update:dialogTitle", "Department");
             });
