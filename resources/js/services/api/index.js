@@ -5,21 +5,23 @@ import PartyTypesAPI from '~/services/api/partyTypesApi';
 import SuppliersAPI from '~/services/api/suppliersApi';
 import StoresAPI from '~/services/api/storesApi';
 import SourcesAPI from '~/services/api/sourcesApi';
-import SectionsApi from '~/services/api/sectionsApi';
-import DepartmentsApi from '~/services/api/departmentsApi';
-import DivisionsApi from '~/services/api/divisionsApi';
-import LocationsApi from '~/services/api/locationsApi';
+import SectionsAPI from '~/services/api/sectionsApi';
+import DepartmentsAPI from '~/services/api/departmentsApi';
+import DivisionsAPI from '~/services/api/divisionsApi';
+import LocationsAPI from '~/services/api/locationsApi';
+import PurchaseRequisitionAPI from '~/services/api/purchaseRequisitionApi';
 
 export {
     BuyersAPI,
     CompaniesAPI,
     NaturesAPI,
     PartyTypesAPI,
-    SuppliersAPI,
     StoresAPI,
     SourcesAPI,
-    SectionsApi,
-    DepartmentsApi,
-    DivisionsApi,
-    LocationsApi,
+    SectionsAPI,
+    DepartmentsAPI,
+    DivisionsAPI,
+    LocationsAPI,
+    SuppliersAPI,
+    PurchaseRequisitionAPI,
 };

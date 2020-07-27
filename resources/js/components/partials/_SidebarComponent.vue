@@ -124,7 +124,12 @@
                             <span class="hide-menu">Suppliers</span>
                         </router-link>
                     </li>
-
+                    <li>
+                        <router-link :to="{ name: 'PurchaseRequisitionList'}" class="waves-effect">
+                            <i class="fa fa-truck" data-icon="v"></i>
+                            <span class="hide-menu">Purchase requisition</span>
+                        </router-link>
+                    </li>
                     <li>
                         <a href="javascript:void(0)" class="waves-effect">
                             <i class="fa fa-user" data-icon="v"></i>

@@ -8,12 +8,12 @@ import Dashboard from '~/components/DashboardComponent';
 import Profile from '~/components/ProfileComponent';
 import Blank from '~/components/BlankComponent';
 
-
 // Import Module Routes
 import userRoutes from '~/routes/userRoutes';
 import requisitionRoutes from '~/routes/requisitionRoutes';
 import libraryRoutes from '~/routes/library';
 import supplierRoutes from '~/routes/supplierRoutes';
+import purchaseRequisitionRoutes from '~/routes/purchaseRequisitionRoutes';
 
 const baseRoutes = [
     {
@@ -76,7 +76,7 @@ const baseRoutes = [
 ];
 
 const routes = baseRoutes.concat(
-    userRoutes, requisitionRoutes, libraryRoutes, supplierRoutes
+    userRoutes, requisitionRoutes, libraryRoutes, supplierRoutes, purchaseRequisitionRoutes
 );
 
 export default routes;

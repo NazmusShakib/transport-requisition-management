@@ -62,7 +62,7 @@ class SupplierController extends BaseController
         $supplier->fill($validated)->save();
 
         if ($request->hasFile('image')) {
-            // $event->updateMedia($request->banner, 'banner');
+            // $event->updateMedia($request->head_shot, 'head_shot');
         }
 
         return $this->sendResponse($supplier, 'Supplier has been updated successfully.');
