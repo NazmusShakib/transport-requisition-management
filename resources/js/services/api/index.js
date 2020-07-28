@@ -10,6 +10,7 @@ import DepartmentsAPI from '~/services/api/departmentsApi';
 import DivisionsAPI from '~/services/api/divisionsApi';
 import LocationsAPI from '~/services/api/locationsApi';
 import PurchaseRequisitionAPI from '~/services/api/purchaseRequisitionApi';
+import UtilitiesAPI from '~/services/api/utilitiesApi';
 
 export {
     BuyersAPI,
@@ -24,4 +25,5 @@ export {
     LocationsAPI,
     SuppliersAPI,
     PurchaseRequisitionAPI,
+    UtilitiesAPI,
 };

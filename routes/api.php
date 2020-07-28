@@ -48,6 +48,13 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::apiResource('imports', 'ImportController', ['only' => [
         'index', 'store', 'show', 'update', 'destroy']])->middleware(['role:admin']);
 
+
+    /**
+     * Utility routes
+     *
+     */
+    Route::get('utilities/pay-modes', 'UtilityController@payModes');
+
     /**
      * Start of library routes
      *
