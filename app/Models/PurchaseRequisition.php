@@ -53,4 +53,12 @@ class PurchaseRequisition extends Model
         return $this->belongsTo(User::class, 'created_by', 'id')
             ->select('id', 'name', 'email', 'phone', 'profile_picture');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function company()
+    {
+        return $this->hasOne(Company::class, 'id', 'company_id');
+    }
 }

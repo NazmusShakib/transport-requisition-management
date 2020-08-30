@@ -48,7 +48,7 @@
                     <li>
                         <router-link :to="{ name: 'Blank'}" class="waves-effect">
                             <i class="fa fa-sticky-note" data-icon="v"></i>
-                            <span class="hide-menu"> Blank Page</span>
+                            <span class="hide-menu"> Blank page</span>
                         </router-link>
                     </li>
 
@@ -119,94 +119,135 @@
                         </ul>
                     </li>
                     <li>
-                        <router-link :to="{ name: 'SupplierList'}" class="waves-effect">
-                            <i class="fa fa-truck" data-icon="v"></i>
-                            <span class="hide-menu">Suppliers</span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link :to="{ name: 'PurchaseRequisitionList'}" class="waves-effect">
-                            <i class="fa fa-truck" data-icon="v"></i>
-                            <span class="hide-menu">Purchase requisition</span>
-                        </router-link>
-                    </li>
-                    <li>
                         <a href="javascript:void(0)" class="waves-effect">
-                            <i class="fa fa-user" data-icon="v"></i>
+                            <i class="fa fa-truck" data-icon="v"></i>
                             <span class="hide-menu">
-                                Library
+                                Suppliers
                                 <span class="fa arrow"></span>
                             </span>
                         </a>
                         <ul class="nav nav-second-level collapse" aria-expanded="true">
                             <li>
-                                <router-link :to="{ name: 'VehicleList'}" class="waves-effect">
+                                <router-link :to="{ name: 'SupplierList'}" class="waves-effect">
                                     <i class="fa fa-truck" data-icon="v"></i>
-                                    <span class="hide-menu">Vehicles</span>
+                                    <span class="hide-menu">
+                                        Suppliers
+                                    </span>
                                 </router-link>
                             </li>
                             <li>
-                                <router-link :to="{ name: 'PartyTypeList'}" class="waves-effect">
+                                <a href="javascript:void(0)" class="waves-effect">
                                     <i class="fa fa-truck" data-icon="v"></i>
-                                    <span class="hide-menu">Party types</span>
+                                    <span class="hide-menu">
+                                        Library
+                                        <span class="fa arrow"></span>
+                                    </span>
+                                </a>
+                                <ul class="nav nav-third-level collapse" aria-expanded="true">
+                                    <li>
+                                        <router-link :to="{ name: 'CompanyList'}" class="waves-effect">
+                                            <i class="fa fa-truck" data-icon="v"></i>
+                                                <span class="hide-menu">Companies
+                                            </span>
+                                        </router-link>
+                                    </li>
+                                    <li>
+                                        <router-link :to="{ name: 'BuyerList'}" class="waves-effect">
+                                            <i class="fa fa-truck" data-icon="v"></i>
+                                            <span class="hide-menu">Buyers</span>
+                                        </router-link>
+                                    </li>
+                                    <li>
+                                        <router-link :to="{ name: 'NatureList'}" class="waves-effect">
+                                            <i class="fa fa-truck" data-icon="v"></i>
+                                            <span class="hide-menu">Natures</span>
+                                        </router-link>
+                                    </li>
+                                    <li>
+                                        <router-link :to="{ name: 'PartyTypeList'}" class="waves-effect">
+                                            <i class="fa fa-truck" data-icon="v"></i>
+                                            <span class="hide-menu">Party types</span>
+                                        </router-link>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="waves-effect">
+                            <i class="fa fa-user" data-icon="v"></i>
+                            <span class="hide-menu">
+                                Purchase req.
+                                <span class="fa arrow"></span>
+                            </span>
+                        </a>
+                        <ul class="nav nav-second-level collapse" aria-expanded="true">
+                            <li>
+                                <router-link :to="{ name: 'PurchaseRequisitionList'}" class="waves-effect">
+                                    <i class="fa fa-truck" data-icon="v"></i>
+                                    <span class="hide-menu">Purchase req.</span>
                                 </router-link>
                             </li>
                             <li>
-                                <router-link :to="{ name: 'NatureList'}" class="waves-effect">
+                                <a href="javascript:void(0)" class="waves-effect">
                                     <i class="fa fa-truck" data-icon="v"></i>
-                                    <span class="hide-menu">Natures</span>
-                                </router-link>
+                                    <span class="hide-menu">
+                                        Library
+                                        <span class="fa arrow"></span>
+                                    </span>
+                                </a>
+                                <ul class="nav nav-third-level collapse" aria-expanded="true">
+                                    <li>
+                                        <router-link :to="{ name: 'CompanyList'}" class="waves-effect">
+                                            <i class="fa fa-truck" data-icon="v"></i>
+                                            <span class="hide-menu">Companies
+                                            </span>
+                                        </router-link>
+                                    </li>
+                                    <li>
+                                        <router-link :to="{ name: 'VehicleList'}" class="waves-effect">
+                                            <i class="fa fa-truck" data-icon="v"></i>
+                                            <span class="hide-menu">Vehicles</span>
+                                        </router-link>
+                                    </li>
+                                    <li>
+                                        <router-link :to="{ name: 'DepartmentList'}" class="waves-effect">
+                                            <i class="fa fa-truck" data-icon="v"></i>
+                                            <span class="hide-menu">Departments</span>
+                                        </router-link>
+                                    </li>
+                                    <li>
+                                        <router-link :to="{ name: 'DivisionList'}" class="waves-effect">
+                                            <i class="fa fa-truck" data-icon="v"></i>
+                                            <span class="hide-menu">Divisions</span>
+                                        </router-link>
+                                    </li>
+                                    <li>
+                                        <router-link :to="{ name: 'LocationList'}" class="waves-effect">
+                                            <i class="fa fa-truck" data-icon="v"></i>
+                                            <span class="hide-menu">Locations</span>
+                                        </router-link>
+                                    </li>
+                                    <li>
+                                        <router-link :to="{ name: 'SectionList'}" class="waves-effect">
+                                            <i class="fa fa-truck" data-icon="v"></i>
+                                            <span class="hide-menu">Sections</span>
+                                        </router-link>
+                                    </li>
+                                    <li>
+                                        <router-link :to="{ name: 'SourceList'}" class="waves-effect">
+                                            <i class="fa fa-truck" data-icon="v"></i>
+                                            <span class="hide-menu">Sources</span>
+                                        </router-link>
+                                    </li>
+                                    <li>
+                                        <router-link :to="{ name: 'StoreList'}" class="waves-effect">
+                                            <i class="fa fa-truck" data-icon="v"></i>
+                                            <span class="hide-menu">Stores</span>
+                                        </router-link>
+                                    </li>
+                                </ul>
                             </li>
-                            <li>
-                                <router-link :to="{ name: 'CompanyList'}" class="waves-effect">
-                                    <i class="fa fa-truck" data-icon="v"></i>
-                                    <span class="hide-menu">Companies</span>
-                                </router-link>
-                            </li>
-                            <li>
-                                <router-link :to="{ name: 'BuyerList'}" class="waves-effect">
-                                    <i class="fa fa-truck" data-icon="v"></i>
-                                    <span class="hide-menu">Buyers</span>
-                                </router-link>
-                            </li>
-                            <li>
-                                <router-link :to="{ name: 'DepartmentList'}" class="waves-effect">
-                                    <i class="fa fa-truck" data-icon="v"></i>
-                                    <span class="hide-menu">Departments</span>
-                                </router-link>
-                            </li>
-                            <li>
-                                <router-link :to="{ name: 'DivisionList'}" class="waves-effect">
-                                    <i class="fa fa-truck" data-icon="v"></i>
-                                    <span class="hide-menu">Divisions</span>
-                                </router-link>
-                            </li>
-                            <li>
-                                <router-link :to="{ name: 'LocationList'}" class="waves-effect">
-                                    <i class="fa fa-truck" data-icon="v"></i>
-                                    <span class="hide-menu">Locations</span>
-                                </router-link>
-                            </li>
-                            <li>
-                                <router-link :to="{ name: 'SectionList'}" class="waves-effect">
-                                    <i class="fa fa-truck" data-icon="v"></i>
-                                    <span class="hide-menu">Sections</span>
-                                </router-link>
-                            </li>
-                            <li>
-                                <router-link :to="{ name: 'SourceList'}" class="waves-effect">
-                                    <i class="fa fa-truck" data-icon="v"></i>
-                                    <span class="hide-menu">Sources</span>
-                                </router-link>
-                            </li>
-                            <li>
-                                <router-link :to="{ name: 'StoreList'}" class="waves-effect">
-                                    <i class="fa fa-truck" data-icon="v"></i>
-                                    <span class="hide-menu">Stores</span>
-                                </router-link>
-                            </li>
-
-
                         </ul>
                     </li>
 
