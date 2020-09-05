@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\PurchaseRequisitionRequest;
-use App\Models\PurchaseRequisition;
+use App\Http\Requests\WorkOrderRequest;
+use App\Models\WorkOrder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class PurchaseRequisitionController extends BaseController
+class WorkOrderController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +16,7 @@ class PurchaseRequisitionController extends BaseController
      */
     public function index(Request $request)
     {
-        $builder = PurchaseRequisition::with(['company', 'store', 'location'])
+        $builder = WorkOrder::with(['company', 'supplier', 'source', 'location'])
             ->orderBy('created_at', 'DESC');
 
         ($request->has('search')) ? $builder->search($request->search) : null;
@@ -33,11 +32,11 @@ class PurchaseRequisitionController extends BaseController
      * Store a newly created resource in storage.
      *
      */
-    public function store(PurchaseRequisitionRequest $request)
+    public function store(WorkOrderRequest $request)
     {
         $validated = $request->validated();
-        $purchaseRequisition = PurchaseRequisition::create($validated);
-        return $this->sendResponse($purchaseRequisition, 'Purchase requisition has been created successfully.');
+        $workOrder = WorkOrder::create($validated);
+        return $this->sendResponse($workOrder, 'Work order has been created successfully.');
     }
 
     /**
@@ -46,21 +45,21 @@ class PurchaseRequisitionController extends BaseController
      */
     public function show($id)
     {
-        $purchaseRequisition = PurchaseRequisition::with(['company', 'store', 'location'])->findOrFail($id);
-        return $this->sendResponse($purchaseRequisition, 'Purchase requisition retrieved successfully.');
+        $workOrder = WorkOrder::with(['company', 'supplier', 'source', 'location'])->findOrFail($id);
+        return $this->sendResponse($workOrder, 'Work order retrieved successfully.');
     }
 
     /**
      * Update the specified resource in storage.
      *
      */
-    public function update(PurchaseRequisitionRequest $request, $id)
+    public function update(WorkOrderRequest $request, $id)
     {
         $validated = $request->validated();
-        $purchaseRequisition = PurchaseRequisition::findOrFail($id);
-        $purchaseRequisition->fill($validated)->save();
+        $workOrder = WorkOrder::findOrFail($id);
+        $workOrder->fill($validated)->save();
 
-        return $this->sendResponse($purchaseRequisition, 'Purchase requisition has been updated successfully.');
+        return $this->sendResponse($workOrder, 'Work order has been updated successfully.');
     }
 
     /**
@@ -70,8 +69,8 @@ class PurchaseRequisitionController extends BaseController
     public function destroy($id)
     {
         try {
-            PurchaseRequisition::where('created_by', Auth::id())->findOrFail($id)->delete();
-            return $this->sendResponse([], 'Purchase requisition has been deleted successfully.');
+            WorkOrder::where('created_by', Auth::id())->findOrFail($id)->delete();
+            return $this->sendResponse([], 'Work order has been deleted successfully.');
         } catch (\Exception $exception) {
             return $this->sendError($exception->getMessage(), '', Response::HTTP_UNPROCESSABLE_ENTITY);
         }

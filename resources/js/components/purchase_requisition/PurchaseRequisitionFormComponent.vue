@@ -179,7 +179,7 @@
     import {MessageBox} from "element-ui";
 
     import {
-        PurchaseRequisitionAPI, UtilitiesAPI, CompaniesAPI, DepartmentsAPI, StoresAPI, SourcesAPI, DivisionsAPI, LocationsAPI, SectionsAPI
+        PurchaseRequisitionsAPI, UtilitiesAPI, CompaniesAPI, DepartmentsAPI, StoresAPI, SourcesAPI, DivisionsAPI, LocationsAPI, SectionsAPI
     } from "~/services/api";
 
     export default {
@@ -211,7 +211,7 @@
             handleSubmit() {
                 this.$validator.validateAll().then((result) => {
                     if (result) {
-                        PurchaseRequisitionAPI.store(this.purchaseRequisition).then(response => {
+                        PurchaseRequisitionsAPI.store(this.purchaseRequisition).then(response => {
                             this.$notification.success(response.data.message);
                             this.$router.push({name: 'PurchaseRequisitionList'});
                         }).catch(error => {

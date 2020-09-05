@@ -9,7 +9,8 @@ import SectionsAPI from '~/services/api/sectionsApi';
 import DepartmentsAPI from '~/services/api/departmentsApi';
 import DivisionsAPI from '~/services/api/divisionsApi';
 import LocationsAPI from '~/services/api/locationsApi';
-import PurchaseRequisitionAPI from '~/services/api/purchaseRequisitionApi';
+import PurchaseRequisitionsAPI from '~/services/api/purchaseRequisitionsApi';
+import WorkOrdersAPI from '~/services/api/workOrdersApi';
 import UtilitiesAPI from '~/services/api/utilitiesApi';
 
 export {
@@ -24,6 +25,7 @@ export {
     DivisionsAPI,
     LocationsAPI,
     SuppliersAPI,
-    PurchaseRequisitionAPI,
+    PurchaseRequisitionsAPI,
+    WorkOrdersAPI,
     UtilitiesAPI,
 };

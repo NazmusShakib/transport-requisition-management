@@ -252,6 +252,13 @@
                     </li>
 
                     <li>
+                        <router-link :to="{'name' : 'WorkOrderList'}" class="waves-effect">
+                            <i class="fa fa-sticky-note" data-icon="v"></i>
+                            <span class="hide-menu">Work order</span>
+                        </router-link>
+                    </li>
+
+                    <li>
                         <a href="#" class="waves-effect">
                             <i class="fa fa-sticky-note" data-icon="v"></i>
                             <span class="hide-menu"> Reports</span>

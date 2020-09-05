@@ -2,12 +2,12 @@
     <div class="container-fluid">
         <div class="row bg-title">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                <h4 class="page-title">Purchase req. list</h4>
+                <h4 class="page-title">Work order list</h4>
             </div>
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                 <ol class="breadcrumb">
                     <li>
-                        <router-link :to="{ name: 'PurchaseRequisitionList' }">Purchase requisition</router-link>
+                        <router-link :to="{ name: 'WorkOrderList' }">Work orders</router-link>
                     </li>
                 </ol>
             </div>
@@ -31,7 +31,7 @@
                                 type="primary"
                                 class="pull-right"
                                 size="small"
-                                @click="$router.push({name : 'PurchaseRequisitionForm'})">
+                                @click="$router.push({name : 'WorkOrderForm'})">
                                 <i class="el-icon-plus el-icon-right"></i> Add new
                             </el-button>
                         </div>
@@ -42,26 +42,28 @@
                             <tr>
                                 <th>SN</th>
                                 <th>Company</th>
-                                <th>Store</th>
+                                <th>Supplier</th>
+                                <th>Source</th>
                                 <th>Location</th>
                                 <th class="text-nowrap">Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="text-center" v-if="purchaseRequisitions.total === 0">
+                            <tr class="text-center" v-if="workOrders.total === 0">
                                 <td colspan="8">No data to display.</td>
                             </tr>
-                            <tr v-else v-for="(requisition, index) in purchaseRequisitions.data" v-bind:key="index">
+                            <tr v-else v-for="(order, index) in workOrders.data" v-bind:key="index">
                                 <td>{{ index + 1 }}</td>
-                                <td>{{ requisition.company ? requisition.company.name : 'N/A' }}</td>
-                                <td>{{ requisition.store ? requisition.store.name : 'N/A' }}</td>
-                                <td>{{ requisition.location ? requisition.location.name : 'N/A' }}</td>
+                                <td>{{ order.company ? order.company.name : 'N/A' }}</td>
+                                <td>{{ order.supplier ? order.supplier.name : 'N/A' }}</td>
+                                <td>{{ order.source ? order.source.name : 'N/A' }}</td>
+                                <td>{{ order.location ? order.location.name : 'N/A' }}</td>
                                 <td>
                                     <a
                                         href="javascript:void(0)"
                                         data-toggle="tooltip"
                                         title="Edit"
-                                        @click="edit(requisition, index)"
+                                        @click="edit(order, index)"
                                     >
                                         <i class="fa fa-edit m-r-5"></i>
                                     </a>
@@ -70,7 +72,7 @@
                                         href="javascript:void(0)"
                                         data-toggle="tooltip"
                                         title="Delete"
-                                        @click="destroy(requisition.id, index)"
+                                        @click="destroy(order.id, index)"
                                     >
                                         <i class="fa fa-trash-o m-r-5"></i>
                                     </a>
@@ -80,9 +82,9 @@
                         </table>
 
                         <vue-pagination
-                            :pagination="purchaseRequisitions"
-                            v-if="purchaseRequisitions.total >= 16"
-                            @paginate="getPurchaseRequisitions()"
+                            :pagination="workOrders"
+                            v-if="workOrders.total >= 16"
+                            @paginate="getWorkOrders()"
                             :offset="4"
                         />
                     </div>
@@ -98,16 +100,16 @@
     import MasterLayout from "~/components/layouts/MasterLayoutComponent";
     import VuePagination from "~/components/partials/_PaginationComponent";
 
-    import { PurchaseRequisitionsAPI } from "~/services/api";
+    import { WorkOrdersAPI } from "~/services/api";
     import { MessageBox } from "element-ui";
 
     export default {
-        name: "PurchaseRequisitionList",
+        name: "WorkOrderList",
         components: {
             VuePagination,
         },
         data: () => ({
-            purchaseRequisitions: {
+            workOrders: {
                 total: 0,
                 per_page: 1,
                 from: 1,
@@ -120,12 +122,12 @@
             dialogTitle: "Add a new",
         }),
         mounted: function () {
-            this.getPurchaseRequisitions();
+            this.getWorkOrders();
         },
         methods: {
-            getPurchaseRequisitions() {
-                PurchaseRequisitionsAPI.index(this.purchaseRequisitions.current_page).then(purchaseRequisitions => {
-                    this.purchaseRequisitions = purchaseRequisitions;
+            getWorkOrders() {
+                WorkOrdersAPI.index(this.workOrders.current_page).then(workOrders => {
+                    this.workOrders = workOrders;
                 });
             },
             filterTableData() {
@@ -142,10 +144,10 @@
                     }
                 )
                     .then(() => {
-                        PurchaseRequisitionsAPI.destroy(id)
+                        WorkOrdersAPI.destroy(id)
                             .then(response => {
-                                this.purchaseRequisitions.data.splice(index, 1);
-                                this.purchaseRequisitions.total--;
+                                this.workOrders.data.splice(index, 1);
+                                this.workOrders.total--;
                                 this.$notification.success(response.data.message);
                             })
                             .catch(error => {

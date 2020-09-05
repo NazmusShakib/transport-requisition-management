@@ -14,6 +14,7 @@ import requisitionRoutes from '~/routes/requisitionRoutes';
 import libraryRoutes from '~/routes/library';
 import supplierRoutes from '~/routes/supplierRoutes';
 import purchaseRequisitionRoutes from '~/routes/purchaseRequisitionRoutes';
+import workOrderRoutes from '~/routes/workOrderRoutes';
 
 const baseRoutes = [
     {
@@ -76,7 +77,12 @@ const baseRoutes = [
 ];
 
 const routes = baseRoutes.concat(
-    userRoutes, requisitionRoutes, libraryRoutes, supplierRoutes, purchaseRequisitionRoutes
+    userRoutes,
+    requisitionRoutes,
+    libraryRoutes,
+    supplierRoutes,
+    purchaseRequisitionRoutes,
+    workOrderRoutes
 );
 
 export default routes;

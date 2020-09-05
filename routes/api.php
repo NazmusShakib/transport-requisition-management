@@ -104,4 +104,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::apiResource('purchase-requisitions', 'PurchaseRequisitionController', ['only' => [
         'index', 'store', 'show', 'update', 'destroy']])->middleware(['role:admin|staff|subscriber']);
 
+    Route::apiResource('work-orders', 'WorkOrderController', ['only' => [
+        'index', 'store', 'show', 'update', 'destroy']])->middleware(['role:admin|staff|subscriber']);
+
 });
