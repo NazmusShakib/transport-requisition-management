@@ -364,7 +364,7 @@
                 this.$refs[`${firstField}Input`].focus();
             },
             exportShow(id) {
-                axios.get('/api/v1/exports/' + id)
+                axios.get('exports/' + id)
                     .then((response) => {
                         this.exports = response.data.data;
                     })

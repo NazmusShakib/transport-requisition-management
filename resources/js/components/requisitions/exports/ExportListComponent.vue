@@ -99,7 +99,7 @@
         },
         methods: {
             getExports() {
-                axios.get('/api/v1/exports?page=' + this.exports.current_page)
+                axios.get('exports?page=' + this.exports.current_page)
                     .then((response) => {
                         this.exports = response.data;
                     })
@@ -113,7 +113,7 @@
                     cancelButtonText: 'Cancel',
                     type: 'warning'
                 }).then(() => {
-                    axios.delete('/api/v1/exports/' + id)
+                    axios.delete('exports/' + id)
                         .then(response => {
                             this.exports.data.splice(index, 1);
                             this.$notification.success(response.data.message);

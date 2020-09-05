@@ -73,7 +73,7 @@
         },
         methods: {
             importsShow(id) {
-                axios.get('/api/v1/imports/' + id)
+                axios.get('imports/' + id)
                     .then((response) => {
                         this.imports = response.data.data;
                     })

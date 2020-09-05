@@ -82,7 +82,7 @@
         },
         methods: {
             getUsers() {
-                axios.get('/api/v1/users?page=' + this.users.current_page)
+                axios.get('users?page=' + this.users.current_page)
                     .then((response) => {
                         this.users = response.data;
                     })

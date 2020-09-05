@@ -99,7 +99,7 @@
         },
         methods: {
             getImports() {
-                axios.get('/api/v1/imports?page=' + this.imports.current_page)
+                axios.get('imports?page=' + this.imports.current_page)
                     .then((response) => {
                         this.imports = response.data;
                     })
@@ -108,7 +108,7 @@
                     });
             },
             /*showImport(id) {
-                axios.get('/api/v1/imports/' + id)
+                axios.get('imports/' + id)
                     .then((response) => {
                         this.imports = response.data;
                     })
@@ -122,7 +122,7 @@
                     cancelButtonText: 'Cancel',
                     type: 'warning'
                 }).then(() => {
-                    axios.delete('/api/v1/imports/' + id)
+                    axios.delete('imports/' + id)
                         .then(response => {
                             this.imports.data.splice(index, 1);
                             this.$notification.success(response.data.message);
