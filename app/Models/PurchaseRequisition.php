@@ -77,4 +77,27 @@ class PurchaseRequisition extends Model
     {
         return $this->hasOne(Location::class, 'id', 'location_id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function section()
+    {
+        return $this->hasOne(Section::class, 'id', 'section_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function division()
+    {
+        return $this->hasOne(Division::class, 'id', 'division_id');
+    }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function source()
+    {
+        return $this->hasOne(Source::class, 'id', 'source_id');
+    }
 }

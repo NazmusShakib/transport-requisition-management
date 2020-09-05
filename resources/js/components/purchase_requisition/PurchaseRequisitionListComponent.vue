@@ -57,17 +57,13 @@
                                 <td>{{ requisition.store ? requisition.store.name : 'N/A' }}</td>
                                 <td>{{ requisition.location ? requisition.location.name : 'N/A' }}</td>
                                 <td>
-                                    <a
-                                        href="javascript:void(0)"
-                                        data-toggle="tooltip"
-                                        title="Edit"
-                                        @click="edit(requisition, index)"
-                                    >
-                                        <i class="fa fa-edit m-r-5"></i>
-                                    </a>
+                                    <router-link
+                                        :to="{name: 'PurchaseRequisitionShow', params: {id: requisition.id }}"
+                                        data-toggle="tooltip" title="Show">
+                                        <i class="fa fa-eye m-r-5"></i>
+                                    </router-link>
                                     <span class="m-r-5">|</span>
-                                    <a
-                                        href="javascript:void(0)"
+                                    <a href="javascript:void(0)"
                                         data-toggle="tooltip"
                                         title="Delete"
                                         @click="destroy(requisition.id, index)"

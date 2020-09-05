@@ -45,7 +45,7 @@ class WorkOrderController extends BaseController
      */
     public function show($id)
     {
-        $workOrder = WorkOrder::with(['company', 'supplier', 'source', 'location'])->findOrFail($id);
+        $workOrder = WorkOrder::with(['createdBy', 'company', 'supplier', 'source', 'location'])->findOrFail($id);
         return $this->sendResponse($workOrder, 'Work order retrieved successfully.');
     }
 

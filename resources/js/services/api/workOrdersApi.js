@@ -15,11 +15,12 @@ export default {
 
     store(payload) {
         return axios.post('work-orders', payload);
-
     },
 
     show(id) {
-        //
+        return axios.get('work-orders/' + id).then(response => {
+            return response.data;
+        })
     },
 
     update(id) {

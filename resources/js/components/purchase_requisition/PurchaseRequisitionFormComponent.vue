@@ -176,7 +176,6 @@
 
 <script>
     import MasterLayout from "~/components/layouts/MasterLayoutComponent";
-    import {MessageBox} from "element-ui";
 
     import {
         PurchaseRequisitionsAPI, UtilitiesAPI, CompaniesAPI, DepartmentsAPI, StoresAPI, SourcesAPI, DivisionsAPI, LocationsAPI, SectionsAPI

@@ -46,7 +46,7 @@ class PurchaseRequisitionController extends BaseController
      */
     public function show($id)
     {
-        $purchaseRequisition = PurchaseRequisition::with(['company', 'store', 'location'])->findOrFail($id);
+        $purchaseRequisition = PurchaseRequisition::with(['createdBy', 'company', 'section', 'division', 'source', 'store', 'location'])->findOrFail($id);
         return $this->sendResponse($purchaseRequisition, 'Purchase requisition retrieved successfully.');
     }
 

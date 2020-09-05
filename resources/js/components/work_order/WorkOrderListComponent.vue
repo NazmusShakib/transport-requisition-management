@@ -59,21 +59,16 @@
                                 <td>{{ order.source ? order.source.name : 'N/A' }}</td>
                                 <td>{{ order.location ? order.location.name : 'N/A' }}</td>
                                 <td>
-                                    <a
-                                        href="javascript:void(0)"
-                                        data-toggle="tooltip"
-                                        title="Edit"
-                                        @click="edit(order, index)"
-                                    >
-                                        <i class="fa fa-edit m-r-5"></i>
-                                    </a>
+                                    <router-link :to="{ name: 'WorkOrderShow', params: {id: order.id } }"
+                                                 data-toggle="tooltip" title="Show">
+                                        <i class="fa fa-eye m-r-5"></i>
+                                    </router-link>
                                     <span class="m-r-5">|</span>
                                     <a
                                         href="javascript:void(0)"
                                         data-toggle="tooltip"
                                         title="Delete"
-                                        @click="destroy(order.id, index)"
-                                    >
+                                        @click="destroy(order.id, index)">
                                         <i class="fa fa-trash-o m-r-5"></i>
                                     </a>
                                 </td>
@@ -158,7 +153,7 @@
                         console.log("Delete canceled");
                     });
             },
-            edit(item, index) {
+            show(item, index) {
                 //
             }
         },
