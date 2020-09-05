@@ -17,7 +17,7 @@ class PurchaseRequisitionController extends BaseController
      */
     public function index(Request $request)
     {
-        $builder = PurchaseRequisition::with(['company'])
+        $builder = PurchaseRequisition::with(['company', 'store', 'location'])
             ->orderBy('created_at', 'DESC');
 
         ($request->has('search')) ? $builder->search($request->search) : null;

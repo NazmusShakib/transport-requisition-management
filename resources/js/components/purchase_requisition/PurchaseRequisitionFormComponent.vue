@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row bg-title">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                <h4 class="page-title">Purchase requisition create</h4>
+                <h4 class="page-title">Purchase req. create</h4>
             </div>
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                 <ol class="breadcrumb">
@@ -23,8 +23,8 @@
                                  v-bind:class="{'has-error' : errors.has('company')}">
                                 <label class="control-label">Company:</label>
                                 <v-select :options="companies" :reduce="company => company.id" label="name"
-                                          @search="onCompanySearch" v-model.trim="purchaseRequisition.nature_id"
-                                          placeholder="Company"
+                                          @search="onCompanySearch" v-model.trim="purchaseRequisition.company_id"
+                                          placeholder="Company" v-validate="'required'"
                                           name="company"
                                           v-bind:class="{'has-error' : errors.has('company')}"
                                 />
@@ -37,7 +37,7 @@
                                 <label class="control-label">Location:</label>
                                 <v-select :options="locations" :reduce="location => location.id" label="name"
                                           @search="onLocationSearch" v-model.trim="purchaseRequisition.location_id"
-                                          placeholder="Location"
+                                          placeholder="Location" v-validate="'required'"
                                           name="location"
                                           v-bind:class="{'has-error' : errors.has('location')}"
                                 />
@@ -91,10 +91,9 @@
                                 <label class="control-label">Store:</label>
                                 <v-select :options="stores" :reduce="store => store.id" label="name"
                                           @search="onStoreSearch" v-model.trim="purchaseRequisition.store_id"
-                                          placeholder="Store"
+                                          placeholder="Store" v-validate="'required'"
                                           name="store"
-                                          v-bind:class="{'has-error' : errors.has('store')}"
-                                />
+                                          v-bind:class="{'has-error' : errors.has('store')}"/>
                                 <div v-show="errors.has('store')"
                                      class="help text-danger">{{ errors.first('store') }}
                                 </div>
@@ -109,8 +108,7 @@
                                           @search="onSourceSearch" v-model.trim="purchaseRequisition.source_id"
                                           placeholder="Source"
                                           name="source"
-                                          v-bind:class="{'has-error' : errors.has('source')}"
-                                />
+                                          v-bind:class="{'has-error' : errors.has('source')}"/>
                                 <div v-show="errors.has('source')"
                                      class="help text-danger">{{ errors.first('source') }}
                                 </div>
@@ -129,16 +127,38 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-4"
-                                 v-bind:class="{'has-error' : errors.has('store')}">
-                                <label class="control-label">Store:</label>
-                                <v-select :options="stores" :reduce="store => store.id" label="name"
-                                          @search="onStoreSearch" v-model.trim="purchaseRequisition.store_id"
-                                          placeholder="Store"
-                                          name="store"
-                                          v-bind:class="{'has-error' : errors.has('store')}"
-                                />
-                                <div v-show="errors.has('store')"
-                                     class="help text-danger">{{ errors.first('store') }}
+                                 v-bind:class="{'has-error' : errors.has('delivery_date')}">
+                                <label class="control-label" for="purchaseRequisition">Delivery date:</label>
+                                <input type="date" id="purchaseRequisition" class="form-control" v-model="purchaseRequisition.delivery_date">
+                                <div v-show="errors.has('delivery_date')"
+                                     class="help text-danger">{{ errors.first('delivery_date') }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-4" v-bind:class="{'has-error' : errors.has('iso_no')}">
+                                <label class="control-label" for="iso_no">ISO No.:</label>
+                                <input type="text" id="iso_no" class="form-control" v-model="purchaseRequisition.iso_no">
+                                <div v-show="errors.has('iso_no')"
+                                     class="help text-danger">{{ errors.first('iso_no') }}
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4" v-bind:class="{'has-error' : errors.has('remarks')}">
+                                <label class="control-label" for="remarks">Remarks:</label>
+                                <input type="text" id="remarks" name="remarks" class="form-control" v-model="purchaseRequisition.remarks">
+                                <div v-show="errors.has('remarks')"
+                                     class="help text-danger">{{ errors.first('remarks') }}
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4" v-bind:class="{'has-error' : errors.has('ready_to_approve')}">
+                                <label class="control-label" for="ready_to_approve">Ready to Approve:</label>
+                                <select name="ready_to_approve" class="form-control" v-model="purchaseRequisition.ready_to_approve" id="ready_to_approve">
+                                    <option value="No" selected> No </option>
+                                    <option value="Yes"> Yes </option>
+                                </select>
+                                <div v-show="errors.has('ready_to_approve')"
+                                     class="help text-danger">{{ errors.first('ready_to_approve') }}
                                 </div>
                             </div>
                         </div>
@@ -165,7 +185,10 @@
     export default {
         name: "PurchaseRequisitionForm",
         data: () => ({
-            purchaseRequisition: {},
+            purchaseRequisition: {
+                ready_to_approve: 'No',
+                pay_mode: ''
+            },
             companies: [],
             locations: [],
             divisions: [],
@@ -186,12 +209,16 @@
         },
         methods: {
             handleSubmit() {
-                PurchaseRequisitionAPI.store(this.supplier).then(response => {
-                    this.$notification.success(response.data.message);
-                    this.$router.push({name: 'PurchaseRequisitionList'});
-                }).catch(error => {
-                    this.$setErrorsFromResponse(error.response.data);
-                    this.$notification.error(error.response.data.message);
+                this.$validator.validateAll().then((result) => {
+                    if (result) {
+                        PurchaseRequisitionAPI.store(this.purchaseRequisition).then(response => {
+                            this.$notification.success(response.data.message);
+                            this.$router.push({name: 'PurchaseRequisitionList'});
+                        }).catch(error => {
+                            this.$setErrorsFromResponse(error.response.data);
+                            this.$notification.error(error.response.data.message);
+                        });
+                    }
                 });
             },
             onCompanySearch(search, loading) {

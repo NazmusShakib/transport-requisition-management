@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row bg-title">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                <h4 class="page-title">Purchase requisition list</h4>
+                <h4 class="page-title">Purchase req. list</h4>
             </div>
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                 <ol class="breadcrumb">
@@ -42,8 +42,8 @@
                             <tr>
                                 <th>SN</th>
                                 <th>Company</th>
-                                <th>Department</th>
                                 <th>Store</th>
+                                <th>Location</th>
                                 <th class="text-nowrap">Action</th>
                             </tr>
                             </thead>
@@ -53,9 +53,9 @@
                             </tr>
                             <tr v-else v-for="(requisition, index) in purchaseRequisitions.data" v-bind:key="index">
                                 <td>{{ index + 1 }}</td>
-                                <td>{{ requisition.name }}</td>
-                                <td>{{ requisition.contact_no }}</td>
-                                <td>{{ requisition.email }}</td>
+                                <td>{{ requisition.company ? requisition.company.name : 'N/A' }}</td>
+                                <td>{{ requisition.store ? requisition.store.name : 'N/A' }}</td>
+                                <td>{{ requisition.location ? requisition.location.name : 'N/A' }}</td>
                                 <td>
                                     <a
                                         href="javascript:void(0)"
