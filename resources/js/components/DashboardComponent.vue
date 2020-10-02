@@ -108,18 +108,17 @@
         <!--row -->
         <!-- /.row -->
         <div class="row">
-            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+            <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
                 <div class="white-box">
-                    <h3 class="box-title">Yearly Transection</h3>
-                    <ul class="list-inline text-right">
-                        <li>
-                            <h5><i class="fa fa-circle m-r-5" style="color: #00bfc7;"></i>Manager</h5></li>
-                        <li>
-                            <h5><i class="fa fa-circle m-r-5" style="color: #fb9678;"></i>Staff</h5></li>
-                        <li>
-                            <h5><i class="fa fa-circle m-r-5" style="color: #9675ce;"></i>Workers</h5></li>
-                    </ul>
-                    <div id="morris-area-chart" style="height: 340px; width: 100%"></div>
+                    <h3 class="box-title">Monthly Requisitions</h3>
+                    <!--<bar-chart></bar-chart>-->
+                    <line-chart></line-chart>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+                <div class="white-box">
+                    <h3 class="box-title">Transaction Status</h3>
+                    <doughnut-chart></doughnut-chart>
                 </div>
             </div>
         </div>
@@ -130,18 +129,16 @@
                     <h3 class="box-title">Recent sales
                         <div class="col-md-3 col-sm-4 col-xs-6 pull-right">
                             <select class="form-control pull-right row b-none">
-                                <option>March 2017</option>
-                                <option>April 2017</option>
-                                <option>May 2017</option>
-                                <option>June 2017</option>
-                                <option>July 2017</option>
+                                <option>October 2020</option>
+                                <option>November 2020</option>
+                                <option>December 2020</option>
                             </select>
                         </div>
                     </h3>
                     <div class="row sales-report">
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <h2>March 2017</h2>
-                            <p>TRANSECTION REPORT</p>
+                            <h2>October 2020</h2>
+                            <p>TRANSACTION REPORT</p>
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-6 ">
                             <h1 class="text-right text-success m-t-20">$3,690</h1></div>
@@ -150,7 +147,7 @@
                         <table class="table ">
                             <thead>
                             <tr>
-                                <th>Staff NAME</th>
+                                <th>STAFF NAME</th>
                                 <th>STATUS</th>
                                 <th>DATE</th>
                                 <th>TOTAL AMOUNT</th>
@@ -211,23 +208,25 @@
 
 <script>
     import MasterLayout from '~/components/layouts/MasterLayoutComponent.vue';
+    import BarChart from "~/charts/BarChart";
+    import LineChart from "~/charts/LineChart";
+    import DoughnutChart from "~/charts/DoughnutChart";
 
     export default {
         name: 'Dashboard',
         components: {
-            //
+            'bar-chart': BarChart,
+            'line-chart': LineChart,
+            'doughnut-chart': DoughnutChart
         },
         data: () => ({
             //
         }),
         mounted: function () {
-            // console.log('Dashboard component mounted.');
-
             if(!this.$localStorage.get('reloaded')) {
                 this.$localStorage.set('reloaded', '1');
                 location.reload();
             }
-
         },
         created() {
             this.$emit('update:layout', MasterLayout);
