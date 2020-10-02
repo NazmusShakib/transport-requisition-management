@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row bg-title">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                <h4 class="page-title">Work order list</h4>
+                <h4 class="page-title">Work order report</h4>
             </div>
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                 <ol class="breadcrumb">
@@ -17,7 +17,7 @@
             <div class="col-md-12 col-lg-12 col-sm-12">
                 <div class="white-box">
                     <div class="row">
-                        <div class="col-md-10 col-lg-10 col-sm-12">
+                        <div class="col-md-12 col-lg-12 col-sm-12">
                             <el-input
                                 placeholder="Search input"
                                 v-model="searchText"
@@ -26,7 +26,7 @@
                                 size="small"
                             />
                         </div>
-                        <div class="col-md-2 col-lg-2 col-sm-12">
+                        <!--<div class="col-md-2 col-lg-2 col-sm-12">
                             <el-button
                                 type="primary"
                                 class="pull-right"
@@ -34,7 +34,7 @@
                                 @click="$router.push({name : 'WorkOrderForm'})">
                                 <i class="el-icon-plus el-icon-right"></i> Add new
                             </el-button>
-                        </div>
+                        </div>-->
                     </div>
                     <div class="table-responsive">
                         <table class="table table-striped">

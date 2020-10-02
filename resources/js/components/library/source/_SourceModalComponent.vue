@@ -69,7 +69,7 @@
         methods: {
             handleSubmit() {
                 if (this.submitMethod === "create") {
-                    axios.post(this.$baseURL + 'library/sections', this.library).then(response => {
+                    axios.post(this.$baseURL + 'library/sources', this.library).then(response => {
                         this.$eventBus.$emit('add-source', response.data.data);
                         this.$notification.success(response.data.message);
                         this.onClose();
@@ -78,7 +78,7 @@
                         this.$notification.error(error.response.data.message);
                     });
                 } else if (this.submitMethod === "update") {
-                    axios.put(this.$baseURL + 'library/sections/' + this.library.id, this.library)
+                    axios.put(this.$baseURL + 'library/sources/' + this.library.id, this.library)
                         .then(response => {
                             this.$notification.success(response.data.message);
                             this.onClose();

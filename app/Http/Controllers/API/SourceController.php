@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Section;
 use App\Models\Source;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -40,7 +39,7 @@ class SourceController extends BaseController
         ]);
 
         $input = $request->only(['name', 'short_name', 'description']);
-        $create = Section::create($input);
+        $create = Source::create($input);
         return $this->sendResponse($create, 'Source has been created successfully.');
     }
 

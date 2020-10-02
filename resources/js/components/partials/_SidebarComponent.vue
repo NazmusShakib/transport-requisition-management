@@ -131,7 +131,7 @@
                                 <router-link :to="{ name: 'SupplierList'}" class="waves-effect">
                                     <i class="fa fa-truck" data-icon="v"></i>
                                     <span class="hide-menu">
-                                        Suppliers
+                                        List
                                     </span>
                                 </router-link>
                             </li>
@@ -185,7 +185,7 @@
                             <li>
                                 <router-link :to="{ name: 'PurchaseRequisitionList'}" class="waves-effect">
                                     <i class="fa fa-truck" data-icon="v"></i>
-                                    <span class="hide-menu">Purchase req.</span>
+                                    <span class="hide-menu">List</span>
                                 </router-link>
                             </li>
                             <li>
@@ -252,17 +252,17 @@
                     </li>
 
                     <li>
-                        <router-link :to="{'name' : 'WorkOrderList'}" class="waves-effect">
+                        <router-link :to="{'name' : 'WorkOrderForm'}" class="waves-effect">
                             <i class="fa fa-sticky-note" data-icon="v"></i>
-                            <span class="hide-menu">Work order</span>
+                            <span class="hide-menu">Create work order</span>
                         </router-link>
                     </li>
 
                     <li>
-                        <a href="#" class="waves-effect">
+                        <router-link :to="{'name' : 'WorkOrderList'}" class="waves-effect">
                             <i class="fa fa-sticky-note" data-icon="v"></i>
-                            <span class="hide-menu"> Reports</span>
-                        </a>
+                            <span class="hide-menu">Work order report</span>
+                        </router-link>
                     </li>
 
                 </ul>
